@@ -1,8 +1,8 @@
 ---
 description: >-
   Puesta a punto opcional para quien no ha programado nunca: qué es Google
-  Colab, el mínimo de Python para leer código sin miedo y por qué en este curso
-  el código lo escribe un asistente de IA mientras tú pones el criterio clínico.
+  Colab, el mínimo de Python para leer código sin miedo y en este curso el
+  código lo escribe un asistente de IA
 ---
 
 # U0 · Puesta a punto — Google Colab y Python
@@ -10,12 +10,14 @@ description: >-
 {% hint style="info" %}
 **Concepto · Unidad de puesta a punto (opcional)**
 
-Esta unidad es una **red de seguridad**, no un examen de acceso. Está pensada para quien no ha programado nunca y quiere llegar a la primera práctica con el terreno pisado.
+Esta unidad es una **red de seguridad**, no un examen de acceso.
+
+Está pensada para quien no ha programado nunca y quiere llegar a la primera práctica con el terreno pisado.
 
 Si ya has usado Google Colab y sabes leer cuatro líneas de Python, puedes saltártela sin remordimientos y volver solo cuando algo te chirríe: estará siempre aquí.
 {% endhint %}
 
-Empecemos por lo más importante: **en este curso no vas a aprender a programar, y no pasa absolutamente nada**. Vas a aprender a *leer* código —que es muchísimo más fácil que escribirlo— y a *pedirlo* bien.
+Empecemos por lo más importante: **en este curso no vas a aprender a programar, y no pasa absolutamente nada**. Vas a aprender a _leer_ código —que es muchísimo más fácil que escribirlo— y a _pedirlo_ bien.
 
 Es la misma diferencia que hay entre interpretar un electrocardiograma y diseñar el electrocardiógrafo: para usar el aparato con criterio te basta lo primero.
 
@@ -25,14 +27,14 @@ Lo que sí te llevarás de aquí es algo más valioso: la tranquilidad de mirar 
 
 ## 0.1 Qué es Google Colab y por qué lo usamos
 
-[**Google Colab**](https://colab.research.google.com/) es un servicio **gratuito** de Google que ejecuta **cuadernos de Python** (*notebooks*) directamente **en el navegador**.
+[**Google Colab**](https://colab.research.google.com/) es un servicio **gratuito** de Google que ejecuta **cuadernos de Python** (_notebooks_) directamente **en el navegador**.
 
 Eso significa cuatro cosas que lo hacen perfecto para un curso como este:
 
-- **No hay que instalar nada.** Ni Python, ni librerías, ni programas extraños. Si tu ordenador abre YouTube, puede seguir este curso. El código se ejecuta en un ordenador de Google, en la nube; tu navegador solo muestra el resultado.
-- **Es gratis.** La versión gratuita sobra para todo lo que haremos.
-- **Viene con el instrumental ya puesto.** Las librerías de datos que usaremos (pandas, numpy, matplotlib…) están preinstaladas, como un quirófano montado antes de que llegues.
-- **Incluye GPU gratis.** Un tipo de procesador muy potente que pediremos prestado cuando lleguemos al *deep learning*. De momento, basta con saber que existe y que no cuesta nada.
+* **No hay que instalar nada.** Ni Python, ni librerías, ni programas extraños. Si tu ordenador abre YouTube, puede seguir este curso. El código se ejecuta en un ordenador de Google, en la nube; tu navegador solo muestra el resultado.
+* **Es gratis.** La versión gratuita sobra para todo lo que haremos.
+* **Viene con el instrumental ya puesto.** Las librerías de datos que usaremos (pandas, numpy, matplotlib…) están preinstaladas, como un quirófano montado antes de que llegues.
+* **Incluye GPU gratis.** Un tipo de procesador muy potente que pediremos prestado cuando lleguemos al _deep learning_. De momento, basta con saber que existe y que no cuesta nada.
 
 Si te ayuda una analogía: Colab es a la programación lo que el laboratorio central es a la analítica. Tú pides la prueba e interpretas el resultado; no necesitas montar el espectrofotómetro en tu consulta.
 
@@ -42,16 +44,16 @@ Los cuadernos del curso se abren con **un clic en un enlace**: se despliegan en 
 
 Si quieres conservar tus cambios, usa **Archivo → Guardar una copia en Drive**: desde ese momento tienes tu propia copia, que **se guarda sola en tu Google Drive** como un documento más. Imposible perderla, imposible estropear el original.
 
-Un *notebook* es un documento hecho de **celdas** que se leen y se ejecutan **de arriba abajo**, igual que una historia clínica se lee en orden cronológico. Hay dos tipos:
+Un _notebook_ es un documento hecho de **celdas** que se leen y se ejecutan **de arriba abajo**, igual que una historia clínica se lee en orden cronológico. Hay dos tipos:
 
-- **Celdas de texto** — explicaciones normales y corrientes, con títulos y negritas. En los cuadernos del curso son mayoría: te van contando qué está pasando y por qué, como los comentarios al margen de un protocolo.
-- **Celdas de código** — contienen Python. Se ejecutan pulsando el botón **▶** que aparece a su izquierda, o con **Mayús + Enter**. El resultado (un número, una tabla, una gráfica) aparece justo debajo de la celda.
+* **Celdas de texto** — explicaciones normales y corrientes, con títulos y negritas. En los cuadernos del curso son mayoría: te van contando qué está pasando y por qué, como los comentarios al margen de un protocolo.
+* **Celdas de código** — contienen Python. Se ejecutan pulsando el botón **▶** que aparece a su izquierda, o con **Mayús + Enter**. El resultado (un número, una tabla, una gráfica) aparece justo debajo de la celda.
 
 Y el manejo mínimo, que cabe en tres líneas:
 
-- **Ejecutar una celda:** **▶** o **Mayús + Enter** (ejecuta y salta a la siguiente).
-- **Ejecutar el cuaderno entero:** menú **Entorno de ejecución → Ejecutar todo**. Es la opción estrella de este curso: reproduce todo el análisis de arriba abajo, en orden, sin que tengas que tocar nada más.
-- **El orden importa:** las celdas comparten memoria, así que una variable creada arriba existe más abajo. Si ejecutas celdas salteadas puede aparecer algún error extraño; no es grave, es solo desorden.
+* **Ejecutar una celda:** **▶** o **Mayús + Enter** (ejecuta y salta a la siguiente).
+* **Ejecutar el cuaderno entero:** menú **Entorno de ejecución → Ejecutar todo**. Es la opción estrella de este curso: reproduce todo el análisis de arriba abajo, en orden, sin que tengas que tocar nada más.
+* **El orden importa:** las celdas comparten memoria, así que una variable creada arriba existe más abajo. Si ejecutas celdas salteadas puede aparecer algún error extraño; no es grave, es solo desorden.
 
 Un último detalle tranquilizador: si dejas Colab un rato sin usar, la sesión **se desconecta** y las variables se olvidan (el texto y el código del cuaderno, no: esos quedan guardados en Drive). La solución es siempre la misma: reconectar y **Ejecutar todo**.
 
@@ -101,7 +103,7 @@ for g in glucemias:
         print(g, "→ por encima del umbral diagnóstico")
 ```
 
-En cristiano: «para cada glucemia `g` de la lista, si es mayor o igual a 126 mg/dL (el umbral clásico de diabetes en ayunas), imprímela con un aviso». Aquí saltarían 145 y 128.
+En castellano: «para cada glucemia `g` de la lista, si es mayor o igual a 126 mg/dL (el umbral clásico de diabetes en ayunas), imprímela con un aviso». Aquí saltarían 145 y 128.
 
 Fíjate en el detalle visual: lo que va **sangrado** (desplazado a la derecha) es lo que ocurre «dentro» del bucle. Esa sangría es la forma que tiene Python de anidar ideas, como los subapartados de un informe.
 
@@ -132,9 +134,9 @@ Una **librería** es un conjunto de funciones ya hechas que se «importan» al p
 
 No hace falta saber qué contienen por dentro; basta con saber **para qué sirve cada una**, igual que no hace falta conocer la óptica del microscopio para saber cuándo pedirlo. Las tres que aparecerán una y otra vez:
 
-- **pandas** — trabaja con **tablas de datos** (los famosos `DataFrame`). Piensa en una hoja de cálculo con superpoderes: carga un CSV de 20 000 pacientes, filtra, agrupa, resume y cruza columnas en una línea. Es la librería que más verás, con diferencia.
-- **numpy** — el motor de **cálculo numérico** que trabaja por debajo de casi todo: medias, redondeos, operaciones con miles de números a la vez. Suele aparecer como `np` en el código.
-- **matplotlib y seaborn** — las encargadas de las **gráficas**: histogramas de edades, nubes de puntos de IMC frente a tensión, curvas de evolución. Seaborn es, en esencia, un matplotlib con mejor gusto estético.
+* **pandas** — trabaja con **tablas de datos** (los famosos `DataFrame`). Piensa en una hoja de cálculo con superpoderes: carga un CSV (o Excel) de 20 000 pacientes, filtra, agrupa, resume y cruza columnas en una línea. Es la librería que más verás, con diferencia.
+* **numpy** — el motor de **cálculo numérico** que trabaja por debajo de casi todo: medias, redondeos, operaciones con miles de números a la vez. Suele aparecer como `np` en el código.
+* **matplotlib y seaborn** — las encargadas de las **gráficas**: histogramas de edades, nubes de puntos de IMC frente a tensión, curvas de evolución. Seaborn es, en esencia, un matplotlib con mejor gusto estético.
 
 Más adelante se sumará una cuarta protagonista, **scikit-learn**, que es la caja de herramientas de Machine Learning propiamente dicha; la presentaremos con calma cuando toque entrenar el primer modelo.
 
@@ -163,14 +165,14 @@ Cuando en el código veas `df`, casi siempre es un DataFrame; el nombre es pura 
 
 ## 0.4 El principio liberador: la IA escribe el código, tú pones el criterio
 
-Y aquí llega la idea que hace posible este curso para un profesional sanitario sin formación técnica: **en 2026 el valor ya no está en escribir código de memoria, sino en tener criterio clínico y saber pedirle el código a un asistente de IA**.
+Y aquí llega la idea que hace posible este curso para un profesional sanitario sin formación técnica: **en la actualidad el valor ya no está en escribir código de memoria, sino en tener criterio clínico y saber pedirle el código a un asistente de IA**.
 
 Los asistentes actuales (Claude, ChatGPT, Gemini y compañía) escriben con soltura el código de análisis de datos que hace diez años exigía un programador. Lo que **no** pueden poner es lo que tú traes de serie: saber si una pregunta tiene sentido clínico, si una variable está mal medida o si un resultado es demasiado bonito para ser verdad.
 
 El reparto de papeles queda así, y es un buen trato:
 
-- **El asistente**: escribe el código, lo corrige cuando falla y te explica línea a línea lo que hace.
-- **Tú**: decides qué preguntar, compruebas que la respuesta tiene sentido clínico y detectas lo que chirría (¿una glucemia de 800 en un paciente «sano»? ¿un IMC de 3?).
+* **El asistente**: escribe el código, lo corrige cuando falla y te explica línea a línea lo que hace.
+* **Tú**: decides qué preguntar, compruebas que la respuesta tiene sentido clínico y detectas lo que chirría (¿una glucemia de 800 en un paciente «sano»? ¿un IMC de 3?).
 
 En la práctica, todo empieza por saber **pedir**. Un buen prompt es como una buena interconsulta: contexto, datos disponibles y qué necesitas. Por ejemplo:
 
@@ -192,10 +194,10 @@ En este curso no habrá ocasión de hacerlo, porque **todos los datos son sinté
 
 Cada unidad tiene su cuaderno de Colab, y todos siguen la misma coreografía pensada para que la parte técnica sea invisible:
 
-- **La primera celda genera los datos sintéticos.** No hay que descargar ficheros, ni subir nada, ni pedir permisos: al ejecutarla, el propio cuaderno fabrica su `pacientes.csv` (o el dataset que toque) en la sesión. Siempre funciona, en cualquier ordenador.
-- **Ábrelo y dale a Entorno de ejecución → Ejecutar todo.** En unos segundos tendrás el cuaderno completo ejecutado, con todas sus tablas y gráficas. A partir de ahí, léelo con calma de arriba abajo, que es donde está el aprendizaje.
-- **Trastea.** Cambia un número, vuelve a ejecutar la celda y mira qué pasa. Es la mejor manera de aprender y, como ya sabes, no puedes romper nada: **Ejecutar todo** lo restaura siempre.
-- **Guarda tu copia en Drive** si quieres conservar tus experimentos y anotaciones de una sesión a otra.
+* **La primera celda genera los datos sintéticos.** No hay que descargar ficheros, ni subir nada, ni pedir permisos: al ejecutarla, el propio cuaderno fabrica su `pacientes.csv` (o el dataset que toque) en la sesión. Siempre funciona, en cualquier ordenador.
+* **Ábrelo y dale a Entorno de ejecución → Ejecutar todo.** En unos segundos tendrás el cuaderno completo ejecutado, con todas sus tablas y gráficas. A partir de ahí, léelo con calma de arriba abajo, que es donde está el aprendizaje.
+* **Trastea.** Cambia un número, vuelve a ejecutar la celda y mira qué pasa. Es la mejor manera de aprender y, como ya sabes, no puedes romper nada: **Ejecutar todo** lo restaura siempre.
+* **Guarda tu copia en Drive** si quieres conservar tus experimentos y anotaciones de una sesión a otra.
 
 {% hint style="info" %}
 **Concepto · La coreografía de cada notebook, en una frase**
@@ -208,17 +210,17 @@ Datos sintéticos autogenerados en la primera celda → **Ejecutar todo** → le
 
 Tu primer cuaderno: un paseo guiado por Colab y por todo lo que has leído aquí —celdas, variables, la función del IMC, pandas y tu primera tabla de pacientes—.
 
-**Su primera celda genera los datos sintéticos** del curso: no hay que descargar ni configurar nada. Ábrelo, pulsa *Ejecutar todo* y dedícale veinte minutos tranquilos.
+**Su primera celda genera los datos sintéticos** del curso: no hay que descargar ni configurar nada. Ábrelo, pulsa _Ejecutar todo_ y dedícale veinte minutos tranquilos.
 
-[Abrir en Colab](PENDIENTE_DRIVE)
+[Abrir en Colab](PENDIENTE_DRIVE/)
 {% endhint %}
 
 ## Qué llevarte
 
-- **Colab es Python en el navegador**: gratis, sin instalar nada, con GPU disponible y con tus cuadernos guardados solos en Google Drive.
-- Un cuaderno se lee **de arriba abajo**; ante cualquier duda o error, **Entorno de ejecución → Ejecutar todo**. En Colab no se puede romper nada.
-- Python **se lee mejor de lo que se escribe**: variables, listas, `for` y `def` son abreviaturas de ideas simples, como las siglas clínicas. Nada que memorizar.
-- En modo idea: **pandas** = tablas, **numpy** = números, **matplotlib/seaborn** = gráficas. Y `df.head()` como primer acto reflejo ante cualquier dato.
-- **El asistente de IA escribe el código; tú aportas el criterio clínico** y aprendes a pedir y a leer. Eso sí: jamás con datos reales de pacientes, siempre con nuestros datos sintéticos.
+* **Colab es Python en el navegador**: gratis, sin instalar nada, con GPU disponible y con tus cuadernos guardados solos en Google Drive.
+* Un cuaderno se lee **de arriba abajo**; ante cualquier duda o error, **Entorno de ejecución → Ejecutar todo**. En Colab no se puede romper nada.
+* Python **se lee mejor de lo que se escribe**: variables, listas, `for` y `def` son abreviaturas de ideas simples, como las siglas clínicas. Nada que memorizar.
+* En modo idea: **pandas** = tablas, **numpy** = números, **matplotlib/seaborn** = gráficas. Y `df.head()` como primer acto reflejo ante cualquier dato.
+* **El asistente de IA escribe el código; tú aportas el criterio clínico** y aprendes a pedir y a leer. Eso sí: jamás con datos reales de pacientes, siempre con nuestros datos sintéticos.
 
-Con la puesta a punto hecha, en la siguiente unidad empieza el curso de verdad: qué es exactamente eso del *machine learning* y por qué a un modelo no se le programa, sino que **se le entrena con datos** — datos como los de nuestro `pacientes.csv`.
+Con la puesta a punto hecha, en la siguiente unidad empieza el curso de verdad: qué es exactamente eso del _machine learning_ y por qué a un modelo no se le programa, sino que **se le entrena con datos** — datos como los de nuestro `pacientes.csv`.
