@@ -118,7 +118,7 @@ Tres recorridos completos, cada uno consolidando un bloque del curso:
 
 ### 5.3 Recomendación de formato
 
-Screencast de Colab/GitBook con tu voz (webcam en esquina, opcional). Guion breve por vídeo (te lo puedo preparar a partir de cada notebook, para que grabar sea "leer y hacer"). Sube los `.ipynb` a la **carpeta de Drive del curso** y sustituye los enlaces `PENDIENTE_DRIVE` de cada unidad por el enlace real "Abrir en Colab".
+Screencast de Colab/GitBook con tu voz (webcam en esquina, opcional). Guion breve por vídeo (te lo puedo preparar a partir de cada notebook, para que grabar sea "leer y hacer"). Los notebooks ya están subidos a la **carpeta de Drive del curso** y cada unidad enlaza con **"Abrir en Colab"** al cuaderno correspondiente.
 
 ## 6. Prerrequisitos y recomendación para el alumnado
 

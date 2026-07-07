@@ -282,7 +282,7 @@ Y disfrutamos de una gran ventaja de estos modelos: sus resultados son **explica
 
 Regresión lineal de `riesgo_cv_10a`, regresión **logística** de `evento_cv` (con coeficientes leídos como *odds ratio* y su curva de calibración) y **Naïve Bayes** sobre el texto de `notas_clinicas.csv`, todo sobre datos **sintéticos**. Su **primera celda genera los datos sintéticos**, así que no hay que descargar nada: se abre y se ejecuta.
 
-[Abrir en Colab](PENDIENTE_DRIVE)
+[Abrir en Colab](https://colab.research.google.com/drive/1mpLBIam_ebKCo7P6PpXDJHnkJBrbhDRz)
 {% endhint %}
 
 ## Qué llevarte

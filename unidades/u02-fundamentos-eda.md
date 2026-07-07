@@ -594,7 +594,7 @@ El notebook recorre, de principio a fin y apoyándose en el asistente: la genera
 
 Su **primera celda genera los datos sintéticos** por sí sola: no hay que descargar nada. No entrenamos aún ningún modelo serio —eso empieza en la U3 y la U4—; el objetivo es interiorizar el flujo de *mirar y preparar los datos*, que es la base de todo lo que viene.
 
-[Abrir en Colab](PENDIENTE_DRIVE)
+[Abrir en Colab](https://colab.research.google.com/drive/1PeU5pfqYGkJTG5U3hOB5AvxDZrAVwh9L)
 {% endhint %}
 
 ### Lista de comprobación

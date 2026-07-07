@@ -54,7 +54,7 @@ Las principales unidades del núcleo síncrono (online) son **U1–U5 y U8**; el
 ### Cómo usar este material
 
 * **Como libro/web (GitBook):** léelo de principio a fin o consulta la unidad que necesites.
-* **Como colección de prácticas (Google Colab):** cada unidad enlaza con su notebook, que **abre directamente en Colab**. Empieza por [`00_Datos_Sinteticos_Maestro.ipynb`](notebooks/) (genera los datasets) o simplemente abre el notebook de cualquier unidad: su **primera celda genera los datos sintéticos** por sí sola, así que no tienes que descargar nada.
+* **Como colección de prácticas (Google Colab):** cada unidad enlaza con su notebook, que **abre directamente en Colab**. Empieza por [`00_Datos_Sinteticos_Maestro.ipynb`](https://colab.research.google.com/drive/1f_C8Y8JN1S4YF-EmA_IIKUnbq-tcg1Z_) (genera los datasets) o simplemente abre el notebook de cualquier unidad: su **primera celda genera los datos sintéticos** por sí sola, así que no tienes que descargar nada.
 
 {% hint style="info" %}
 **Una promesa para quien nunca ha programado.**&#x20;

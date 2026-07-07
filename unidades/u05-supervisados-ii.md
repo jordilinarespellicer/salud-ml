@@ -397,7 +397,7 @@ El desenlace que esperamos ver con datos propios es precisamente la **lección d
 
 Recorrido completo del corazón de la unidad sobre la cohorte **sintética** `pacientes.csv`: comparación de familias (SVM, árboles, Random Forest, boosting), **validación cruzada**, **búsqueda de hiperparámetros** (GridSearchCV / RandomizedSearchCV), **selección del mejor modelo por la métrica clínica** y **explicabilidad con SHAP** de un paciente concreto. Su **primera celda genera los datos sintéticos**, así que no hay que descargar nada: se abre y se ejecuta.
 
-[Abrir en Colab](PENDIENTE_DRIVE)
+[Abrir en Colab](https://colab.research.google.com/drive/1P-4mHFE11kJX6zgT-Ajm4KQR4Y4_vjy3)
 {% endhint %}
 
 ## Qué llevarte

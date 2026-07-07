@@ -508,7 +508,7 @@ Al revisar el código del asistente, comprobamos especialmente lo siguiente.
 
 Métricas clínicas, ROC/PR, calibración y coste del error, todo sobre la cohorte **sintética** `pacientes.csv`. Su **primera celda genera los datos sintéticos**, así que no hay que descargar nada: se abre y se ejecuta.
 
-[Abrir en Colab](PENDIENTE_DRIVE)
+[Abrir en Colab](https://colab.research.google.com/drive/1YG0YK4XwBZHaAcetkIJcUnkaOqdL15fM)
 {% endhint %}
 
 ## Qué llevarte

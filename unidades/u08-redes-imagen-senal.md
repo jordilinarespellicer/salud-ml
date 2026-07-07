@@ -277,7 +277,7 @@ Con todo lo visto, el mapa de decisión queda claro. La tentación de usar deep 
 ## 8.10 Práctica en Colab
 
 {% hint style="success" %}
-**🔬 Práctica en Colab** — `U08_Redes_Imagen.ipynb` · [Abrir en Colab](PENDIENTE_DRIVE)
+**🔬 Práctica en Colab** — `U08_Redes_Imagen.ipynb` · [Abrir en Colab](https://colab.research.google.com/drive/1NGzKU1gh2CaN5Cd9sddN7mWqmpang_A_)
 
 El recorrido de la unidad, de menor a mayor ambición: **(1)** un **MLP** sencillo sobre datos tabulares (la primera celda **genera los datos sintéticos** tipo `pacientes.csv`, sin descargar nada), para ver cómo se entrena una red y comprobar que en tabular no gana a lo clásico; **(2)** una **CNN** sobre **MedMNIST** —p. ej. PneumoniaMNIST—, con `pip install medmnist`, sus curvas de entrenamiento y su matriz de confusión (aquí sí se descargan las imágenes, que son **públicas**); y **(3)** **transfer learning / ViT**: reutilizar una red preentrenada para clasificar con pocos datos y comparar. **Activa la GPU gratuita de Colab** (*Entorno de ejecución → Cambiar tipo de entorno → GPU*): con MedMNIST, en minutos tienes un clasificador de imagen médica funcionando.
 {% endhint %}

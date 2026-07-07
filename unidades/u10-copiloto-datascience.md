@@ -251,7 +251,7 @@ La misma estructura da versiones más específicas: un prompt solo para el **EDA
 ## 10.7 Práctica en Colab
 
 {% hint style="success" %}
-**🔬 Práctica en Colab** — `U10_Copiloto_DataScience.ipynb` · [Abrir en Colab](PENDIENTE_DRIVE)
+**🔬 Práctica en Colab** — `U10_Copiloto_DataScience.ipynb` · [Abrir en Colab](https://colab.research.google.com/drive/1Nz_xdzwz0SX_fOEbzSl0jbVLVHtUnu5H)
 
 **Un recorrido end-to-end dirigido por prompting y por bucles.** El notebook reproduce el caso de la sección 10.3 —de `pacientes.csv` a un modelo de `evento_cv` evaluado— pero **narrado como una conversación de bucle de evidencia**: cada bloque muestra el **prompt** que le darías al copiloto, el **código que ejecutaría**, el **número real** que devuelve y la **validación clínica** de esa vuelta. Se recorre metaprompting → propuesta de métrica y validación → baseline → logística vs. Random Forest vs. boosting → validación cruzada e hiperparámetros → elección del mejor modelo → holdout final. La cohorte es **sintética** y su **primera celda genera los datos**, así que no hay que descargar nada: se abre y se ejecuta. El objetivo no es aprender a teclear, sino **sentir cómo se dirige un bucle** y dónde entra tu criterio clínico en cada vuelta.
 {% endhint %}

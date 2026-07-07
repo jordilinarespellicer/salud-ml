@@ -212,7 +212,7 @@ Tu primer cuaderno: un paseo guiado por Colab y por todo lo que has leído aquí
 
 **Su primera celda genera los datos sintéticos** del curso: no hay que descargar ni configurar nada. Ábrelo, pulsa _Ejecutar todo_ y dedícale veinte minutos tranquilos.
 
-[Abrir en Colab](PENDIENTE_DRIVE/)
+[Abrir en Colab](https://colab.research.google.com/drive/1FOLj4cb1ZnwhrZ_retpo5i9wS3pKfteX)
 {% endhint %}
 
 ## Qué llevarte

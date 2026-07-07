@@ -220,7 +220,7 @@ Como mapa rápido de elección:
 ## 7.6 Práctica en Colab
 
 {% hint style="success" %}
-**🔬 Práctica en Colab** — `U07_Series_Temporales.ipynb` · [Abrir en Colab](PENDIENTE_DRIVE)
+**🔬 Práctica en Colab** — `U07_Series_Temporales.ipynb` · [Abrir en Colab](https://colab.research.google.com/drive/1PWP-WLyNPgAEk4b4WmbdeqQn2r_bQ7co)
 
 La primera celda **genera la serie sintética de urgencias** (no hay que descargar nada). El notebook visualiza y **descompone** la serie (tendencia, estacionalidad semanal y anual, gripe, festivos), reserva las últimas semanas como futuro con una **partición estrictamente temporal**, y compara sobre ese mismo test el baseline estacional, un SARIMA semanal y un modelo de ML con *features* de calendario, con su tabla de errores y una gráfica de "predicción vs real" por modelo. Todas las gráficas de esta unidad viven allí: es donde se ve, literalmente, lo que aquí hemos contado.
 {% endhint %}

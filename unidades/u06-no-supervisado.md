@@ -304,7 +304,7 @@ Recorrido completo del aprendizaje no supervisado sobre datos **sintéticos**: *
 
 Su **primera celda genera los datos sintéticos**, así que no hay que descargar nada: se abre y se ejecuta.
 
-[Abrir en Colab](PENDIENTE_DRIVE)
+[Abrir en Colab](https://colab.research.google.com/drive/1JlWxl0hzVbrte3E4Z0FXQVfPfQVDYDid)
 {% endhint %}
 
 ## Qué llevarte
