@@ -1,0 +1,25 @@
+centro_id,tipo,area,camas,n_servicios,urgencias_dia_media,ratio_mayores65
+C001,hospital,Alicante,483,16,166,0.258
+C002,centro de salud,Bilbao,14,6,24,0.191
+C003,centro de salud,Barcelona,14,8,32,0.264
+C004,centro de salud,Zaragoza,10,5,37,0.194
+C005,centro de salud,Zaragoza,10,8,39,0.267
+C006,centro de salud,Zaragoza,22,6,13,0.148
+C007,centro de salud,Zaragoza,0,5,31,0.182
+C008,hospital,Barcelona,583,22,224,0.127
+C009,centro de salud,Castellón,10,4,30,0.138
+C010,hospital,Alicante,459,23,215,0.242
+C011,centro de salud,Valencia,10,6,21,0.171
+C012,centro de salud,Zaragoza,7,9,9,0.234
+C013,centro de salud,Castellón,1,5,32,0.265
+C014,centro de salud,Valencia,6,3,26,0.314
+C015,centro de salud,Valencia,2,4,9,0.198
+C016,centro de salud,Castellón,17,5,19,0.19
+C017,centro de salud,Zaragoza,10,7,10,0.189
+C018,hospital,Castellón,742,28,306,0.146
+C019,hospital,Valencia,532,38,138,0.266
+C020,hospital,Sevilla,593,23,269,0.3
+C021,centro de salud,Valencia,11,5,14,0.224
+C022,centro de salud,Madrid,14,6,26,0.243
+C023,centro de salud,Valencia,15,7,25,0.331
+C024,hospital,Valencia,858,34,238,0.274

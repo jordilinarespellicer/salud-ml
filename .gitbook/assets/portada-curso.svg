@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0E1C44"/>
+      <stop offset="1" stop-color="#16357A"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00AEC7"/>
+      <stop offset="1" stop-color="#19D3B5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="420" fill="url(#bg)"/>
+  <!-- nodos/red decorativa -->
+  <g stroke="#2C4A8A" stroke-width="1.5" opacity="0.6">
+    <line x1="930" y1="70" x2="1040" y2="130"/><line x1="1040" y1="130" x2="980" y2="230"/>
+    <line x1="980" y1="230" x2="1090" y2="300"/><line x1="1040" y1="130" x2="1130" y2="210"/>
+    <line x1="930" y1="70" x2="980" y2="230"/><line x1="1090" y1="300" x2="1130" y2="210"/>
+  </g>
+  <g fill="#19D3B5">
+    <circle cx="930" cy="70" r="7"/><circle cx="1040" cy="130" r="9"/><circle cx="980" cy="230" r="7"/>
+    <circle cx="1090" cy="300" r="8"/><circle cx="1130" cy="210" r="6"/>
+  </g>
+  <!-- latido / ECG decorativo -->
+  <polyline points="820,360 860,360 875,325 895,388 915,345 935,360 1150,360" fill="none" stroke="url(#acc)" stroke-width="3" opacity="0.85"/>
+  <!-- barra de acento -->
+  <rect x="80" y="120" width="70" height="8" rx="4" fill="url(#acc)"/>
+  <text x="80" y="100" fill="#19D3B5" font-size="22" font-weight="bold" letter-spacing="3">VALGRAI · IA APLICADA A LA SALUD 2026</text>
+  <text x="78" y="205" fill="#FFFFFF" font-size="60" font-weight="bold">Machine Learning para Salud</text>
+  <text x="80" y="255" fill="#AFC4E8" font-size="26">Del dato clínico al modelo evaluado · Sin escribir código a mano</text>
+  <text x="80" y="330" fill="#FFFFFF" font-size="20">Jordi Linares-Pellicer · UPV-DSIC / ValgrAI</text>
+  <text x="80" y="362" fill="#8FA6D0" font-size="17" font-style="italic">Datos y ejemplos 100% sintéticos — no representan pacientes reales</text>
+</svg>
