@@ -37,7 +37,7 @@ Cada sesión dura 120 minutos e incluye un descanso corto. Los tiempos son orien
 | Tramo | Contenido | min |
 |---|---|---|
 | 1 | **U1** · La IA en salud hoy: posibilidades, límites y encuadre realista | 20 |
-| 2 | **U2** · Fundamentos, método 2026 y **EDA en vivo** sobre `pacientes.csv` (abrir el notebook y mirar los datos) | 55 |
+| 2 | **U2** · Fundamentos, método 2026 y **EDA en vivo** sobre [`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link) (abrir el notebook y mirar los datos) | 55 |
 | — | Descanso | 5 |
 | 3 | **U3** · Evaluar bien: sensibilidad/especificidad, VPP/VPN, ROC/PR y **calibración**, con lenguaje clínico | 35 |
 | 4 | Cierre + qué practicar en asíncrono (U0 si hace falta, notebooks U2–U3) | 5 |
@@ -103,12 +103,12 @@ Tres recorridos completos, cada uno consolidando un bloque del curso:
 
 **Vídeo 1 · De un CSV clínico a un modelo evaluado y explicado** (consolida U2–U5)
 
-- Base: notebook `U10_Copiloto_DataScience.ipynb` (o encadenando `U02`→`U05`).
+- Base: notebook [`U10_Copiloto_DataScience.ipynb`](https://colab.research.google.com/drive/1Nz_xdzwz0SX_fOEbzSl0jbVLVHtUnu5H) (o encadenando `U02`→`U05`).
 - Guion: abrir `pacientes.csv` → EDA rápido (mirar y limpiar) → partición **sin fugas** → probar varios modelos → **validación cruzada** → **hiperparámetros** → **elegir el mejor** por AUC/calibración → **interpretar con SHAP/importancias** qué sube el riesgo de un paciente. Mensaje: criterio clínico + método honesto.
 
 **Vídeo 2 · Clasificar imagen médica con un modelo fundacional en 15 minutos** (consolida U8–U9)
 
-- Base: notebook `U08_Redes_Imagen.ipynb` + `U09a_Fundacionales_HF.ipynb`.
+- Base: notebook [`U08_Redes_Imagen.ipynb`](https://colab.research.google.com/drive/1NGzKU1gh2CaN5Cd9sddN7mWqmpang_A_) + [`U09a_Fundacionales_HF.ipynb`](https://colab.research.google.com/drive/1MgvsLL_6QYwjP1fPM7JWGEJKpfJWBCY8).
 - Guion: qué es una CNN/ViT en intuición → cargar **MedMNIST** (PneumoniaMNIST) → usar un modelo **ya afinado** de Hugging Face con `pipeline()` **sin entrenar desde cero** → interpretar aciertos/errores y avisar de la validación externa. Mensaje: hoy somos **usuarios** de modelos entrenados.
 
 **Vídeo 3 · Usar Claude / Qwen para analizar un dataset y encontrar el mejor modelo** (consolida U10)

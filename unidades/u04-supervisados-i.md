@@ -35,7 +35,7 @@ Una regla de oro de la práctica, que en salud vale doble: **empieza siempre por
 
 La regresión lineal es el modelo de *machine learning* más simple que existe y, pese a ello, uno de los más usados en biomedicina. Su idea es directa: buscar la **recta** (o, con varias variables, el **plano/hiperplano**) que mejor se ajusta a los datos observados, para luego usarla y predecir valores nuevos.
 
-En nuestro hilo clínico, la salida es `riesgo_cv_10a`: el modelo aprende, a partir de la cohorte **sintética** `pacientes.csv` (20 000 pacientes generados por código, **no reales**), a estimar el riesgo cardiovascular a 10 años de un paciente a partir de su edad, tensión, glucemia, colesterol, HDL, tabaquismo y demás variables.
+En nuestro hilo clínico, la salida es `riesgo_cv_10a`: el modelo aprende, a partir de la cohorte **sintética** [`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link) (20 000 pacientes generados por código, **no reales**), a estimar el riesgo cardiovascular a 10 años de un paciente a partir de su edad, tensión, glucemia, colesterol, HDL, tabaquismo y demás variables.
 
 <figure><img src="../.gitbook/assets/d03_s03_0.png" alt="Regresión con dos variables de entrada: el modelo ajusta un plano a la nube de puntos. Con una sola variable sería una recta; con muchas, un hiperplano."><figcaption><p>Regresión lineal con dos variables de entrada: el modelo ajusta un plano a la nube de puntos. Con una sola variable de entrada sería una recta; con muchas variables clínicas, un hiperplano que no podemos dibujar pero sí interpretar.</p></figcaption></figure>
 
@@ -168,7 +168,7 @@ Clasificador probabilístico que aplica el teorema de Bayes asumiendo —de form
 Lo notable es que, **pese a esa simplificación falsa**, el modelo clasifica bien en muchísimos casos. ¿Por qué funciona en texto? Porque para **acertar la clase** no necesita estimar la probabilidad exacta, solo **ordenar** correctamente las clases: aunque cuente doble la evidencia de palabras correlacionadas, el "ganador" suele seguir siendo el mismo. Es el ejemplo perfecto de que un modelo "incorrecto" en sus supuestos puede ser **muy útil** en la práctica.
 {% endhint %}
 
-**Ejemplo clínico: clasificar notas.** Con el fichero **sintético** `notas_clinicas.csv` (columnas `texto, especialidad, prioridad, centro_id`), Naïve Bayes puede aprender a **clasificar la especialidad** o la **prioridad** de una nota a partir únicamente de su **texto**.
+**Ejemplo clínico: clasificar notas.** Con el fichero **sintético** [`notas_clinicas.csv`](https://drive.google.com/file/d/1cWvZFsNd1d-Wd_B8G2eTLewqyjiydE0x/view?usp=drive_link) (columnas `texto, especialidad, prioridad, centro_id`), Naïve Bayes puede aprender a **clasificar la especialidad** o la **prioridad** de una nota a partir únicamente de su **texto**.
 
 El modelo aprende qué palabras se asocian a cada clase —términos como "torácico", "disnea" o "ECG" empujarán hacia cardiología; "cefalea", "parestesia" o "focalidad" hacia neurología— y asigna la nota a la clase más probable, con una probabilidad por clase. Es un primer **triaje automático** de texto libre, rápido de montar y fácil de explicar, ideal como *baseline* antes de plantear modelos de lenguaje más pesados (que veremos en U9).
 
@@ -278,7 +278,7 @@ Al revisar el código del asistente comprobamos lo de siempre —y algo propio d
 Y disfrutamos de una gran ventaja de estos modelos: sus resultados son **explicables**, algo que agradeceremos de veras cuando lleguen los modelos más potentes y opacos de la U5.
 
 {% hint style="success" %}
-**🔬 Práctica en Colab** — `U04_Supervisados_I.ipynb`
+**🔬 Práctica en Colab** — [`U04_Supervisados_I.ipynb`](https://colab.research.google.com/drive/1mpLBIam_ebKCo7P6PpXDJHnkJBrbhDRz)
 
 Regresión lineal de `riesgo_cv_10a`, regresión **logística** de `evento_cv` (con coeficientes leídos como *odds ratio* y su curva de calibración) y **Naïve Bayes** sobre el texto de `notas_clinicas.csv`, todo sobre datos **sintéticos**. Su **primera celda genera los datos sintéticos**, así que no hay que descargar nada: se abre y se ejecuta.
 

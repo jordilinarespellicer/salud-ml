@@ -8,7 +8,7 @@ description: >-
 
 # U8 · Redes neuronales, imagen y señal — CNN y ViT
 
-Hasta aquí, todo nuestro aprendizaje automático ha vivido en **tablas y series**: filas y columnas de `pacientes.csv`, la secuencia diaria de `urgencias_diarias.csv`. Y para esos datos hemos visto que los modelos "clásicos" —una regresión logística, un buen *gradient boosting*— son difíciles de batir.
+Hasta aquí, todo nuestro aprendizaje automático ha vivido en **tablas y series**: filas y columnas de [`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link), la secuencia diaria de [`urgencias_diarias.csv`](https://drive.google.com/file/d/1EpQ9Lcb-f-iDqBOA3f3sT_pGLBp2G56u/view?usp=drive_link). Y para esos datos hemos visto que los modelos "clásicos" —una regresión logística, un buen *gradient boosting*— son difíciles de batir.
 
 Pero la medicina no cabe entera en una tabla. Una **radiografía de tórax**, una **imagen dermatoscópica** de un lunar, un **fondo de ojo**, una **preparación histológica**, el trazado de un **electrocardiograma**: nada de eso son columnas. Son píxeles y muestras de señal, datos "crudos" con una estructura espacial o temporal riquísima que un modelo tabular no sabe leer.
 
@@ -216,7 +216,7 @@ Colección estandarizada de conjuntos de imagen biomédica al estilo MNIST (imá
 {% hint style="warning" %}
 **⚠️ Aviso: MedMNIST son datos PÚBLICOS, no sintéticos**
 
-Ojo con un matiz importante de este curso. Casi todo lo que hemos usado hasta ahora (`pacientes.csv`, `urgencias_diarias.csv`, `wearable.csv`…) son **datos sintéticos**, generados para practicar sin riesgos de privacidad. **MedMNIST es distinto: son datasets PÚBLICOS reales**, publicados por la comunidad científica para investigación y docencia. No son inventados. Lo decimos explícitamente porque el hilo del curso es sintético y aquí hacemos una excepción consciente: para aprender de imagen conviene tocar imagen real, y estos conjuntos están precisamente pensados para eso.
+Ojo con un matiz importante de este curso. Casi todo lo que hemos usado hasta ahora (`pacientes.csv`, `urgencias_diarias.csv`, [`wearable.csv`](https://drive.google.com/file/d/1az7oq8Rzkts0u37ijWVaRTvUnmpbNU7o/view?usp=drive_link)…) son **datos sintéticos**, generados para practicar sin riesgos de privacidad. **MedMNIST es distinto: son datasets PÚBLICOS reales**, publicados por la comunidad científica para investigación y docencia. No son inventados. Lo decimos explícitamente porque el hilo del curso es sintético y aquí hacemos una excepción consciente: para aprender de imagen conviene tocar imagen real, y estos conjuntos están precisamente pensados para eso.
 {% endhint %}
 
 La gracia pedagógica es que con MedMNIST puedes recorrer, en un rato, las tres ideas de la unidad: entrenar una **CNN sencilla** sobre PneumoniaMNIST y ver la matriz de confusión; aplicar **transfer learning** desde una red preentrenada para clasificar DermaMNIST con pocos datos; y comparar con un **ViT** preentrenado. Todo eso está en el notebook.
@@ -271,13 +271,13 @@ Con todo lo visto, el mapa de decisión queda claro. La tentación de usar deep 
 | Imagen médica (radiografía, dermatoscopia, fondo de ojo, histología) | **CNN / ViT** (con transfer learning) | Explotan la estructura espacial |
 | Señal fisiológica (ECG, `wearable.csv`) | **Red 1D** o *features* + boosting | Patrones en la forma de onda |
 | Series temporales (`urgencias_diarias.csv`) | Clásicos o boosting con *features* (U7) | Calendario y contexto explícitos |
-| Texto clínico (`notas_clinicas.csv`) | Modelos de lenguaje (U9) | Capturan el significado |
+| Texto clínico ([`notas_clinicas.csv`](https://drive.google.com/file/d/1cWvZFsNd1d-Wd_B8G2eTLewqyjiydE0x/view?usp=drive_link)) | Modelos de lenguaje (U9) | Capturan el significado |
 | **Pocos datos etiquetados** | **Transfer learning** o modelos simples | Entrenar desde cero necesita muchos datos |
 
 ## 8.10 Práctica en Colab
 
 {% hint style="success" %}
-**🔬 Práctica en Colab** — `U08_Redes_Imagen.ipynb` · [Abrir en Colab](https://colab.research.google.com/drive/1NGzKU1gh2CaN5Cd9sddN7mWqmpang_A_)
+**🔬 Práctica en Colab** — [`U08_Redes_Imagen.ipynb`](https://colab.research.google.com/drive/1NGzKU1gh2CaN5Cd9sddN7mWqmpang_A_) · [Abrir en Colab](https://colab.research.google.com/drive/1NGzKU1gh2CaN5Cd9sddN7mWqmpang_A_)
 
 El recorrido de la unidad, de menor a mayor ambición: **(1)** un **MLP** sencillo sobre datos tabulares (la primera celda **genera los datos sintéticos** tipo `pacientes.csv`, sin descargar nada), para ver cómo se entrena una red y comprobar que en tabular no gana a lo clásico; **(2)** una **CNN** sobre **MedMNIST** —p. ej. PneumoniaMNIST—, con `pip install medmnist`, sus curvas de entrenamiento y su matriz de confusión (aquí sí se descargan las imágenes, que son **públicas**); y **(3)** **transfer learning / ViT**: reutilizar una red preentrenada para clasificar con pocos datos y comparar. **Activa la GPU gratuita de Colab** (*Entorno de ejecución → Cambiar tipo de entorno → GPU*): con MedMNIST, en minutos tienes un clasificador de imagen médica funcionando.
 {% endhint %}

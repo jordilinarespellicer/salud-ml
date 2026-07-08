@@ -87,7 +87,7 @@ Es el menos vistoso y uno de los de mayor valor real: **scores de riesgo aprendi
 
 Aquí es donde más modelos se entrenan "en casa", con datos del propio sistema de salud... y por eso es el terreno que **más criterio local exige**.
 
-Trabajaremos con datos **sintéticos** —generados con código, sin ningún paciente real detrás: una tabla de pacientes con factores de riesgo cardiovascular (`pacientes.csv`), una serie temporal de ingresos en urgencias (`urgencias_diarias.csv`), notas clínicas de texto (`notas_clinicas.csv`) y registros de un wearable (`wearable.csv`).
+Trabajaremos con datos **sintéticos** —generados con código, sin ningún paciente real detrás: una tabla de pacientes con factores de riesgo cardiovascular ([`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link)), una serie temporal de ingresos en urgencias ([`urgencias_diarias.csv`](https://drive.google.com/file/d/1EpQ9Lcb-f-iDqBOA3f3sT_pGLBp2G56u/view?usp=drive_link)), notas clínicas de texto ([`notas_clinicas.csv`](https://drive.google.com/file/d/1cWvZFsNd1d-Wd_B8G2eTLewqyjiydE0x/view?usp=drive_link)) y registros de un wearable ([`wearable.csv`](https://drive.google.com/file/d/1az7oq8Rzkts0u37ijWVaRTvUnmpbNU7o/view?usp=drive_link)).
 
 ## 1.3 Tu papel: copiloto humano al mando
 

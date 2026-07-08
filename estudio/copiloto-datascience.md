@@ -20,7 +20,7 @@ Es hermana del estudio [**Bucles de auto-mejora (prompting-loops.md)**](promptin
 {% hint style="warning" %}
 **⚠️ Aviso · Datos sintéticos**
 
-Todos los ejemplos de esta guía usan la cohorte sintética del curso (`pacientes.csv` y ficheros hermanos: `pacientes_sucio.csv`, `urgencias_diarias.csv`, `notas_clinicas.csv`, `centros.csv`, `wearable.csv`). Ningún dato representa pacientes reales. Su única función es didáctica: aprender a dirigir un proyecto de principio a fin sin necesidad de escribir código.
+Todos los ejemplos de esta guía usan la cohorte sintética del curso ([`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link) y ficheros hermanos: [`pacientes_sucio.csv`](https://drive.google.com/file/d/1geOuVmKqhBvBf52NyVFBvpxw7Ypbucp2/view?usp=drive_link), [`urgencias_diarias.csv`](https://drive.google.com/file/d/1EpQ9Lcb-f-iDqBOA3f3sT_pGLBp2G56u/view?usp=drive_link), [`notas_clinicas.csv`](https://drive.google.com/file/d/1cWvZFsNd1d-Wd_B8G2eTLewqyjiydE0x/view?usp=drive_link), [`centros.csv`](https://drive.google.com/file/d/1rxxkSTg-hsyiLlC6ppGpKAoMjmBrolM-/view?usp=drive_link), [`wearable.csv`](https://drive.google.com/file/d/1az7oq8Rzkts0u37ijWVaRTvUnmpbNU7o/view?usp=drive_link)). Ningún dato representa pacientes reales. Su única función es didáctica: aprender a dirigir un proyecto de principio a fin sin necesidad de escribir código.
 {% endhint %}
 
 La forma de trabajar en ciencia de datos ha cambiado. No porque los fundamentos hayan desaparecido —al contrario, **importan más que antes**—, sino porque ha cambiado la unidad de trabajo.

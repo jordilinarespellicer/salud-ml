@@ -29,7 +29,7 @@ Los fundamentos del curso no valen ahora menos: valen **más**. La métrica clí
 
 * Entender el **cambio de oficio**: de escribir el modelo a **dirigir un bucle** (*loop engineering*), con el clínico al mando.
 * Aprender a **pedir bien** a un asistente para ciencia de datos: dar **contexto, objetivo, restricciones, métrica clínica y criterio de éxito** (*prompting*), y pedirle que **mejore tu propio prompt** (*metaprompting*).
-* Interiorizar el **bucle de evidencia** —proponer → ejecutar → medir → interpretar → repetir— con validación clínica en cada vuelta, aplicado a un caso real: de `pacientes.csv` a un modelo de `evento_cv` evaluado.
+* Interiorizar el **bucle de evidencia** —proponer → ejecutar → medir → interpretar → repetir— con validación clínica en cada vuelta, aplicado a un caso real: de [`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link) a un modelo de `evento_cv` evaluado.
 * Conocer, **en modo idea** (qué implican, no un tutorial), las herramientas que encarnan este modo de trabajo: **Cowork**, **Claude Code**, **Codex** y **Manus**.
 * Fijar el **papel del sanitario** frente al del agente, con sus **riesgos** propios (alucinaciones, resultados plausibles pero falsos, fugas de datos que el agente no ve) y por qué **el humano valida**.
 * Llevarte una **plantilla de prompt reutilizable** para análisis clínico.
@@ -251,7 +251,7 @@ La misma estructura da versiones más específicas: un prompt solo para el **EDA
 ## 10.7 Práctica en Colab
 
 {% hint style="success" %}
-**🔬 Práctica en Colab** — `U10_Copiloto_DataScience.ipynb` · [Abrir en Colab](https://colab.research.google.com/drive/1Nz_xdzwz0SX_fOEbzSl0jbVLVHtUnu5H)
+**🔬 Práctica en Colab** — [`U10_Copiloto_DataScience.ipynb`](https://colab.research.google.com/drive/1Nz_xdzwz0SX_fOEbzSl0jbVLVHtUnu5H) · [Abrir en Colab](https://colab.research.google.com/drive/1Nz_xdzwz0SX_fOEbzSl0jbVLVHtUnu5H)
 
 **Un recorrido end-to-end dirigido por prompting y por bucles.** El notebook reproduce el caso de la sección 10.3 —de `pacientes.csv` a un modelo de `evento_cv` evaluado— pero **narrado como una conversación de bucle de evidencia**: cada bloque muestra el **prompt** que le darías al copiloto, el **código que ejecutaría**, el **número real** que devuelve y la **validación clínica** de esa vuelta. Se recorre metaprompting → propuesta de métrica y validación → baseline → logística vs. Random Forest vs. boosting → validación cruzada e hiperparámetros → elección del mejor modelo → holdout final. La cohorte es **sintética** y su **primera celda genera los datos**, así que no hay que descargar nada: se abre y se ejecuta. El objetivo no es aprender a teclear, sino **sentir cómo se dirige un bucle** y dónde entra tu criterio clínico en cada vuelta.
 {% endhint %}

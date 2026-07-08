@@ -155,6 +155,8 @@ Lo que hace especial al ML es que el modelo **mejora con los datos** y se adapta
 Los modelos **deben** mantenerse **vivos**: una población cambia, aparecen nuevos tratamientos y guías, y un modelo congelado envejece mal.
 {% endhint %}
 
+<figure><img src="../.gitbook/assets/d01_s08_0.png" alt="Aprender de los datos: el comportamiento del sistema evoluciona al alimentarlo con nueva información, sin reescribir las reglas a mano."><figcaption><p>Aprender de los datos significa que el comportamiento del sistema evoluciona al alimentarlo con nueva información, sin reescribir las reglas a mano. Un modelo clínico envejece si no se revalida y actualiza.</p></figcaption></figure>
+
 {% hint style="info" %}
 **🩺 Aplicación clínica · De la idea a la función**
 
@@ -164,7 +166,7 @@ El enfoque de ML invierte el problema: **recogemos un histórico** de pacientes 
 
 El resultado es un **modelo** que, dado un paciente nuevo, **estima/predice** su riesgo.
 
-En uno de los dataset sintéticos que vamos a utilizar, `pacientes.csv` , conviven dos formas de plantearlo: predecir `riesgo_cv_10a` (un porcentaje → **regresión**) o predecir `evento_cv` (ocurre / no ocurre → **clasificación**, con una prevalencia en torno al 19 %).
+En uno de los dataset sintéticos que vamos a utilizar, [`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link) , conviven dos formas de plantearlo: predecir `riesgo_cv_10a` (un porcentaje → **regresión**) o predecir `evento_cv` (ocurre / no ocurre → **clasificación**, con una prevalencia en torno al 19 %).
 {% endhint %}
 
 ## 2.3 Los tres grandes tipos de aprendizaje
@@ -485,7 +487,7 @@ El análisis preliminar de los datos no es maquillaje: es una decisión con cons
 
 ## 2.10 EDA y limpieza de `pacientes_sucio.csv` con reglas de dominio clínico
 
-Para que la práctica sea realista, hemos generado a propósito una versión **con problemas de calidad** del histórico de pacientes (`pacientes_sucio.csv`): la misma tabla de \~20 000 filas, pero con los defectos que encontraríamos en un volcado real de una historia clínica.
+Para que la práctica sea realista, hemos generado a propósito una versión **con problemas de calidad** del histórico de pacientes ([`pacientes_sucio.csv`](https://drive.google.com/file/d/1geOuVmKqhBvBf52NyVFBvpxw7Ypbucp2/view?usp=drive_link)): la misma tabla de \~20 000 filas, pero con los defectos que encontraríamos en un volcado real de una historia clínica.
 
 El EDA debe sacarlos a la luz. Estos son los que hemos inyectado:
 
@@ -647,7 +649,7 @@ La calidad del dato es el **techo** de la calidad del modelo: ningún algoritmo,
 ## 2.11 Práctica guiada y cierre
 
 {% hint style="success" %}
-**🔬 Práctica en Colab · `U02_Fundamentos_EDA.ipynb`**
+**🔬 Práctica en Colab · [`U02_Fundamentos_EDA.ipynb`](https://colab.research.google.com/drive/1PeU5pfqYGkJTG5U3hOB5AvxDZrAVwh9L)**
 
 El notebook recorre, de principio a fin y apoyándose en el asistente: la generación de los datos sintéticos, un **EDA completo** del fichero `pacientes_sucio.csv`, su **limpieza con reglas de dominio clínico** (sexo, unidades de glucemia, nulos no aleatorios, outliers, texto, tabaquismo, duplicados) y una primera reflexión sobre qué _features_ tienen sentido para estimar el riesgo cardiovascular.
 

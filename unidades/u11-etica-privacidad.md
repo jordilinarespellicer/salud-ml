@@ -40,7 +40,7 @@ La consecuencia operativa es una sola, y es la que debes retener: **la métrica 
 
 Por eso, ante cualquier modelo clínico, hay que pedir **sensibilidad, especificidad y calibración desglosadas** por sexo, tramo de edad, área o centro —los ejes que tengan sentido clínico en tu caso.
 
-Nuestra cohorte **sintética** `pacientes.csv` (20 000 pacientes generados por código, no reales) sirve para practicar la mecánica. Ya viste en U3 una pieza del asunto: la prevalencia de `evento_cv` varía por subgrupo (≈ 14 % en quienes nunca fumaron, ≈ 22 % en exfumadores, ≈ 28 % en fumadores activos), así que **el mismo umbral produce valores predictivos distintos en cada grupo**. El paso que falta es mirar también sensibilidad y especificidad **por subgrupo**, no solo el número global — y en unos datos reales nadie te garantiza que el desglose salga tan tranquilo como en unos sintéticos.
+Nuestra cohorte **sintética** [`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link) (20 000 pacientes generados por código, no reales) sirve para practicar la mecánica. Ya viste en U3 una pieza del asunto: la prevalencia de `evento_cv` varía por subgrupo (≈ 14 % en quienes nunca fumaron, ≈ 22 % en exfumadores, ≈ 28 % en fumadores activos), así que **el mismo umbral produce valores predictivos distintos en cada grupo**. El paso que falta es mirar también sensibilidad y especificidad **por subgrupo**, no solo el número global — y en unos datos reales nadie te garantiza que el desglose salga tan tranquilo como en unos sintéticos.
 
 **🤖 Prompt para el asistente · Auditoría por subgrupos**
 

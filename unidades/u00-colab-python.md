@@ -151,7 +151,7 @@ df = pd.read_csv("pacientes.csv")   # cargamos la tabla en una variable llamada 
 df.head()                           # muestra las 5 primeras filas
 ```
 
-Al ejecutarlo aparece debajo una tabla con las primeras filas de `pacientes.csv`, nuestro dataset **sintético** de cabecera (20 000 pacientes generados artificialmente, sin ninguna persona real detrás): columnas como `edad`, `sexo`, `imc`, `ta_sistolica`, `glucemia`, `colesterol_total` o `tabaquismo`.
+Al ejecutarlo aparece debajo una tabla con las primeras filas de [`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link), nuestro dataset **sintético** de cabecera (20 000 pacientes generados artificialmente, sin ninguna persona real detrás): columnas como `edad`, `sexo`, `imc`, `ta_sistolica`, `glucemia`, `colesterol_total` o `tabaquismo`.
 
 Ese gesto —cargar y mirar con `head()`— será el primer acto reflejo ante cualquier dato durante todo el curso.
 
@@ -206,7 +206,7 @@ Datos sintéticos autogenerados en la primera celda → **Ejecutar todo** → le
 {% endhint %}
 
 {% hint style="success" %}
-**🔬 Práctica en Colab — `U00_Bienvenida_Colab.ipynb`**
+**🔬 Práctica en Colab — [`U00_Bienvenida_Colab.ipynb`](https://colab.research.google.com/drive/1FOLj4cb1ZnwhrZ_retpo5i9wS3pKfteX)**
 
 Tu primer cuaderno: un paseo guiado por Colab y por todo lo que has leído aquí —celdas, variables, la función del IMC, pandas y tu primera tabla de pacientes—.
 

@@ -11,7 +11,7 @@ Un hospital vive en el tiempo. Los ingresos diarios en urgencias, la ocupación 
 
 Predecir bien esas series —cuántos pacientes llegarán mañana, cuántas camas harán falta la semana que viene, cuándo despegará la ola de gripe— es la base de la planificación de recursos, de los turnos de personal y de la vigilancia epidemiológica.
 
-En esta unidad el hilo conductor será `urgencias_diarias.csv`, una serie **sintética** de ingresos diarios en un servicio de urgencias, con cuatro columnas de contexto: `fecha, ingresos, festivo, temporada_gripe, temperatura`. Es sintética, pero está construida con los patrones que cualquier profesional de urgencias reconocería al vuelo:
+En esta unidad el hilo conductor será [`urgencias_diarias.csv`](https://drive.google.com/file/d/1EpQ9Lcb-f-iDqBOA3f3sT_pGLBp2G56u/view?usp=drive_link), una serie **sintética** de ingresos diarios en un servicio de urgencias, con cuatro columnas de contexto: `fecha, ingresos, festivo, temporada_gripe, temperatura`. Es sintética, pero está construida con los patrones que cualquier profesional de urgencias reconocería al vuelo:
 
 * Un **ritmo semanal** muy marcado: pico los **lunes** (todo lo que se ha ido aguantando el fin de semana) y actividad elevada también el propio **fin de semana**, cuando la atención primaria está cerrada y urgencias es la única puerta abierta.
 * Una **estacionalidad anual**: los inviernos cargan mucho más que los veranos, sobre todo por patología respiratoria.
@@ -28,7 +28,7 @@ La regla número uno de las series temporales: **nunca uses el futuro para prede
 
 ## 7.1 Por qué las series temporales son especiales
 
-En `pacientes.csv` podíamos barajar las filas sin perder nada: cada paciente era una observación independiente. En `urgencias_diarias.csv` ocurre lo contrario: si barajas las fechas, destruyes la información.
+En [`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link) podíamos barajar las filas sin perder nada: cada paciente era una observación independiente. En `urgencias_diarias.csv` ocurre lo contrario: si barajas las fechas, destruyes la información.
 
 Los ingresos de hoy están relacionados con los de ayer, con los del lunes pasado y con los del mismo mes del año anterior. Esa dependencia entre observaciones cercanas es exactamente lo que queremos aprovechar para predecir… y también lo que nos obliga a tratar los datos con un cuidado especial.
 
@@ -215,12 +215,12 @@ Como mapa rápido de elección:
 
 * **Planificación de recursos.** Si el pronóstico dice que el lunes llegarán bastantes más pacientes que el miércoles —y lo dice con fundamento—, los turnos de personal, los boxes abiertos y los ingresos programados pueden anticiparse en lugar de improvisarse. La predicción de ocupación a 7–14 días permite decidir cuándo programar cirugía electiva sin colapsar las camas.
 * **Vigilancia epidemiológica.** Aquí el pronóstico cambia de papel: no se usa para acertar, sino como **regla de normalidad**. El modelo dice cuántos ingresos "tocarían" hoy dados el día de la semana, el mes y el calendario; si la realidad se separa de lo esperado de forma sostenida, eso es una **señal de alerta** —el arranque de la gripe, un brote, una ola de calor—. El exceso sobre lo previsto es, en sí mismo, el indicador.
-* **Señal fisiológica.** Las series no viven solo en la gestión: `wearable.csv`, otro de nuestros datasets sintéticos, contiene series **por paciente** (frecuencia cardiaca en reposo, pasos y horas de sueño, día a día). Una FC en reposo que sube de forma sostenida durante varios días puede preceder a una descompensación o una infección. Cambia la escala —del hospital al individuo—, pero los principios son idénticos: el orden importa y el futuro no se toca.
+* **Señal fisiológica.** Las series no viven solo en la gestión: [`wearable.csv`](https://drive.google.com/file/d/1az7oq8Rzkts0u37ijWVaRTvUnmpbNU7o/view?usp=drive_link), otro de nuestros datasets sintéticos, contiene series **por paciente** (frecuencia cardiaca en reposo, pasos y horas de sueño, día a día). Una FC en reposo que sube de forma sostenida durante varios días puede preceder a una descompensación o una infección. Cambia la escala —del hospital al individuo—, pero los principios son idénticos: el orden importa y el futuro no se toca.
 
 ## 7.6 Práctica en Colab
 
 {% hint style="success" %}
-**🔬 Práctica en Colab** — `U07_Series_Temporales.ipynb` · [Abrir en Colab](https://colab.research.google.com/drive/1PWP-WLyNPgAEk4b4WmbdeqQn2r_bQ7co)
+**🔬 Práctica en Colab** — [`U07_Series_Temporales.ipynb`](https://colab.research.google.com/drive/1PWP-WLyNPgAEk4b4WmbdeqQn2r_bQ7co) · [Abrir en Colab](https://colab.research.google.com/drive/1PWP-WLyNPgAEk4b4WmbdeqQn2r_bQ7co)
 
 La primera celda **genera la serie sintética de urgencias** (no hay que descargar nada). El notebook visualiza y **descompone** la serie (tendencia, estacionalidad semanal y anual, gripe, festivos), reserva las últimas semanas como futuro con una **partición estrictamente temporal**, y compara sobre ese mismo test el baseline estacional, un SARIMA semanal y un modelo de ML con *features* de calendario, con su tabla de errores y una gráfica de "predicción vs real" por modelo. Todas las gráficas de esta unidad viven allí: es donde se ve, literalmente, lo que aquí hemos contado.
 {% endhint %}

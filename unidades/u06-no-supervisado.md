@@ -35,7 +35,7 @@ Eso hace el problema más abierto y convierte la **interpretación clínica** �
 * Reconocer el **riesgo de sobre-interpretar**: "leer" significado clínico donde solo hay ruido es el error más caro de esta unidad.
 * Ver cómo un **agente con ejecución de código** convierte una técnica suelta en un **estudio**, y por qué aquí el criterio humano manda más que nunca.
 
-Como en todo el curso, los ejemplos se apoyan en datos **sintéticos** —`pacientes.csv` (20 000 pacientes generados por código, **no son pacientes reales**), `centros.csv` y `wearable.csv`—. La regla de siempre: cuando presentemos datos, recordamos que son sintéticos y de uso exclusivamente didáctico.
+Como en todo el curso, los ejemplos se apoyan en datos **sintéticos** —[`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link) (20 000 pacientes generados por código, **no son pacientes reales**), [`centros.csv`](https://drive.google.com/file/d/1rxxkSTg-hsyiLlC6ppGpKAoMjmBrolM-/view?usp=drive_link) y [`wearable.csv`](https://drive.google.com/file/d/1az7oq8Rzkts0u37ijWVaRTvUnmpbNU7o/view?usp=drive_link)—. La regla de siempre: cuando presentemos datos, recordamos que son sintéticos y de uso exclusivamente didáctico.
 
 ## 6.1 Clustering: agrupar sin etiquetas (fenotipar)
 
@@ -298,7 +298,7 @@ La práctica de esta unidad recorre las cuatro herramientas del bloque sobre dat
 * **Detección de anomalías — Isolation Forest sobre `wearable.csv`.** El modelo aprende lo normal de cada sujeto y marca los **días anómalos** (por ejemplo, `fc_reposo` disparada), con la doble lectura —error de sensor o evento real— y la lógica **human-in-the-loop**.
 
 {% hint style="success" %}
-**🔬 Práctica en Colab** — `U06_No_Supervisado.ipynb`
+**🔬 Práctica en Colab** — [`U06_No_Supervisado.ipynb`](https://colab.research.google.com/drive/1JlWxl0hzVbrte3E4Z0FXQVfPfQVDYDid)
 
 Recorrido completo del aprendizaje no supervisado sobre datos **sintéticos**: **fenotipado** de `pacientes.csv` (clustering sin usar la etiqueta), **segmentación de centros** con `centros.csv`, **PCA** para visualizar cohortes y **detección de anomalías** con Isolation Forest sobre `wearable.csv`. Incluye la validación honesta de los fenotipos (cruce *a posteriori* con el `evento_cv` reservado) y la advertencia contra la sobre-interpretación.
 

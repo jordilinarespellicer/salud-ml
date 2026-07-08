@@ -313,15 +313,15 @@ La última fila es la moraleja de la unidad: entrenar un fundacional desde cero 
 ## 9.9 Práctica en Colab
 
 {% hint style="success" %}
-**🔬 Práctica en Colab** — `U09a_Fundacionales_HF.ipynb` · [Abrir en Colab](https://colab.research.google.com/drive/1MgvsLL_6QYwjP1fPM7JWGEJKpfJWBCY8)
+**🔬 Práctica en Colab** — [`U09a_Fundacionales_HF.ipynb`](https://colab.research.google.com/drive/1MgvsLL_6QYwjP1fPM7JWGEJKpfJWBCY8) · [Abrir en Colab](https://colab.research.google.com/drive/1MgvsLL_6QYwjP1fPM7JWGEJKpfJWBCY8)
 
-**Usar modelos ya entrenados de Hugging Face, sin entrenar nada.** El notebook recorre las tres piezas de la sección 9.3 con `pipeline()`: **(1)** clasificar una **radiografía de tórax** de ejemplo (imagen **pública**, nunca de un paciente real) con el ViT `dima806/chest_xray_pneumonia_detection`; **(2)** extraer entidades biomédicas en inglés con `d4data/biomedical-ner-all`; y **(3)** asomarse al modelo fundacional en **español** `PlanTL-GOB-ES/roberta-base-biomedical-clinical-es`, aplicándolo a frases tomadas de `notas_clinicas.csv` (**dataset sintético**; su primera celda lo genera, sin descargar nada). El objetivo no es la métrica, sino **sentir lo fácil que es "consumir" un modelo** y lo cuidadoso que hay que ser antes de fiarse.
+**Usar modelos ya entrenados de Hugging Face, sin entrenar nada.** El notebook recorre las tres piezas de la sección 9.3 con `pipeline()`: **(1)** clasificar una **radiografía de tórax** de ejemplo (imagen **pública**, nunca de un paciente real) con el ViT `dima806/chest_xray_pneumonia_detection`; **(2)** extraer entidades biomédicas en inglés con `d4data/biomedical-ner-all`; y **(3)** asomarse al modelo fundacional en **español** `PlanTL-GOB-ES/roberta-base-biomedical-clinical-es`, aplicándolo a frases tomadas de [`notas_clinicas.csv`](https://drive.google.com/file/d/1cWvZFsNd1d-Wd_B8G2eTLewqyjiydE0x/view?usp=drive_link) (**dataset sintético**; su primera celda lo genera, sin descargar nada). El objetivo no es la métrica, sino **sentir lo fácil que es "consumir" un modelo** y lo cuidadoso que hay que ser antes de fiarse.
 {% endhint %}
 
 {% hint style="success" %}
-**🔬 Práctica en Colab** — `U09b_APIs_OpenRouter.ipynb` · [Abrir en Colab](https://colab.research.google.com/drive/1MU72hahjS96Nf1I3RfXOsqJkHrSJq_OI)
+**🔬 Práctica en Colab** — [`U09b_APIs_OpenRouter.ipynb`](https://colab.research.google.com/drive/1MU72hahjS96Nf1I3RfXOsqJkHrSJq_OI) · [Abrir en Colab](https://colab.research.google.com/drive/1MU72hahjS96Nf1I3RfXOsqJkHrSJq_OI)
 
-**Llamar a los grandes modelos por API con una sola clave.** El notebook conecta con **OpenRouter** (cambiando solo la `base_url` del SDK de OpenAI) y usa un modelo —por ejemplo una variante **gratuita** de **Qwen**— para **analizar un dataset sintético**: le pasamos el resumen estadístico de `pacientes.csv` (**sintético**; se genera en la primera celda) y le pedimos que **redacte los factores de riesgo en lenguaje natural** y proponga hipótesis. La clave se guarda como **secreto** de Colab, no en el código. Regla de oro recordada en el propio notebook: **por la API, solo datos sintéticos**.
+**Llamar a los grandes modelos por API con una sola clave.** El notebook conecta con **OpenRouter** (cambiando solo la `base_url` del SDK de OpenAI) y usa un modelo —por ejemplo una variante **gratuita** de **Qwen**— para **analizar un dataset sintético**: le pasamos el resumen estadístico de [`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link) (**sintético**; se genera en la primera celda) y le pedimos que **redacte los factores de riesgo en lenguaje natural** y proponga hipótesis. La clave se guarda como **secreto** de Colab, no en el código. Regla de oro recordada en el propio notebook: **por la API, solo datos sintéticos**.
 {% endhint %}
 
 **🤖 Prompt para el asistente · Usar un modelo del Hub en tres líneas**

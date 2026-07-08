@@ -30,7 +30,7 @@ La métrica no es un detalle técnico del final: es una **decisión clínica que
 * La **calibración**: que una probabilidad del 20 % signifique de verdad un 20 %, y por qué en la práctica importa más que el AUC.
 * La **validación honesta**: `train/validación/test`, la **fuga de datos** y un adelanto de la validación cruzada.
 
-Todos los ejemplos usan la cohorte **sintética** `pacientes.csv` (20 000 pacientes; datos generados por código, **no son pacientes reales**), con sus dos objetivos: `riesgo_cv_10a` (riesgo cardiovascular a 10 años, en %, para **regresión**) y `evento_cv` (0/1, para **clasificación**, con **prevalencia ≈ 19 %**).
+Todos los ejemplos usan la cohorte **sintética** [`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link) (20 000 pacientes; datos generados por código, **no son pacientes reales**), con sus dos objetivos: `riesgo_cv_10a` (riesgo cardiovascular a 10 años, en %, para **regresión**) y `evento_cv` (0/1, para **clasificación**, con **prevalencia ≈ 19 %**).
 
 ## 3.1 Evaluar regresión: cuando la predicción es un número
 
@@ -504,7 +504,7 @@ Al revisar el código del asistente, comprobamos especialmente lo siguiente.
 * Que la métrica destacada en las conclusiones sea la que corresponde al **coste clínico del error**.
 
 {% hint style="success" %}
-**🔬 Práctica en Colab** — `U03_Metricas_Validacion.ipynb`
+**🔬 Práctica en Colab** — [`U03_Metricas_Validacion.ipynb`](https://colab.research.google.com/drive/1YG0YK4XwBZHaAcetkIJcUnkaOqdL15fM)
 
 Métricas clínicas, ROC/PR, calibración y coste del error, todo sobre la cohorte **sintética** `pacientes.csv`. Su **primera celda genera los datos sintéticos**, así que no hay que descargar nada: se abre y se ejecuta.
 

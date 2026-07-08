@@ -29,7 +29,7 @@ Esta unidad demuestra una verdad incómoda y liberadora a la vez: **no existe un
 ### Objetivos de esta unidad
 
 * Entender la **intuición** de tres familias no lineales —**SVM**, **árboles** y **ensembles** (Random Forest y boosting)— con sus pros y contras **clínicos**, sin matemática profunda.
-* Ver por qué, en **datos tabulares clínicos** (una tabla de pacientes como `pacientes.csv`), los ensembles de árboles suelen ser el rival a batir... y por qué no siempre ganan.
+* Ver por qué, en **datos tabulares clínicos** (una tabla de pacientes como [`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link)), los ensembles de árboles suelen ser el rival a batir... y por qué no siempre ganan.
 * Dominar la **validación cruzada (k-fold)** como forma honesta de estimar el rendimiento, con el matiz clínico de la **partición por paciente**.
 * Distinguir **parámetro aprendido** de **hiperparámetro**, y saber buscarlos con **GridSearchCV** o **RandomizedSearchCV** sin caer en **sobreajustar la validación**.
 * **Seleccionar el mejor modelo** comparando candidatos con la **métrica clínica adecuada** (AUC, PR, calibración) y no con la *accuracy*.
@@ -393,7 +393,7 @@ Al revisar el código del asistente, comprobamos especialmente: que la **partici
 El desenlace que esperamos ver con datos propios es precisamente la **lección de oro**: la logística compite de tú a tú (o gana) en la clasificación de `evento_cv`, mientras que el Random Forest se impone en la regresión de `riesgo_cv_10a` —y SHAP nos devuelve la explicabilidad que el ensemble parecía haber perdido—.
 
 {% hint style="success" %}
-**🔬 Práctica en Colab** — `U05_Supervisados_II.ipynb`
+**🔬 Práctica en Colab** — [`U05_Supervisados_II.ipynb`](https://colab.research.google.com/drive/1P-4mHFE11kJX6zgT-Ajm4KQR4Y4_vjy3)
 
 Recorrido completo del corazón de la unidad sobre la cohorte **sintética** `pacientes.csv`: comparación de familias (SVM, árboles, Random Forest, boosting), **validación cruzada**, **búsqueda de hiperparámetros** (GridSearchCV / RandomizedSearchCV), **selección del mejor modelo por la métrica clínica** y **explicabilidad con SHAP** de un paciente concreto. Su **primera celda genera los datos sintéticos**, así que no hay que descargar nada: se abre y se ejecuta.
 

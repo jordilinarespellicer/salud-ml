@@ -14,7 +14,7 @@ description: >-
 
 Este es un documento de **estudio independiente**, no una unidad más del temario. Nace de una pregunta muy concreta que aparece en cuanto se domina la Unidad 5: allí aprendimos que un modelo tiene "mandos" que hay que ajustar antes de entrenar —los **hiperparámetros**— y que buscarlos bien es casi una búsqueda a ciegas (`GridSearchCV`, `RandomizedSearchCV`). ¿Puede un asistente de IA ayudarnos con esa búsqueda de forma más activa que "generar el código una vez"? ¿Puede, literalmente, **iterar solo**: proponer una configuración, ejecutarla, mirar el resultado y proponer la siguiente, sin que nosotros hagamos de mensajero en cada vuelta?
 
-La respuesta es sí, y hay varias formas de hacerlo, con más o menos automatización. A eso lo llamamos **loop engineering**: en lugar de escribir el pipeline de búsqueda a mano, tú **diriges un bucle** que otro (el agente) ejecuta. Todo el documento se apoya en el mismo caso que ya conoces: afinar un modelo que predice `evento_cv` sobre la cohorte **sintética** `pacientes.csv` (20 000 pacientes generados por código, **no son pacientes reales**).
+La respuesta es sí, y hay varias formas de hacerlo, con más o menos automatización. A eso lo llamamos **loop engineering**: en lugar de escribir el pipeline de búsqueda a mano, tú **diriges un bucle** que otro (el agente) ejecuta. Todo el documento se apoya en el mismo caso que ya conoces: afinar un modelo que predice `evento_cv` sobre la cohorte **sintética** [`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link) (20 000 pacientes generados por código, **no son pacientes reales**).
 
 {% hint style="success" %}
 **💡 Idea clave**
