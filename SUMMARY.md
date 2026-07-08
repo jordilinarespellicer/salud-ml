@@ -6,7 +6,7 @@
 
 * [U0 · Puesta a punto — Google Colab y Python](unidades/u00-colab-python.md)
 * [U1 · ¿Qué está pasando con la IA (y qué implica en salud)?](unidades/u01-ia-hoy-en-salud.md)
-* [U2 · Fundamentos, método 2026 y datos clínicos (EDA)](unidades/u02-fundamentos-eda.md)
+* [U2 · Fundamentos iniciales y EDA](unidades/u02-fundamentos-eda.md)
 * [U3 · Evaluar bien — métricas y validación en clínica](unidades/u03-metricas-validacion.md)
 * [U4 · Modelos supervisados I — lineal, logística, Naïve Bayes](unidades/u04-supervisados-i.md)
 * [U5 · Modelos supervisados II — SVM, árboles, ensembles + cómo elegir](unidades/u05-supervisados-ii.md)
