@@ -1,8 +1,7 @@
 ---
 description: >-
-  Un caso real y reciente de Machine Learning en salud: predecir la mortalidad de
-  pacientes de COVID-19 a partir de datos abiertos de México. De dónde salen los
-  datos, cómo se preparan y por qué la calidad del dato importa más que el modelo.
+  Un caso real y reciente de Machine Learning en salud: predecir la mortalidad
+  de pacientes de COVID-19 a partir de datos abiertos de México.
 ---
 
 # Caso real · ML para predecir la mortalidad por COVID-19 (México)
@@ -12,7 +11,7 @@ description: >-
 
 Acabas de ver, en la U2, los **fundamentos** (qué es el ML, cuándo NO usarlo, generalización) y el trabajo de **explorar y limpiar los datos**.
 
-Esta página es un **alto en el camino**: un caso **real y reciente** que reúne todo eso en un mismo proyecto. Léelo con calma; cuando termines, la flecha **Next** te llevará a la U3.
+Esta página es un **alto en el camino**: un caso **real y reciente** que reúne todo eso en un mismo proyecto.
 {% endhint %}
 
 Casi todo el curso se apoya en **datos sintéticos** (inventados de forma controlada). Aquí, en cambio, miramos un proyecto hecho con **datos reales y públicos**: es la mejor forma de ver que, en la práctica, **el modelo es la parte fácil; lo difícil son los datos**.
@@ -27,17 +26,17 @@ La complejidad del Machine Learning **no está solo** en los modelos, sus propie
 
 El proyecto —desarrollado por **Víctor Fanjul (Savana Medical)**— se planteó un objetivo muy concreto y muy clínico:
 
-> **Estimar la probabilidad de fallecimiento (*exitus*) de un paciente de COVID-19** a partir de un conjunto de características suyas (edad, sexo, síntomas, enfermedades previas, entorno social…).
+> **Estimar la probabilidad de fallecimiento (**_**exitus**_**) de un paciente de COVID-19** a partir de un conjunto de características suyas (edad, sexo, síntomas, enfermedades previas, entorno social…).
 
 Un modelo así, si funciona y es fiable, podría ayudar a **priorizar** y a **anticipar** la gravedad. Pero antes de pensar en el modelo, aparecieron los verdaderos retos:
 
 * **¿Dónde conseguir buenos datos?** Necesitábamos información **individual** (de cada paciente, no promedios), **anónima**, **completa** y recogida con una **metodología** común.
-* **¿Qué variables usar?** Esto es la **ingeniería de características** (*feature engineering*), y condiciona todo lo demás.
+* **¿Qué variables usar?** Esto es la **ingeniería de características** (_feature engineering_), y condiciona todo lo demás.
 
 {% hint style="info" %}
-**🩺 Concepto · *Exitus***
+**🩺 Concepto ·&#x20;**_**Exitus**_
 
-*Exitus* es el término clínico para el **fallecimiento** del paciente. Aquí es la **etiqueta** que queremos predecir: un problema de **clasificación** (fallece / no fallece), exactamente como el `evento_cv` de nuestro hilo sintético.
+_Exitus_ es el término clínico para el **fallecimiento** del paciente. Aquí es la **etiqueta** que queremos predecir: un problema de **clasificación** (fallece / no fallece).
 {% endhint %}
 
 ### La fuente de datos: los datos abiertos de México
@@ -54,7 +53,7 @@ Durante la pandemia todos vimos **tableros** como el de la Universidad Johns Hop
 
 Pero para **entrenar un modelo que prediga el riesgo de un paciente concreto**, estos datos **no sirven**. Un modelo aprende de **ejemplos individuales** (una fila por paciente, con sus características y su desenlace). Un total nacional de fallecidos no dice nada sobre **quién** tiene más riesgo.
 
-Incluso un gráfico tan informativo como el reparto de fallecidos **por edad** en distintos países nos ayuda a *entender* el fenómeno, pero **no permite predecir** para una persona: sigue siendo una vista agregada.
+Incluso un gráfico tan informativo como el reparto de fallecidos **por edad** en distintos países nos ayuda a _entender_ el fenómeno, pero **no permite predecir** para una persona: sigue siendo una vista agregada.
 
 <figure><img src="../.gitbook/assets/covid_deaths_age.png" alt="Distribución de fallecimientos por COVID-19 según la edad, por países."><figcaption><p>Fallecimientos por COVID-19 según la <strong>edad</strong>, país a país. Útil para comprender, pero sigue siendo información <strong>agregada</strong>: no basta para predecir el desenlace de un paciente individual.</p></figcaption></figure>
 
@@ -78,7 +77,9 @@ A partir de ahí se seleccionó una **amplia colección de variables** disponibl
 {% hint style="success" %}
 **💡 Idea clave · La ingeniería de características es donde se gana o se pierde**
 
-Elegir qué variables entran (y cómo se construyen) suele influir **más** en el resultado que el modelo concreto que uses. Un buen conjunto de características con un modelo sencillo casi siempre gana a un modelo sofisticado alimentado con malos datos.
+Elegir qué variables entran (y cómo se construyen) suele influir **más** en el resultado que el modelo concreto que uses.
+
+Un buen conjunto de características con un modelo sencillo casi siempre gana a un modelo sofisticado alimentado con malos datos.
 {% endhint %}
 
 ## 4. Preparar los datos: lo que casi nadie cuenta
@@ -87,7 +88,7 @@ Antes de entrenar nada, hubo que hacer el trabajo **poco glamuroso** pero decisi
 
 **Control del sobreajuste con validación cruzada.** Para no engañarse con un buen resultado que no se sostiene, se usó **validación cruzada** (lo veremos a fondo en la U5).
 
-**Clases desbalanceadas.** La mortalidad era del **12,6 %**: hay muchísimos más pacientes que se recuperan que pacientes que fallecen. Un modelo, por pura estadística, **tiende a la clase mayoritaria** (podría "acertar" mucho diciendo siempre "sobrevive"). Para evitarlo se **equilibraron** las clases mediante *down-sampling*: un conjunto con **50 % de fallecimientos y 50 % de recuperaciones**.
+**Clases desbalanceadas.** La mortalidad era del **12,6 %**: hay muchísimos más pacientes que se recuperan que pacientes que fallecen. Un modelo, por pura estadística, **tiende a la clase mayoritaria** (podría "acertar" mucho diciendo siempre "sobrevive"). Para evitarlo se **equilibraron** las clases mediante _down-sampling_: un conjunto con **50 % de fallecimientos y 50 % de recuperaciones**.
 
 **Valores ausentes.** ¿Qué haces si no sabes si un paciente concreto tiene diabetes o no? Aquí se optó por **imputar a 0** (asumir que no consta la enfermedad) y, en algún caso, **excluir la variable** entera. Toda decisión sobre ausentes es también una **decisión clínica**, no solo técnica.
 
@@ -96,7 +97,7 @@ Antes de entrenar nada, hubo que hacer el trabajo **poco glamuroso** pero decisi
 {% hint style="warning" %}
 **⚠️ Aviso · Las clases desbalanceadas engañan a la exactitud**
 
-Con un 12,6 % de fallecimientos, un modelo tramposo que dijera *"todos sobreviven"* acertaría el **87 %** de las veces… y sería **inútil**. Por eso, cuando las clases están desbalanceadas, la *exactitud* a secas no vale: hay que mirar **sensibilidad, especificidad y las curvas** que veremos en la **U3**.
+Con un 12,6 % de fallecimientos, un modelo tramposo que dijera _"todos sobreviven"_ acertaría el **87 %** de las veces… y sería **inútil**. Por eso, cuando las clases están desbalanceadas, la _exactitud_ a secas no vale: hay que mirar **sensibilidad, especificidad y las curvas** que veremos en la **U3**.
 {% endhint %}
 
 ## 5. Probar varios modelos y elegir con criterio
@@ -136,12 +137,12 @@ La lista **positiva** es clínicamente muy creíble: la **neumonía** como marca
 {% hint style="warning" %}
 **⚠️ Aviso · Un coeficiente no es una causa**
 
-Que el asma o la conjuntivitis salgan con signo "protector" **no significa** que protejan de nada. Los modelos capturan **asociaciones** en *estos* datos (a menudo mezcladas con otros factores), no relaciones de causa-efecto. Interpretar coeficientes es útil, pero exige **prudencia clínica**: es justo el tipo de trampa que trabajaremos en la **U11 (sesgo y validación)**.
+Que el asma o la conjuntivitis salgan con signo "protector" **no significa** que protejan de nada. Los modelos capturan **asociaciones** en _estos_ datos (a menudo mezcladas con otros factores), no relaciones de causa-efecto. Interpretar coeficientes es útil, pero exige **prudencia clínica**: es justo el tipo de trampa que trabajaremos en la **U11 (sesgo y validación)**.
 {% endhint %}
 
 ## 7. Un modelo más simple, pensado para usarse
 
-Un modelo con **decenas de variables** es difícil de usar en la consulta. Por eso se buscó una **versión simplificada**: con **muy pocas características** se conseguía un rendimiento igual de bueno —o mejor—, y mucho más **práctico** para el diagnóstico.
+Un modelo con **decenas de variables** es difícil de usar en la consulta. Por eso se buscó una **versión simplificada**: con **muy pocas características** se conseguía un rendimiento igual de bueno —o mejor, y mucho más **práctico** para el diagnóstico.
 
 <figure><img src="../.gitbook/assets/covid_modelo_simple.png" alt="Modelo simplificado (XGB) con pocas variables: importancia de neumonía 0,87, disnea 0,06, edad 0,03, fiebre 0,015, ERC 0,012, sexo masculino 0,011. Métricas: Accuracy 0,873, Precision 0,847, Recall 0,904, F1 0,875, ROC_AUC 0,874."><figcaption><p>Un modelo <strong>reducido a un puñado de variables</strong> (neumonía, disnea, edad, fiebre, ERC, sexo) alcanza métricas incluso algo <strong>mejores</strong> (sensibilidad 0,90, ROC-AUC 0,874) y es muchísimo más fácil de aplicar.</p></figcaption></figure>
 
@@ -159,7 +160,9 @@ El proyecto termina —y esto es lo más honesto y formativo— **no con una cel
 {% hint style="danger" %}
 **⚠️ "Funciona en el estudio" ≠ "funciona en mi hospital"**
 
-Un modelo entrenado con datos de la Ciudad de México en 2020 puede **no** rendir igual en otra población o en otro momento (cambian los pacientes, los tratamientos, las variantes). Validar en el **propio entorno**, vigilar el **envejecimiento** del modelo (*drift*) y cuidar la **equidad** entre subgrupos no son extras: son parte del trabajo. Lo retomamos en la **U11**.
+Un modelo entrenado con datos de la Ciudad de México en 2020 puede **no** rendir igual en otra población o en otro momento (cambian los pacientes, los tratamientos, las variantes).
+
+Validar en el **propio entorno**, vigilar el **envejecimiento** del modelo (_drift_) y cuidar la **equidad** entre subgrupos no son extras: son parte del trabajo. Lo retomamos en la **U11**.
 {% endhint %}
 
 ## Qué llevarte de este caso
@@ -170,9 +173,9 @@ Un modelo entrenado con datos de la Ciudad de México en 2020 puede **no** rendi
 * Y el final es una lección de humildad: **buenas métricas no bastan**; quedan el despliegue, la **validación externa** y el paso del tiempo.
 
 {% hint style="success" %}
-**Sigue con la flecha _Next_ → a la U3**, donde aprenderás a **leer de verdad** todas esas métricas (sensibilidad, especificidad, ROC, calibración) con las que aquí hemos ido tropezando.
+**Sigue con la flecha&#x20;**_**Next**_**&#x20;→ a la U3**, donde aprenderás a **leer de verdad** todas esas métricas (sensibilidad, especificidad, ROC, calibración) con las que aquí hemos ido tropezando.
 {% endhint %}
 
----
+***
 
-> *Caso basado en el trabajo real de **Víctor Fanjul (Savana Medical)** sobre datos abiertos de vigilancia epidemiológica de México (SINAVE · Dirección General de Epidemiología, Secretaría de Salud). Material docente de Jordi Linares-Pellicer (UPV). Las cifras y figuras proceden de dicho estudio y se usan con fines educativos.*
+> _Caso basado en el trabajo real de **Víctor Fanjul (Savana Medical)** sobre datos abiertos de vigilancia epidemiológica de México (SINAVE · Dirección General de Epidemiología, Secretaría de Salud). Material docente de Jordi Linares-Pellicer (UPV). Las cifras y figuras proceden de dicho estudio y se usan con fines educativos._
