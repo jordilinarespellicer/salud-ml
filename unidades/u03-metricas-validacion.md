@@ -287,6 +287,12 @@ $$
 \text{Prevalencia} = \frac{\text{casos positivos reales}}{\text{población total}} = \frac{TP + FN}{TP + TN + FP + FN}
 $$
 
+Con los números concretos de nuestro dataset se ve enseguida: `pacientes.csv` tiene **20.000 pacientes**; de ellos, **3.786 tienen `evento_cv = 1`** (sufren el evento) y **16.214 tienen `evento_cv = 0`**. Esos **3.786 de 20.000** son el **≈ 19 %**.
+
+La prevalencia es, simplemente, **cuántos "positivos" de verdad hay entre todos**, mirando solo la columna que queremos predecir —**no tiene nada que ver con lo que el modelo diga**; es una foto de los datos—.
+
+<figure><img src="../.gitbook/assets/u03_prevalencia.png" alt="Pictograma de 100 pacientes: 19 en rojo (con evento) y 81 en gris (sin evento), ilustrando una prevalencia del 19 %."><figcaption><p>La <strong>prevalencia</strong> de un vistazo: de cada 100 pacientes de la cohorte, <strong>~19 sufren el evento</strong> (rojo) y ~81 no (gris). Es una propiedad de <strong>los datos reales</strong>, no de ningún modelo.</p></figcaption></figure>
+
 {% hint style="warning" %}
 **⚠️ Aviso · La trampa de la&#x20;**_**accuracy**_**&#x20;con clases desbalanceadas**
 
@@ -526,6 +532,16 @@ Si tus métricas parecen demasiado buenas para ser verdad, sospecha de una fuga 
 {% endhint %}
 
 **Adelanto de la validación cruzada (se profundiza en la Unidad 5).** Una sola partición _train/test_ da una estimación algo caprichosa (depende de qué pacientes tocaron en cada lado). La **validación cruzada** rota el bloque de validación varias veces y promedia, dando una estimación **más estable** y, además, una idea de su **variabilidad**.
+
+{% hint style="info" %}
+**Concepto · Partición _estratificada_ (y en qué se diferencia de la validación cruzada)**
+
+**Estratificar** el reparto significa mantener en cada parte (_train_ y _test_) **la misma proporción de clases** que en el total. Como `evento_cv` tiene una prevalencia del ~19 %, una partición **estratificada** deja **~19 % de eventos en el _train_ y ~19 % en el _test_**.
+
+Sin estratificar, el azar podría dejar el test con, por ejemplo, un 12 % o un 27 % de eventos —o, en un conjunto pequeño, **casi ninguno**—, y entonces la métrica saldría distorsionada por el reparto, no por el modelo.
+
+Y ojo, porque es tu duda exacta: **no es lo mismo que la validación cruzada**. Estratificar es una **propiedad de _cómo_ repartes** (conservar el equilibrio de clases); la validación cruzada es una **estrategia de repartir _varias veces_** y promediar. Se pueden **combinar**: la _validación cruzada estratificada_ (en scikit-learn, `StratifiedKFold`) hace las dos cosas a la vez, y es lo recomendable con clases desbalanceadas como la nuestra.
+{% endhint %}
 
 En clínica, un matiz crucial: la partición debe ser **por paciente** (agrupada), para que **ningún paciente aparezca a la vez en entrenamiento y en test**.
 
