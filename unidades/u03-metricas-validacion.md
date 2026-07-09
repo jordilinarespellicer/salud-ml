@@ -99,6 +99,16 @@ $$
 \text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}\left( y_i - \hat{y}_i \right)^2} = \sqrt{\text{MSE}}
 $$
 
+{% hint style="info" %}
+**Concepto · MAPE (Error Porcentual Absoluto Medio)**
+
+Como el MAE, pero midiendo cada error **en relación con el valor real** en lugar de en puntos absolutos: se promedia `|real − predicho| ÷ real` y se expresa en **porcentaje**. Responde a la pregunta _"de media, ¿en qué porcentaje nos desviamos respecto al valor verdadero?"_.
+
+Su ventaja es que es intuitivo y **no depende de las unidades** (un 10 % se entiende igual en cualquier escala). Su gran defecto: cuando el valor real es **muy pequeño o cero**, dividir por él dispara el error hacia el infinito.
+
+Por eso en `riesgo_cv_10a`, donde muchos pacientes tienen un riesgo casi nulo, el MAPE **engaña**; es más útil en magnitudes que nunca se acercan a cero, como el número de ingresos diarios en urgencias (lo usaremos así en la **U7**).
+{% endhint %}
+
 {% hint style="warning" %}
 **⚠️ Aviso · Ni el MAE ni el RMSE son "la mejor" siempre**
 
