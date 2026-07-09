@@ -224,3 +224,15 @@ Tu primer cuaderno: un paseo guiado por Colab y por todo lo que has leído aquí
 * **El asistente de IA escribe el código; tú aportas el criterio clínico** y aprendes a pedir y a leer. Eso sí: jamás con datos reales de pacientes, siempre con nuestros datos sintéticos.
 
 Con la puesta a punto hecha, en la siguiente unidad empieza el curso de verdad: qué es exactamente eso del _machine learning_ y por qué a un modelo no se le programa, sino que **se le entrena con datos** — datos como los de nuestro `pacientes.csv`.
+
+## 🎬 Vídeo · Un recorrido por Google Colab
+
+Para cerrar la puesta a punto, en este vídeo hacemos un **recorrido preliminar por el entorno de Google Colab**, repasando en pantalla y paso a paso los **elementos importantes** que hemos visto en esta unidad: cómo se abre un cuaderno, las celdas de **texto** y de **código**, cómo ejecutarlas, el menú de _Entorno de ejecución_, dónde aparecen los resultados y cómo **guardar tu copia** en Drive.
+
+El objetivo es que, al terminarlo, tengas **afianzado todo lo necesario para seguir el curso** sin fricción técnica: cuando en las próximas unidades leas "abre el cuaderno y ejecuta la primera celda", sabrás exactamente qué hacer.
+
+{% hint style="info" %}
+**Cómo sacarle partido.** Míralo con Colab abierto en otra ventana y ve haciendo a la vez lo que aparece en pantalla. Son unos minutos que ahorran muchas dudas más adelante.
+{% endhint %}
+
+{% embed url="https://youtu.be/Rqnt4hfFX8k" %}
