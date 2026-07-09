@@ -452,11 +452,25 @@ Un modelo puede **ordenar** muy bien a los pacientes (AUC alto) y, sin embargo, 
 
 Ordenar bien y estar bien calibrado son cosas **distintas**, y en clínica la segunda suele importar más.
 
+Una analogía que lo aclara: un modelo bien calibrado es como un **buen hombre del tiempo**. Cuando dice _"70 % de probabilidad de lluvia"_, de verdad llueve en unos **7 de cada 10** días en los que lo anunció. No acierta cada día concreto, pero sus **porcentajes son de fiar**.
+
+Un modelo **mal calibrado** es el que dice _"70 %"_ y solo llueve 3 de cada 10 veces: aunque sepa ordenar los días de más a menos probable, sus **números engañan**. En medicina, decidimos con esos números, así que que sean creíbles es decisivo.
+
 {% hint style="info" %}
 **Concepto · Calibración**
 
 Un modelo está **bien calibrado** cuando sus probabilidades coinciden con la realidad: de todos los pacientes a los que asigna "20 % de riesgo", aproximadamente el 20 % acaba teniendo el evento. La herramienta para verlo es la **curva de calibración** (o _reliability diagram_): en el eje horizontal, la probabilidad predicha; en el vertical, la frecuencia observada. El ideal es la **diagonal**. Si la curva va por debajo, el modelo **sobreestima** el riesgo; si va por encima, lo **infraestima**.
 {% endhint %}
+
+<figure><img src="../.gitbook/assets/u03_calibracion.png" alt="Curva de calibración: un modelo bien calibrado sigue la diagonal (predicho = observado); uno mal calibrado que infraestima queda por encima de la diagonal, con un ejemplo en el que predice ~20% pero el evento ocurre en ~40%."><figcaption><p>Curva de calibración. Cada punto compara el <strong>riesgo predicho</strong> (eje horizontal) con la <strong>frecuencia real</strong> de eventos (eje vertical). El modelo <strong>bien calibrado</strong> (verde) sigue la diagonal; el <strong>mal calibrado</strong> (rojo) se aleja: aquí <em>infraestima</em>, asignando ~20 % a un grupo en el que el evento ocurre en ~40 %. Datos sintéticos.</p></figcaption></figure>
+
+**Cómo se lee este gráfico, paso a paso.** Se **agrupan** los pacientes según el riesgo que el modelo les asignó (los que rondan el 10 %, los del 20 %, los del 40 %…). En cada grupo se calcula qué **fracción tuvo de verdad el evento**, y se dibuja un punto: en horizontal, lo que el modelo **predijo**; en vertical, lo que **ocurrió**.
+
+- Si cada punto cae **sobre la diagonal**, predicho = observado: el modelo está **bien calibrado** (la curva verde).
+- Si la curva queda **por encima** de la diagonal, el modelo **infraestima** (predice menos riesgo del real) — es la curva roja del ejemplo.
+- Si quedara **por debajo**, **sobreestimaría** (predice más riesgo del real).
+
+La distancia de la curva a la diagonal es, de un vistazo, **cuánto miente el modelo en sus probabilidades**.
 
 **Por qué importa más que el AUC en la práctica clínica:** las decisiones clínicas usan **la probabilidad en sí**, no solo el orden. Las guías fijan umbrales de riesgo (por ejemplo, "ofrecer estatinas si el riesgo a 10 años supera cierto %"), la decisión compartida con el paciente se basa en cifras concretas, y conceptos como el número necesario a tratar dependen de que la probabilidad sea creíble.
 
