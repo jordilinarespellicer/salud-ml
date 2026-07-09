@@ -40,7 +40,7 @@ El error es, sencillamente, la diferencia entre el riesgo predicho y el real, me
 
 La pregunta es cómo resumir miles de esos errores en un único número, y cada forma de hacerlo cuenta una historia distinta.
 
-<figure><img src="../.gitbook/assets/d02_s05_0.png" alt="Planteamiento de regresión: predecir una salida continua a partir de unas variables de entrada; el error es la distancia entre la predicción y el valor real."><figcaption><p>Planteamiento de regresión: predecir una salida continua (aquí, el riesgo cardiovascular a 10 años) a partir de variables clínicas de entrada. El error es la distancia entre la predicción y el valor real.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/u03_regresion_error.png" alt="Dispersión del riesgo cardiovascular a 10 años frente a la edad en la cohorte sintética, con la recta del modelo y el error de una predicción marcado como la distancia vertical entre el valor real (22 %) y el predicho (18 %)."><figcaption><p>Planteamiento de la <strong>regresión</strong>: el modelo (recta azul) predice el <strong>riesgo cardiovascular a 10 años</strong> a partir de variables clínicas —aquí, la edad—. El <strong>error</strong> de cada paciente es la <strong>distancia vertical</strong> entre su valor real y la recta; en el ejemplo, 22 % − 18 % = <strong>4 puntos</strong>. Datos sintéticos.</p></figcaption></figure>
 
 ### MAE — Error Absoluto Medio
 
