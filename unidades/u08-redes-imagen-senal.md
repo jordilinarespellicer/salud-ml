@@ -8,6 +8,11 @@ description: >-
 
 # U8 · Redes neuronales, imagen y señal — CNN y ViT
 
+{% hint style="warning" %}
+**🔒 Unidad en preparación (todavía no disponible).** Esta unidad forma parte del temario, pero **aún no está cerrada**: su contenido puede cambiar. Por ahora, el curso publicado llega hasta la **U3**; las siguientes se irán liberando en las próximas semanas.
+{% endhint %}
+
+
 Hasta aquí, todo nuestro aprendizaje automático ha vivido en **tablas y series**: filas y columnas de [`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link), la secuencia diaria de [`urgencias_diarias.csv`](https://drive.google.com/file/d/1EpQ9Lcb-f-iDqBOA3f3sT_pGLBp2G56u/view?usp=drive_link). Y para esos datos hemos visto que los modelos "clásicos" —una regresión logística, un buen *gradient boosting*— son difíciles de batir.
 
 Pero la medicina no cabe entera en una tabla. Una **radiografía de tórax**, una **imagen dermatoscópica** de un lunar, un **fondo de ojo**, una **preparación histológica**, el trazado de un **electrocardiograma**: nada de eso son columnas. Son píxeles y muestras de señal, datos "crudos" con una estructura espacial o temporal riquísima que un modelo tabular no sabe leer.

@@ -8,6 +8,11 @@ description: >-
 
 # U5 · Supervisados II — SVM, árboles, ensembles y cómo elegir bien
 
+{% hint style="warning" %}
+**🔒 Unidad en preparación (todavía no disponible).** Esta unidad forma parte del temario, pero **aún no está cerrada**: su contenido puede cambiar. Por ahora, el curso publicado llega hasta la **U3**; las siguientes se irán liberando en las próximas semanas.
+{% endhint %}
+
+
 Los modelos de la Unidad 4 —regresión lineal, logística y Naïve Bayes— son sencillos, rápidos y, sobre todo, **interpretables**: sus coeficientes se leen casi como un *odds ratio*.
 
 Pero comparten una limitación de fondo: sus fronteras de decisión son esencialmente **lineales**. Cuando la relación entre las variables clínicas y el desenlace tiene curvas, escalones o interacciones —y en medicina las tiene a menudo— hacen falta familias capaces de doblar esa frontera.

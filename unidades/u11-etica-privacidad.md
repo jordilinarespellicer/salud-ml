@@ -7,6 +7,11 @@ description: >-
 
 # U11 · Ética, sesgo, validación y privacidad
 
+{% hint style="warning" %}
+**🔒 Unidad en preparación (todavía no disponible).** Esta unidad forma parte del temario, pero **aún no está cerrada**: su contenido puede cambiar. Por ahora, el curso publicado llega hasta la **U3**; las siguientes se irán liberando en las próximas semanas.
+{% endhint %}
+
+
 Esta unidad es distinta de las demás, y deliberadamente **breve**. No presenta ninguna técnica nueva: es la **lente transversal** con la que hay que mirar todo lo anterior.
 
 A lo largo del curso has aprendido a construir y evaluar modelos con honestidad técnica; aquí cerramos con la otra mitad del criterio: **qué debe exigir un profesional sanitario a cualquier sistema de IA** —lo haya construido él, su hospital o un proveedor— antes de dejar que toque una decisión clínica.

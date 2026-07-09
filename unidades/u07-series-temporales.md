@@ -7,6 +7,11 @@ description: >-
 
 # U7 · Series temporales en salud
 
+{% hint style="warning" %}
+**🔒 Unidad en preparación (todavía no disponible).** Esta unidad forma parte del temario, pero **aún no está cerrada**: su contenido puede cambiar. Por ahora, el curso publicado llega hasta la **U3**; las siguientes se irán liberando en las próximas semanas.
+{% endhint %}
+
+
 Un hospital vive en el tiempo. Los ingresos diarios en urgencias, la ocupación de camas, las llamadas al 112, los positivos de gripe de la red centinela, la frecuencia cardiaca que registra un reloj noche tras noche: todo eso son **series temporales**, secuencias de valores donde el orden importa.
 
 Predecir bien esas series —cuántos pacientes llegarán mañana, cuántas camas harán falta la semana que viene, cuándo despegará la ola de gripe— es la base de la planificación de recursos, de los turnos de personal y de la vigilancia epidemiológica.

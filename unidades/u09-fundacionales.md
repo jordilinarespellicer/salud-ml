@@ -8,6 +8,11 @@ description: >-
 
 # U9 · Modelos fundacionales — Hugging Face y APIs (OpenRouter)
 
+{% hint style="warning" %}
+**🔒 Unidad en preparación (todavía no disponible).** Esta unidad forma parte del temario, pero **aún no está cerrada**: su contenido puede cambiar. Por ahora, el curso publicado llega hasta la **U3**; las siguientes se irán liberando en las próximas semanas.
+{% endhint %}
+
+
 En la unidad anterior cerramos con una idea que ahora se convierte en el eje de todo: **casi nadie entrena las grandes redes desde cero; las usamos ya entrenadas**. Aquí lo llevamos hasta sus últimas consecuencias.
 
 Y de paso descubrimos que es la mejor noticia posible para un profesional sanitario que no programa. Porque si el trabajo ya no consiste en construir el modelo, sino en **elegirlo, integrarlo, evaluarlo y orquestarlo**, entonces lo que de verdad importa es exactamente lo que tú tienes y una máquina no: **criterio clínico**.

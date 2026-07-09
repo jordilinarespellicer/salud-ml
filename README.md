@@ -16,6 +16,10 @@ coverY: 0
 **Todos los datos y ejemplos de este curso son sintéticos.** No representan ni derivan de pacientes reales: se generan con código reproducible y su única función es didáctica. Este aviso, además, es contenido formativo: en salud no se trabaja con datos de pacientes sin las debidas garantías éticas y legales.
 {% endhint %}
 
+{% hint style="info" %}
+**📢 Curso en publicación progresiva.** Ahora mismo están disponibles y cerradas las unidades **U0 a U3** (más el caso real de COVID-19). El resto del temario figura marcado con **🔒 Próximamente** y se irá liberando en las próximas semanas.
+{% endhint %}
+
 ### Para quién es este curso
 
 Este material forma parte de la **parte de Machine Learning** del _Curso de Especialización de IA aplicada a la Salud_. Está diseñado para **personal facultativo (asistencial y de gestión), investigación biosanitaria y perfiles TIC de salud**.
@@ -40,16 +44,18 @@ Las principales unidades del núcleo síncrono (online) son **U1–U5 y U8**; el
 | U1  | [¿Qué está pasando con la IA en salud?](unidades/u01-ia-hoy-en-salud.md)        | Oportunidades, posibilidades y límites reales hoy; encuadre para el colectivo sanitario    |
 | U2  | [Fundamentos, método 2026 y EDA](unidades/u02-fundamentos-eda.md)               | IA/ML/DL, generalización, cuándo NO usar ML, EDA y limpieza sobre datos de pacientes       |
 | U3  | [Evaluar bien: métricas y validación](unidades/u03-metricas-validacion.md)      | Sensibilidad/especificidad, VPP/VPN, ROC/PR, calibración, prevalencia, coste del error     |
-| U4  | [Supervisados I](unidades/u04-supervisados-i.md)                                | Regresión lineal, **logística** (el modelo clínico por excelencia) y Naïve Bayes           |
-| U5  | [Supervisados II + cómo elegir](unidades/u05-supervisados-ii.md)                | SVM, árboles, ensembles, **validación cruzada, hiperparámetros, elegir el mejor**, SHAP    |
-| U6  | [No supervisado](unidades/u06-no-supervisado.md)                                | Clustering y **fenotipado de pacientes**, PCA, detección de anomalías                      |
-| U7  | [Series temporales en salud](unidades/u07-series-temporales.md)                 | Validación temporal sin fugas; ingresos en urgencias como ejemplo clínico                  |
-| U8  | [Redes, imagen y señal](unidades/u08-redes-imagen-senal.md)                     | Intuición del deep learning, **CNN → ViT**, qué es hoy posible con imagen y señal médica   |
-| U9  | [Modelos fundacionales](unidades/u09-fundacionales.md)                          | **Hugging Face** y `pipeline()`; modelos biomédicos ES/EN; **APIs** (OpenAI/Claude/Qwen)   |
-| U10 | [La IA como copiloto de ciencia de datos](unidades/u10-copiloto-datascience.md) | **Prompting, metaprompting y loop engineering**; Cowork, Claude Code, Codex, Manus         |
-| U11 | [Ética, sesgo, validación y privacidad](unidades/u11-etica-privacidad.md)       | Sesgo y equidad, validación clínica, privacidad, encuadre regulatorio (transversal, breve) |
+| U4 🔒 | [Supervisados I](unidades/u04-supervisados-i.md)                              | Regresión lineal, **logística** (el modelo clínico por excelencia) y Naïve Bayes           |
+| U5 🔒 | [Supervisados II + cómo elegir](unidades/u05-supervisados-ii.md)              | SVM, árboles, ensembles, **validación cruzada, hiperparámetros, elegir el mejor**, SHAP    |
+| U6 🔒 | [No supervisado](unidades/u06-no-supervisado.md)                              | Clustering y **fenotipado de pacientes**, PCA, detección de anomalías                      |
+| U7 🔒 | [Series temporales en salud](unidades/u07-series-temporales.md)               | Validación temporal sin fugas; ingresos en urgencias como ejemplo clínico                  |
+| U8 🔒 | [Redes, imagen y señal](unidades/u08-redes-imagen-senal.md)                   | Intuición del deep learning, **CNN → ViT**, qué es hoy posible con imagen y señal médica   |
+| U9 🔒 | [Modelos fundacionales](unidades/u09-fundacionales.md)                        | **Hugging Face** y `pipeline()`; modelos biomédicos ES/EN; **APIs** (OpenAI/Claude/Qwen)   |
+| U10 🔒 | [La IA como copiloto de ciencia de datos](unidades/u10-copiloto-datascience.md) | **Prompting, metaprompting y loop engineering**; Cowork, Claude Code, Codex, Manus      |
+| U11 🔒 | [Ética, sesgo, validación y privacidad](unidades/u11-etica-privacidad.md)     | Sesgo y equidad, validación clínica, privacidad, encuadre regulatorio (transversal, breve) |
 
-**Material complementario:** [Guía docente y plan de vídeos](docencia/guia-docente.md) · [Copiloto de ciencia de datos (guía end-to-end)](estudio/copiloto-datascience.md) · [Prompting, metaprompting y loop engineering](estudio/prompting-loops.md) · [Notebooks de Colab](notebooks/) · [Datasets sintéticos](datasets/)
+Las unidades marcadas con **🔒 Próximamente** todavía se están cerrando y se publicarán en las próximas semanas.
+
+**Material complementario:** [Notebooks de Colab](notebooks/) · [Datasets sintéticos](datasets/)
 
 ### Cómo usar este material
 

@@ -8,6 +8,11 @@ description: >-
 
 # U6 · Aprendizaje no supervisado — fenotipado y anomalías
 
+{% hint style="warning" %}
+**🔒 Unidad en preparación (todavía no disponible).** Esta unidad forma parte del temario, pero **aún no está cerrada**: su contenido puede cambiar. Por ahora, el curso publicado llega hasta la **U3**; las siguientes se irán liberando en las próximas semanas.
+{% endhint %}
+
+
 Hasta ahora hemos trabajado con datos **etiquetados**: la cohorte nos daba la respuesta correcta —el `evento_cv`, el `riesgo_cv_10a`— y aprendíamos a predecirla, y sobre todo a **elegir y evaluar** modelos con honestidad.
 
 Pero muchísimo valor clínico se esconde en datos que **no tienen etiqueta**, y que aun así guardan una estructura muy rica.

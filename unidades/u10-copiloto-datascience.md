@@ -9,6 +9,11 @@ description: >-
 
 # U10 · La IA como copiloto de ciencia de datos
 
+{% hint style="warning" %}
+**🔒 Unidad en preparación (todavía no disponible).** Esta unidad forma parte del temario, pero **aún no está cerrada**: su contenido puede cambiar. Por ahora, el curso publicado llega hasta la **U3**; las siguientes se irán liberando en las próximas semanas.
+{% endhint %}
+
+
 Todo el curso ha empujado hacia esta unidad. Desde la primera página defendemos una idea que a un profesional sanitario le cambia la vida: en 2026 **el valor no está en escribir `scikit-learn` de memoria, sino en tener criterio clínico y saber pedir el código a un asistente de IA**.
 
 Hemos visto qué hace cada familia de modelos (U4–U8), cómo evaluar con honestidad (U3), cómo limpiar los datos (U2) y dónde viven los modelos ya hechos (U9). Ahora damos el último paso y el más importante: aprender a **dirigir** todo eso de principio a fin, convirtiendo a la IA en tu **copiloto de ciencia de datos**.

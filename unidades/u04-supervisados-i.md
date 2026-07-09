@@ -9,6 +9,11 @@ description: >-
 
 # U4 · Modelos supervisados I — lineal, logística, Naïve Bayes
 
+{% hint style="warning" %}
+**🔒 Unidad en preparación (todavía no disponible).** Esta unidad forma parte del temario, pero **aún no está cerrada**: su contenido puede cambiar. Por ahora, el curso publicado llega hasta la **U3**; las siguientes se irán liberando en las próximas semanas.
+{% endhint %}
+
+
 Con los datos ya limpios (U2) y el idioma para evaluar en la mano (U3), entramos por fin en las técnicas. Y lo hacemos por la puerta que un profesional sanitario reconocerá enseguida, porque muchas de las herramientas de riesgo que usáis a diario nacen justamente de aquí.
 
 Empezamos por las tres familias más simples y fundamentales del aprendizaje supervisado. No las tratamos como un mero calentamiento: son extraordinariamente útiles, a menudo el **mejor punto de partida** para cualquier problema clínico y, con más frecuencia de la que se cree, también el **modelo final**.
