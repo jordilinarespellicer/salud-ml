@@ -41,26 +41,25 @@ El error es, sencillamente, la diferencia entre el riesgo predicho y el real, me
 
 La pregunta es cómo resumir miles de esos errores en un único número, y cada forma de hacerlo cuenta una historia distinta.
 
-<figure><img src="../.gitbook/assets/u03_regresion_error.png" alt="Dispersión del riesgo cardiovascular a 10 años frente a la edad en la cohorte sintética, con la recta del modelo y el error de una predicción marcado como la distancia vertical entre el valor real (22 %) y el predicho (18 %)."><figcaption><p>Planteamiento de la <strong>regresión</strong>: el modelo (recta azul) predice el <strong>riesgo cardiovascular a 10 años</strong> a partir de variables clínicas —aquí, la edad—. El <strong>error</strong> de cada paciente es la <strong>distancia vertical</strong> entre su valor real y la recta; en el ejemplo, 22 % − 18 % = <strong>4 puntos</strong>. Datos sintéticos.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/u03_regresion_error.png" alt="Dispersión del riesgo cardiovascular a 10 años frente a la edad en la cohorte sintética, con la recta del modelo y el error de una predicción marcado como la distancia vertical entre el valor real (22 %) y el predicho (18 %)."><figcaption><p>Planteamiento de la <strong>regresión</strong>: el modelo (recta azul) predice el <strong>riesgo cardiovascular a 10 años</strong> a partir de variables clínicas —aquí, la edad. El <strong>error</strong> de cada paciente es la <strong>distancia vertical</strong> entre su valor real y la recta; en el ejemplo, 22 % − 18 % = <strong>4 puntos</strong>.</p></figcaption></figure>
 
 ### MAE — Error Absoluto Medio
 
-En riesgo cardiovascular, el MAE responde a una pregunta muy natural: _de media, ¿por cuántos puntos de riesgo nos desviamos?_
+En riesgo cardiovascular, por ejemplo, el MAE responde a una pregunta muy natural: _de media, ¿por cuántos puntos de riesgo nos desviamos?_
 
 {% hint style="info" %}
 **Concepto · MAE (Mean Absolute Error)**
 
-Promedio de las distancias absolutas entre predicción y realidad. Si el MAE es 3, en promedio el modelo se equivoca en **3 puntos porcentuales de riesgo**. Es la métrica más fácil de explicar en clínica porque está en las **mismas unidades** que lo que predecimos y trata todos los errores por igual.
+Promedio de las distancias absolutas entre predicción y realidad. Si el MAE es 3, en promedio el modelo se equivoca en **3 puntos**. Es la métrica más fácil de explicar en clínica porque está en las **mismas unidades** que lo que predecimos y trata todos los errores por igual.
 {% endhint %}
 
 **✅ Fortalezas**
 
-* Intuitiva y directa de comunicar: "de media nos desviamos 3 puntos de riesgo".
+* Intuitiva y directa de comunicar: "de media nos desviamos 3 puntos".
 * Robusta: un error grande y aislado (un paciente atípico) no la dispara desproporcionadamente.
 
 **⚠️ Debilidades / límites**
 
-* Trata todos los errores por igual: equivocarse 12 puntos en un paciente de alto riesgo pesa, punto a punto, lo mismo que equivocarse 3 en uno de bajo riesgo.
 * Por sí sola no avisa de si existen errores grandes puntuales que podrían ser peligrosos.
 
 **Campo de aplicación clínica:** comunicar el **desvío típico** del riesgo estimado a un comité o a un clínico que no quiere fórmulas, sino "cuánto suele fallar esto".
@@ -73,27 +72,27 @@ En todas las fórmulas de esta sección, $$y_i$$ es el valor real, $$\hat{y}_i$$
 
 ### MSE y RMSE — cuando un error grande duele más
 
-Antes del RMSE conviene nombrar el **MSE (error cuadrático medio)**: el promedio de los errores **al cuadrado**. Al elevar al cuadrado penaliza con fuerza los errores grandes, pero queda en "puntos de riesgo al cuadrado", una unidad que **no se puede interpretar** en clínica.
+Antes del RMSE conviene nombrar el **MSE (error cuadrático medio)**: el promedio de los errores **al cuadrado**. Al elevar al cuadrado penaliza con fuerza los errores grandes, pero queda en "unidades al cuadrado", una unidad que **no se puede interpretar** en clínica.
 
 Por eso el MSE se usa como función que muchos modelos **minimizan por dentro** al entrenar, y lo que comunicamos es su raíz, el RMSE.
 
 {% hint style="info" %}
 **Concepto · RMSE (Root Mean Squared Error)**
 
-Como el MAE, pero **elevando los errores al cuadrado** antes de promediar (y sacando luego la raíz). El efecto es que **penaliza mucho más los errores grandes**: equivocarse en 10 puntos de riesgo cuenta más del doble que equivocarse en 5. Vuelve a estar en las unidades del objetivo (puntos de riesgo).
+Como el MAE, pero **elevando los errores al cuadrado** antes de promediar (y sacando luego la raíz).
+
+El efecto es que **penaliza mucho más los errores grandes**: equivocarse en 10 puntos de riesgo cuenta más del doble que equivocarse en 5. Vuelve a estar en las unidades del objetivo (puntos de riesgo).
 {% endhint %}
 
 **✅ Fortalezas**
 
-* Si los errores grandes son especialmente peligrosos —por ejemplo, **infraestimar mucho** el riesgo de un paciente que debería entrar en prevención—, el RMSE los castiga y empuja al modelo a evitarlos.
-* Sigue estando en puntos de riesgo, así que se puede comunicar.
+* Si los errores grandes son especialmente peligrosos —por ejemplo, **infraestimar mucho** el riesgo de un paciente que debería entrar en prevención, el RMSE los castiga y empuja al modelo a evitarlos.
+* Sigue estando en unidades del valor a estimar, así que se puede comunicar.
 
 **⚠️ Debilidades / límites**
 
 * Muy sensible a _outliers_: un puñado de pacientes con errores extremos puede dominar la métrica.
 * **Regla práctica:** si **RMSE ≫ MAE**, hay errores grandes dispersos que conviene investigar (¿un subgrupo mal modelado? ¿pacientes con perfiles poco frecuentes en la cohorte?).
-
-**Campo de aplicación clínica:** cuando un error grande en la estimación del riesgo tiene consecuencias graves y quieres que el modelo pague caro por cometerlo.
 
 $$
 \text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}\left( y_i - \hat{y}_i \right)^2} = \sqrt{\text{MSE}}
@@ -102,7 +101,13 @@ $$
 {% hint style="warning" %}
 **⚠️ Aviso · Ni el MAE ni el RMSE son "la mejor" siempre**
 
-El contexto lo es todo. Si lo que te importa es el desvío típico del día a día, comunica **MAE**. Si lo que de verdad te preocupa son los fallos grandes que dejan a un paciente sin la prevención que necesitaba, mira el **RMSE**. Y ojo con el **MAPE** (error en porcentaje relativo): se vuelve inestable o enorme cuando el valor real es casi cero —justo los pacientes de **riesgo muy bajo**—, así que en riesgo cardiovascular suele engañar más que ayudar.
+El contexto lo es todo.&#x20;
+
+Si lo que te importa es el desvío típico del día a día, comunica **MAE**.
+
+Si lo que de verdad te preocupa son los fallos grandes que dejan a un paciente sin la prevención que necesitaba, mira el **RMSE**.&#x20;
+
+Y ojo con el **MAPE** (error en porcentaje relativo): se vuelve inestable o enorme cuando el valor real es casi cero —justo los pacientes de **riesgo muy bajo**, así que en riesgo cardiovascular suele engañar más que ayudar.
 {% endhint %}
 
 ### R² — ¿cuánto mejor que no tener modelo?
