@@ -111,25 +111,33 @@ Por eso en `riesgo_cv_10a`, donde muchos pacientes tienen un riesgo casi nulo, e
 {% hint style="warning" %}
 **⚠️ Aviso · Ni el MAE ni el RMSE son "la mejor" siempre**
 
-El contexto lo es todo.&#x20;
+El contexto lo es todo.
 
 Si lo que te importa es el desvío típico del día a día, comunica **MAE**.
 
-Si lo que de verdad te preocupa son los fallos grandes que dejan a un paciente sin la prevención que necesitaba, mira el **RMSE**.&#x20;
+Si lo que de verdad te preocupa son los fallos grandes que dejan a un paciente sin la prevención que necesitaba, mira el **RMSE**.
 
 Y ojo con el **MAPE** (error en porcentaje relativo): se vuelve inestable o enorme cuando el valor real es casi cero —justo los pacientes de **riesgo muy bajo**, así que en riesgo cardiovascular suele engañar más que ayudar.
 {% endhint %}
 
 ### R² — ¿cuánto mejor que no tener modelo?
 
-El MAE y el RMSE miden el error en magnitud; el R² responde a otra pregunta: **¿cuánto mejor es mi modelo que predecir a todos el riesgo medio de la cohorte?**
+El MAE y el RMSE miden el error en magnitud; el R² responde a otra pregunta: **¿qué varianza está explicada por parte de la varianza de las características?**
 
-Es decir, qué proporción de la variabilidad del riesgo entre pacientes logra explicar el modelo.
+Es decir, en nuestro ejemplo, qué proporción de la variabilidad del riesgo entre pacientes logra explicar el modelo.
 
 {% hint style="info" %}
 **Concepto · R² (coeficiente de determinación)**
 
-Toma valores típicamente entre 0 y 1 (puede ser negativo si el modelo es peor que la media). **R² = 1** sería un ajuste perfecto; **R² = 0** significa que el modelo no aporta nada sobre predecir siempre el riesgo medio; **R² negativo** indica que es _peor_ que esa media. Es una medida de **calidad relativa**, no del error en puntos de riesgo.
+Toma valores típicamente entre 0 y 1 (puede ser negativo si el modelo es peor que la media).&#x20;
+
+**R² = 1** sería un ajuste perfecto;&#x20;
+
+**R² = 0** significa que el modelo no aporta nada sobre predecir siempre el riesgo medio;&#x20;
+
+**R² negativo** indica que es _peor_ que esa media.
+
+Es una medida de **calidad relativa**, no del error en puntos de riesgo.
 {% endhint %}
 
 **✅ Fortalezas**
@@ -139,8 +147,8 @@ Toma valores típicamente entre 0 y 1 (puede ser negativo si el modelo es peor q
 
 **⚠️ Debilidades / límites**
 
-* No está en unidades clínicas: un R² alto no te dice si el error es aceptable **en los pacientes que importan**.
-* Un R² elevado puede venir acompañado de errores inaceptables, o ser fruto de **fuga de datos** (lo veremos en 3.8). Medido sobre el conjunto de _entrenamiento_ casi siempre es engañosamente alto.
+* No está en unidades clínicas: un R² alto no te dice si el error es aceptable.
+* Un R² elevado puede venir acompañado de errores inaceptables, o ser fruto de **fuga de datos** (lo veremos).&#x20;
 
 **Campo de aplicación clínica:** una foto rápida de la calidad relativa, **siempre acompañada** de MAE/RMSE y de un gráfico de predicho _vs._ real.
 
@@ -158,21 +166,27 @@ $$
 {% hint style="success" %}
 **💡 Idea clave**
 
-No hay una métrica "mejor": hay una métrica **adecuada a la decisión**. La práctica recomendada es reportar **MAE + RMSE + R²** juntas y, sobre todo, **mirar también las predicciones gráficamente** (predicho _vs._ real), porque un número nunca cuenta toda la historia. En nuestra cohorte sintética, por ejemplo, para `riesgo_cv_10a` un Random Forest alcanza **R² ≈ 0,91** frente a **R² ≈ 0,81** de la regresión lineal, porque el riesgo tiene interacciones entre variables que el bosque captura mejor (el _cómo_ de esos modelos es la Unidad 4; aquí solo aprendemos a **leer** sus métricas).
+No hay una métrica "mejor": hay una métrica **adecuada a la decisión**.
+
+La práctica recomendada es reportar **MAE + RMSE + R²** juntas y, sobre todo, **mirar también las predicciones gráficamente** (predicho _vs._ real), porque un número nunca cuenta toda la historia.
+
+En nuestro ejemplo, para `riesgo_cv_10a` un Random Forest alcanza **R² ≈ 0,91** frente a **R² ≈ 0,81** de la regresión lineal, porque el riesgo tiene interacciones entre variables que el bosque captura mejor (el _cómo_ de esos modelos es la Unidad 4; aquí solo aprendemos a **leer** sus métricas).
 {% endhint %}
 
 ## 3.2 Evaluar clasificación: la matriz de confusión y el lenguaje clínico
 
-Cuando el modelo predice una **categoría** —`evento_cv` sí/no, un lote apto/no apto, un cribado positivo/negativo— el error ya no es una distancia, sino un **acierto o un fallo**.
+Cuando el modelo predice una **categoría** —`evento_cv` sí/no, un lote apto/no apto, un cribado positivo/negativo, o clasificar en diferentes categorías— el error ya no es una distancia, sino un **acierto o un fallo**.
 
 Y aquí aparece la sutileza más importante de toda la unidad: **no todos los fallos son iguales**. No cuesta lo mismo pasar por alto a un paciente que sí sufrirá un evento que asustar a uno que no lo sufrirá.
 
-Para razonar sobre esto necesitamos una herramienta que un clínico ya conoce bien: **la matriz de confusión**, que en el mundo diagnóstico es la tabla 2×2 de "prueba × enfermedad".
+Para razonar sobre esto necesitamos una herramienta que un clínico ya conoce bien: **la matriz de confusión**, que en el mundo diagnóstico (binario) es la tabla 2×2 de "prueba × enfermedad".
 
 {% hint style="info" %}
 **Concepto · Matriz de confusión**
 
-Tabla que cruza lo que el modelo predijo con lo que era verdad. En un problema binario tiene cuatro celdas: **verdaderos positivos (TP)** y **verdaderos negativos (TN)** —los aciertos— y **falsos positivos (FP)** y **falsos negativos (FN)** —los dos tipos de error—. Casi todas las métricas clínicas de una prueba (sensibilidad, especificidad, VPP, VPN) se derivan de estas cuatro cifras.
+Tabla que cruza lo que el modelo predijo con lo que era verdad.
+
+En un problema binario tiene cuatro celdas: **verdaderos positivos (TP)** y **verdaderos negativos (TN)** —los aciertos— y **falsos positivos (FP)** y **falsos negativos (FN)** —los dos tipos de error—. Casi todas las métricas clínicas de una prueba (sensibilidad, especificidad, VPP, VPN) se derivan de estas cuatro cifras.
 {% endhint %}
 
 <figure><img src="../.gitbook/assets/d02_s19_0.png" alt="La matriz de confusión cruza predicción y realidad en verdaderos y falsos positivos y negativos; es la base de la que nacen las demás métricas."><figcaption><p>La matriz de confusión: cruza la predicción del modelo con la verdad clínica en verdaderos/falsos positivos y negativos. Es la base de la que nacen sensibilidad, especificidad y valores predictivos.</p></figcaption></figure>
@@ -181,14 +195,14 @@ Tabla que cruza lo que el modelo predijo con lo que era verdad. En un problema b
 
 Tomando como "positivo" que el modelo prediga `evento_cv = 1` (el paciente sufrirá un evento cardiovascular):
 
-* **Verdadero positivo (TP) —** <mark style="color:$success;">**acierto útil**</mark>**:** el modelo dice "en riesgo" y el paciente efectivamente sufrió el evento.
-* **Verdadero negativo (TN) —** <mark style="color:$success;">**acierto rutinario**</mark>**:** el modelo dice "no en riesgo" y el paciente no sufrió el evento.
-* **Falso positivo (FP) —** <mark style="color:$danger;">**falsa alarma**</mark>**:** el modelo dice "en riesgo" a alguien que **no** sufrirá el evento. En clínica: pruebas, seguimiento y ansiedad innecesarios. Es el **error de tipo I**.
-* **Falso negativo (FN) —** <mark style="color:$danger;">**fallo silencioso**</mark>**:** el modelo dice "no en riesgo" a alguien que **sí** sufrirá el evento. En clínica: un paciente que se queda sin la prevención que necesitaba. Es el **error de tipo II**.
+* **Verdadero positivo (TP) —** <mark style="color:$success;">**acierto útil**</mark>**:** el modelo dice "en riesgo" y el paciente efectivamente sufrió el evento (**predice sí, y es que sí**)
+* **Verdadero negativo (TN) —** <mark style="color:$success;">**acierto rutinario**</mark>**:** el modelo dice "no en riesgo" y el paciente no sufrió el evento (**predice no, y es que no**)
+* **Falso positivo (FP) —** <mark style="color:$danger;">**falsa alarma**</mark>**:** el modelo dice "en riesgo" a alguien que **no** sufrirá el evento (**predice no y es que sí**). En clínica: pruebas, seguimiento y ansiedad innecesarios. Es el **error de tipo I**.
+* **Falso negativo (FN) —** <mark style="color:$danger;">**fallo silencioso**</mark>**:** el modelo dice "no en riesgo" a alguien que **sí** sufrirá el evento (**predice no y es que sí**). En clínica: un paciente que se queda sin la prevención que necesitaba. Es el **error de tipo II**.
 
 La clave es que **el coste de cada tipo de error depende de su naturaleza clínica**, no solo de su frecuencia.
 
-Un mismo modelo puede ser excelente o inaceptable según cuál de los dos errores cometa más, porque sus consecuencias pueden ser de órdenes de magnitud distintos. Volveremos sobre esto en 3.6.
+Un mismo modelo puede ser excelente o inaceptable según cuál de los dos errores cometa más, porque sus consecuencias pueden ser de órdenes de magnitud distintos.&#x20;
 
 ### Sensibilidad, especificidad y valores predictivos
 
@@ -197,7 +211,7 @@ Aquí es donde el lenguaje del _machine learning_ y el de la clínica son **la m
 {% hint style="info" %}
 **Concepto · Sensibilidad (=&#x20;**_**recall**_**, exhaustividad)**
 
-De **todos los pacientes que sí sufrirán el evento**, ¿a qué porcentaje detecta el modelo? Responde a: _de todo lo que debía encontrar, ¿cuánto se le escapó?_ Una **sensibilidad baja significa muchos falsos negativos (FN)**: pacientes en riesgo que pasan desapercibidos.
+De **todos los pacientes que sí sufrirán el evento**, ¿qué porcentaje detecta el modelo? Responde a: _de todo lo que debía encontrar, ¿cuánto se le escapó?_ Una **sensibilidad baja significa muchos falsos negativos (FN)**: pacientes en riesgo que pasan desapercibidos.
 {% endhint %}
 
 $$
@@ -207,7 +221,7 @@ $$
 {% hint style="info" %}
 **Concepto · Especificidad**
 
-De **todos los pacientes que NO sufrirán el evento**, ¿a qué porcentaje descarta correctamente el modelo? Una **especificidad baja significa muchos falsos positivos (FP)**: sanos etiquetados como en riesgo, con el coste y la alarma que eso conlleva.
+De **todos los pacientes que NO sufrirán el evento**, ¿qué porcentaje descarta correctamente el modelo? Una **especificidad baja significa muchos falsos positivos (FP)**: sanos etiquetados como en riesgo, con el coste y la alarma que eso conlleva.
 {% endhint %}
 
 $$
@@ -256,7 +270,11 @@ $$
 {% hint style="warning" %}
 **⚠️ Aviso · La trampa de la&#x20;**_**accuracy**_**&#x20;con clases desbalanceadas**
 
-La _accuracy_ (proporción de aciertos sobre el total) es la métrica más intuitiva... y la más traicionera. En nuestra cohorte sintética, `evento_cv` tiene **prevalencia ≈ 19 %**. Un modelo que diga "**nadie** tendrá un evento" acierta el **81 %** de las veces: una _accuracy_ del 81 % que suena bien y es **clínicamente inútil**, porque su sensibilidad es **0 %** (no detecta ni un solo paciente en riesgo). En cualquier problema donde la clase que importa es la minoritaria —eventos, enfermedad, defectos—, mira **sensibilidad, especificidad y valores predictivos**, nunca la _accuracy_ a solas.
+La _accuracy_ (proporción de aciertos sobre el total) es la métrica más intuitiva... y la más traicionera.
+
+En nuestra cohorte sintética, `evento_cv` tiene **prevalencia ≈ 19 %**. Un modelo que diga "**nadie** tendrá un evento" acierta el **81 %** de las veces: una _accuracy_ del 81 % que suena bien y es **clínicamente inútil**, porque su sensibilidad es **0 %** (no detecta ni un solo paciente en riesgo).
+
+En cualquier problema donde la clase que importa es la minoritaria —eventos, enfermedad, defectos, mira **sensibilidad, especificidad y valores predictivos**, nunca la _accuracy_ a solas.
 {% endhint %}
 
 ## 3.3 Prevalencia y la paradoja del cribado: por qué el VPP se hunde
