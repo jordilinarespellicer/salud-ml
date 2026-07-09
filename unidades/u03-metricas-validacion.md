@@ -267,6 +267,26 @@ $$
 F_1 = 2 \cdot \frac{\text{VPP} \cdot \text{Sensibilidad}}{\text{VPP} + \text{Sensibilidad}}
 $$
 
+{% hint style="info" %}
+**Concepto · Exactitud (_accuracy_)**
+
+De **todas las predicciones**, la proporción que el modelo acertó (sumando los aciertos en positivos y en negativos). Es la métrica más intuitiva —_de cada 100 casos, ¿en cuántos acierta?_— pero, como veremos justo debajo, **engaña cuando una clase es mucho más frecuente que la otra**.
+{% endhint %}
+
+$$
+\text{Exactitud} = \frac{TP + TN}{TP + TN + FP + FN}
+$$
+
+{% hint style="info" %}
+**Concepto · Prevalencia**
+
+La **proporción de la población que de verdad tiene la condición** que queremos detectar (el desenlace "positivo"). En `evento_cv` la prevalencia es **≈ 19 %**: de cada 100 pacientes de la cohorte, unos 19 sufren el evento. Es un dato **de la población, no del modelo** —cambia de un centro a otro y por subgrupos— y, como veremos en 3.3, altera por completo cómo se lee el VPP.
+{% endhint %}
+
+$$
+\text{Prevalencia} = \frac{\text{casos positivos reales}}{\text{población total}} = \frac{TP + FN}{TP + TN + FP + FN}
+$$
+
 {% hint style="warning" %}
 **⚠️ Aviso · La trampa de la&#x20;**_**accuracy**_**&#x20;con clases desbalanceadas**
 
