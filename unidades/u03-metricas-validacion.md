@@ -1,30 +1,31 @@
 ---
 description: >-
   Cómo saber si un modelo clínico acierta —y cómo elegir la métrica según lo que
-  cuesta el error. Sensibilidad y especificidad, VPP/VPN, prevalencia, ROC/PR,
-  calibración y validación honesta.
+  cuesta el error.
 ---
 
 # U3 · Evaluar bien — métricas y validación en clínica
 
-Hay una frase que conviene grabar antes de entrenar el primer modelo: **un modelo sin una métrica honesta es solo una opinión**. En clínica, esa opinión disfrazada de número puede acabar en una decisión sobre una persona.
+Hay una frase que conviene grabar antes de entrenar el primer modelo: **un modelo sin una métrica es solo una opinión**. En clínica, esa opinión disfrazada de número puede acabar en una decisión sobre una persona.
 
-Podemos construir el predictor más sofisticado del mundo, pero si no sabemos medir si acierta —y sobre todo *cuánto* y *de qué manera* falla— no tenemos nada sobre lo que decidir.
+{% hint style="info" %}
+Podemos construir el predictor más sofisticado del mundo, pero si no sabemos medir si acierta —y sobre todo _cuánto_ y _de qué manera_ falla— no tenemos nada sobre lo que decidir.
+{% endhint %}
 
 Esta unidad enseña el idioma con el que se evalúa un modelo. La buena noticia es que gran parte de ese idioma **ya lo hablas**: sensibilidad, especificidad, valor predictivo, prevalencia son conceptos que un profesional sanitario usa a diario cuando valora una prueba diagnóstica.
 
-Un modelo de *machine learning* no es más que una "prueba" más, y se juzga con las mismas reglas. Lo que añadimos es entender **qué penaliza cada métrica** y **cómo elegirla según el coste del error**, porque optimizar el número equivocado produce modelos que lucen bien en un póster y hacen daño en la consulta.
+Un modelo de _machine learning_ no es más que una "prueba" más, y se juzga con las mismas reglas. Lo que añadimos es entender **qué penaliza cada métrica** y **cómo elegirla según el coste del error**, porque optimizar el número equivocado produce modelos que lucen bien en un póster y hacen daño en la consulta.
 
 {% hint style="success" %}
 **💡 Idea clave**
 
-La métrica no es un detalle técnico del final: es una **decisión clínica que se toma al principio**. Define qué significa "acertar" para *este* problema concreto y *esta* población. Elegirla bien es responsabilidad de quien conoce el contexto clínico, no del algoritmo.
+La métrica no es un detalle técnico del final: es una **decisión clínica que se toma al principio**. Define qué significa "acertar" para _este_ problema concreto y _esta_ población. Elegirla bien es responsabilidad de quien conoce el contexto clínico, no del algoritmo.
 {% endhint %}
 
 ### Objetivos de esta unidad
 
 * Las métricas de **regresión** —MAE, RMSE y R²— leídas sobre `riesgo_cv_10a`, es decir, **en puntos porcentuales de riesgo**.
-* Las métricas de **clasificación** en lenguaje clínico: **sensibilidad, especificidad, VPP, VPN**, la **matriz de confusión** (TP/FP/FN/TN) y por qué la **prevalencia** cambia el VPP aunque la prueba no cambie (paradoja del cribado).
+* Las métricas de **clasificación** en lenguaje clínico: **sensibilidad, especificidad,** la **matriz de confusión** (TP/FP/FN/TN).
 * Las **curvas ROC/AUC** y la **curva precisión-recall**, y el **umbral de decisión** como una decisión clínica.
 * El **coste asimétrico del error**: por qué un falso negativo oncológico no vale lo mismo que un falso positivo.
 * La **calibración**: que una probabilidad del 20 % signifique de verdad un 20 %, y por qué en la práctica importa más que el AUC.
@@ -34,7 +35,7 @@ Todos los ejemplos usan la cohorte **sintética** [`pacientes.csv`](https://driv
 
 ## 3.1 Evaluar regresión: cuando la predicción es un número
 
-En un problema de **regresión** el modelo predice un **valor continuo**. En nuestro hilo clínico, ese valor es `riesgo_cv_10a`: un porcentaje de riesgo.
+En un problema de **regresión** el modelo predice un **valor continuo**. En nuestro hilo clínico de ejemplo, ese valor es `riesgo_cv_10a`: un porcentaje de riesgo.
 
 El error es, sencillamente, la diferencia entre el riesgo predicho y el real, medida **en puntos porcentuales**. Si el modelo dice 22 % y el valor real de la cohorte sintética era 18 %, se ha equivocado en **4 puntos**.
 
@@ -44,7 +45,7 @@ La pregunta es cómo resumir miles de esos errores en un único número, y cada 
 
 ### MAE — Error Absoluto Medio
 
-En riesgo cardiovascular, el MAE responde a una pregunta muy natural: *de media, ¿por cuántos puntos de riesgo nos desviamos?*
+En riesgo cardiovascular, el MAE responde a una pregunta muy natural: _de media, ¿por cuántos puntos de riesgo nos desviamos?_
 
 {% hint style="info" %}
 **Concepto · MAE (Mean Absolute Error)**
@@ -89,7 +90,7 @@ Como el MAE, pero **elevando los errores al cuadrado** antes de promediar (y sac
 
 **⚠️ Debilidades / límites**
 
-* Muy sensible a *outliers*: un puñado de pacientes con errores extremos puede dominar la métrica.
+* Muy sensible a _outliers_: un puñado de pacientes con errores extremos puede dominar la métrica.
 * **Regla práctica:** si **RMSE ≫ MAE**, hay errores grandes dispersos que conviene investigar (¿un subgrupo mal modelado? ¿pacientes con perfiles poco frecuentes en la cohorte?).
 
 **Campo de aplicación clínica:** cuando un error grande en la estimación del riesgo tiene consecuencias graves y quieres que el modelo pague caro por cometerlo.
@@ -113,36 +114,36 @@ Es decir, qué proporción de la variabilidad del riesgo entre pacientes logra e
 {% hint style="info" %}
 **Concepto · R² (coeficiente de determinación)**
 
-Toma valores típicamente entre 0 y 1 (puede ser negativo si el modelo es peor que la media). **R² = 1** sería un ajuste perfecto; **R² = 0** significa que el modelo no aporta nada sobre predecir siempre el riesgo medio; **R² negativo** indica que es *peor* que esa media. Es una medida de **calidad relativa**, no del error en puntos de riesgo.
+Toma valores típicamente entre 0 y 1 (puede ser negativo si el modelo es peor que la media). **R² = 1** sería un ajuste perfecto; **R² = 0** significa que el modelo no aporta nada sobre predecir siempre el riesgo medio; **R² negativo** indica que es _peor_ que esa media. Es una medida de **calidad relativa**, no del error en puntos de riesgo.
 {% endhint %}
 
 **✅ Fortalezas**
 
-* De un vistazo compara tu modelo con el *baseline* trivial (predecir la media a todo el mundo).
+* De un vistazo compara tu modelo con el _baseline_ trivial (predecir la media a todo el mundo).
 * Adimensional: permite comparar modelos entre sí.
 
 **⚠️ Debilidades / límites**
 
 * No está en unidades clínicas: un R² alto no te dice si el error es aceptable **en los pacientes que importan**.
-* Un R² elevado puede venir acompañado de errores inaceptables, o ser fruto de **fuga de datos** (lo veremos en 3.8). Medido sobre el conjunto de *entrenamiento* casi siempre es engañosamente alto.
+* Un R² elevado puede venir acompañado de errores inaceptables, o ser fruto de **fuga de datos** (lo veremos en 3.8). Medido sobre el conjunto de _entrenamiento_ casi siempre es engañosamente alto.
 
-**Campo de aplicación clínica:** una foto rápida de la calidad relativa, **siempre acompañada** de MAE/RMSE y de un gráfico de predicho *vs.* real.
+**Campo de aplicación clínica:** una foto rápida de la calidad relativa, **siempre acompañada** de MAE/RMSE y de un gráfico de predicho _vs._ real.
 
 $$
 R^2 = 1 - \frac{\sum_{i=1}^{n}\left( y_i - \hat{y}_i \right)^2}{\sum_{i=1}^{n}\left( y_i - \bar{y} \right)^2}
 $$
 
-| Métrica | Qué mide | Penaliza errores grandes | Unidades | Cuándo elegirla |
-| ------- | -------- | ------------------------ | -------- | --------------- |
-| MAE | Error medio absoluto | No (lineal) | Puntos de riesgo | Comunicar el desvío típico |
-| MSE | Error medio al cuadrado | Sí (mucho) | Puntos de riesgo² | Minimización interna; base del RMSE |
-| RMSE | Raíz del error cuadrático | Sí (mucho) | Puntos de riesgo | Cuando los fallos grandes son peligrosos |
-| R² | Variabilidad explicada | — | Sin unidad (0–1) | Calidad relativa frente a la media |
+| Métrica | Qué mide                  | Penaliza errores grandes | Unidades          | Cuándo elegirla                          |
+| ------- | ------------------------- | ------------------------ | ----------------- | ---------------------------------------- |
+| MAE     | Error medio absoluto      | No (lineal)              | Puntos de riesgo  | Comunicar el desvío típico               |
+| MSE     | Error medio al cuadrado   | Sí (mucho)               | Puntos de riesgo² | Minimización interna; base del RMSE      |
+| RMSE    | Raíz del error cuadrático | Sí (mucho)               | Puntos de riesgo  | Cuando los fallos grandes son peligrosos |
+| R²      | Variabilidad explicada    | —                        | Sin unidad (0–1)  | Calidad relativa frente a la media       |
 
 {% hint style="success" %}
 **💡 Idea clave**
 
-No hay una métrica "mejor": hay una métrica **adecuada a la decisión**. La práctica recomendada es reportar **MAE + RMSE + R²** juntas y, sobre todo, **mirar también las predicciones gráficamente** (predicho *vs.* real), porque un número nunca cuenta toda la historia. En nuestra cohorte sintética, por ejemplo, para `riesgo_cv_10a` un Random Forest alcanza **R² ≈ 0,91** frente a **R² ≈ 0,81** de la regresión lineal, porque el riesgo tiene interacciones entre variables que el bosque captura mejor (el *cómo* de esos modelos es la Unidad 4; aquí solo aprendemos a **leer** sus métricas).
+No hay una métrica "mejor": hay una métrica **adecuada a la decisión**. La práctica recomendada es reportar **MAE + RMSE + R²** juntas y, sobre todo, **mirar también las predicciones gráficamente** (predicho _vs._ real), porque un número nunca cuenta toda la historia. En nuestra cohorte sintética, por ejemplo, para `riesgo_cv_10a` un Random Forest alcanza **R² ≈ 0,91** frente a **R² ≈ 0,81** de la regresión lineal, porque el riesgo tiene interacciones entre variables que el bosque captura mejor (el _cómo_ de esos modelos es la Unidad 4; aquí solo aprendemos a **leer** sus métricas).
 {% endhint %}
 
 ## 3.2 Evaluar clasificación: la matriz de confusión y el lenguaje clínico
@@ -176,12 +177,12 @@ Un mismo modelo puede ser excelente o inaceptable según cuál de los dos errore
 
 ### Sensibilidad, especificidad y valores predictivos
 
-Aquí es donde el lenguaje del *machine learning* y el de la clínica son **la misma cosa con dos nombres**. Las cuatro métricas nacen de las cuatro celdas.
+Aquí es donde el lenguaje del _machine learning_ y el de la clínica son **la misma cosa con dos nombres**. Las cuatro métricas nacen de las cuatro celdas.
 
 {% hint style="info" %}
-**Concepto · Sensibilidad (= *recall*, exhaustividad)**
+**Concepto · Sensibilidad (=&#x20;**_**recall**_**, exhaustividad)**
 
-De **todos los pacientes que sí sufrirán el evento**, ¿a qué porcentaje detecta el modelo? Responde a: *de todo lo que debía encontrar, ¿cuánto se le escapó?* Una **sensibilidad baja significa muchos falsos negativos (FN)**: pacientes en riesgo que pasan desapercibidos.
+De **todos los pacientes que sí sufrirán el evento**, ¿a qué porcentaje detecta el modelo? Responde a: _de todo lo que debía encontrar, ¿cuánto se le escapó?_ Una **sensibilidad baja significa muchos falsos negativos (FN)**: pacientes en riesgo que pasan desapercibidos.
 {% endhint %}
 
 $$
@@ -199,9 +200,9 @@ $$
 $$
 
 {% hint style="info" %}
-**Concepto · VPP (valor predictivo positivo = *precisión*)**
+**Concepto · VPP (valor predictivo positivo =&#x20;**_**precisión**_**)**
 
-De **todos los pacientes a los que el modelo marca como positivos**, ¿qué porcentaje lo era de verdad? Responde a la pregunta que más importa en la consulta: *si esta herramienta me dice "en riesgo", ¿cuánto me lo puedo creer?* Un **VPP bajo significa muchas falsas alarmas**.
+De **todos los pacientes a los que el modelo marca como positivos**, ¿qué porcentaje lo era de verdad? Responde a la pregunta que más importa en la consulta: _si esta herramienta me dice "en riesgo", ¿cuánto me lo puedo creer?_ Un **VPP bajo significa muchas falsas alarmas**.
 {% endhint %}
 
 $$
@@ -211,7 +212,7 @@ $$
 {% hint style="info" %}
 **Concepto · VPN (valor predictivo negativo)**
 
-De **todos los pacientes a los que el modelo marca como negativos**, ¿qué porcentaje lo era de verdad? Es la fiabilidad del "puede irse tranquilo": *si me dice "no en riesgo", ¿con qué seguridad puedo descartarlo?*
+De **todos los pacientes a los que el modelo marca como negativos**, ¿qué porcentaje lo era de verdad? Es la fiabilidad del "puede irse tranquilo": _si me dice "no en riesgo", ¿con qué seguridad puedo descartarlo?_
 {% endhint %}
 
 $$
@@ -220,14 +221,14 @@ $$
 
 <figure><img src="../.gitbook/assets/d02_s27_0.jpg" alt="Sensibilidad frente a especificidad: cada métrica mira un tipo distinto de acierto y error; qué priorizar depende del coste de cada error."><figcaption><p>Sensibilidad frente a especificidad: cada métrica mira un tipo distinto de acierto y error. Cuál priorizar depende del coste clínico de cada error.</p></figcaption></figure>
 
-Conviene tener a mano el **diccionario** entre los dos idiomas, porque las librerías (y los asistentes de IA) suelen usar los términos de *machine learning*:
+Conviene tener a mano el **diccionario** entre los dos idiomas, porque las librerías (y los asistentes de IA) suelen usar los términos de _machine learning_:
 
-| Término clínico | Término *machine learning* | Fórmula | Pregunta que responde |
-| --------------- | -------------------------- | ------- | --------------------- |
-| Sensibilidad | Recall / TPR | TP/(TP+FN) | ¿A cuántos enfermos detecto? |
-| Especificidad | TNR | TN/(TN+FP) | ¿A cuántos sanos descarto bien? |
-| VPP | Precision | TP/(TP+FP) | Cuando doy positivo, ¿acierto? |
-| VPN | — | TN/(TN+FN) | Cuando doy negativo, ¿acierto? |
+| Término clínico | Término _machine learning_ | Fórmula    | Pregunta que responde           |
+| --------------- | -------------------------- | ---------- | ------------------------------- |
+| Sensibilidad    | Recall / TPR               | TP/(TP+FN) | ¿A cuántos enfermos detecto?    |
+| Especificidad   | TNR                        | TN/(TN+FP) | ¿A cuántos sanos descarto bien? |
+| VPP             | Precision                  | TP/(TP+FP) | Cuando doy positivo, ¿acierto?  |
+| VPN             | —                          | TN/(TN+FN) | Cuando doy negativo, ¿acierto?  |
 
 Hay una **tensión natural** entre sensibilidad y especificidad (y entre VPP y VPN): subir una suele bajar la otra. No se pueden maximizar todas a la vez; hay que decidir cuál pesa más, y esa es una decisión clínica.
 
@@ -238,9 +239,9 @@ F_1 = 2 \cdot \frac{\text{VPP} \cdot \text{Sensibilidad}}{\text{VPP} + \text{Sen
 $$
 
 {% hint style="warning" %}
-**⚠️ Aviso · La trampa de la *accuracy* con clases desbalanceadas**
+**⚠️ Aviso · La trampa de la&#x20;**_**accuracy**_**&#x20;con clases desbalanceadas**
 
-La *accuracy* (proporción de aciertos sobre el total) es la métrica más intuitiva... y la más traicionera. En nuestra cohorte sintética, `evento_cv` tiene **prevalencia ≈ 19 %**. Un modelo que diga "**nadie** tendrá un evento" acierta el **81 %** de las veces: una *accuracy* del 81 % que suena bien y es **clínicamente inútil**, porque su sensibilidad es **0 %** (no detecta ni un solo paciente en riesgo). En cualquier problema donde la clase que importa es la minoritaria —eventos, enfermedad, defectos—, mira **sensibilidad, especificidad y valores predictivos**, nunca la *accuracy* a solas.
+La _accuracy_ (proporción de aciertos sobre el total) es la métrica más intuitiva... y la más traicionera. En nuestra cohorte sintética, `evento_cv` tiene **prevalencia ≈ 19 %**. Un modelo que diga "**nadie** tendrá un evento" acierta el **81 %** de las veces: una _accuracy_ del 81 % que suena bien y es **clínicamente inútil**, porque su sensibilidad es **0 %** (no detecta ni un solo paciente en riesgo). En cualquier problema donde la clase que importa es la minoritaria —eventos, enfermedad, defectos—, mira **sensibilidad, especificidad y valores predictivos**, nunca la _accuracy_ a solas.
 {% endhint %}
 
 ## 3.3 Prevalencia y la paradoja del cribado: por qué el VPP se hunde
@@ -254,20 +255,20 @@ La idea:
 
 Veámoslo con números. Imagina una herramienta con **sensibilidad 90 %** y **especificidad 90 %** (fijas). Aplicada a **1 000 pacientes** de nuestra cohorte sintética, con **prevalencia ≈ 19 %** (190 con evento, 810 sin evento):
 
-| | Evento real: Sí (190) | Evento real: No (810) |
-| --- | --- | --- |
-| **Modelo: en riesgo** | TP = 171 | FP = 81 |
-| **Modelo: no en riesgo** | FN = 19 | TN = 729 |
+|                          | Evento real: Sí (190) | Evento real: No (810) |
+| ------------------------ | --------------------- | --------------------- |
+| **Modelo: en riesgo**    | TP = 171              | FP = 81               |
+| **Modelo: no en riesgo** | FN = 19               | TN = 729              |
 
 * **VPP** = 171 / (171 + 81) = **≈ 68 %**
 * **VPN** = 729 / (729 + 19) = **≈ 97 %**
 
 Ahora aplica **la misma prueba** (sensibilidad 90 %, especificidad 90 %) a una población de cribado poblacional con **prevalencia del 1 %** (10 con evento, 990 sin evento) sobre 1 000 personas:
 
-| | Evento real: Sí (10) | Evento real: No (990) |
-| --- | --- | --- |
-| **Modelo: en riesgo** | TP = 9 | FP = 99 |
-| **Modelo: no en riesgo** | FN = 1 | TN = 891 |
+|                          | Evento real: Sí (10) | Evento real: No (990) |
+| ------------------------ | -------------------- | --------------------- |
+| **Modelo: en riesgo**    | TP = 9               | FP = 99               |
+| **Modelo: no en riesgo** | FN = 1               | TN = 891              |
 
 * **VPP** = 9 / (9 + 99) = **≈ 8 %**
 * **VPN** = 891 / (891 + 1) = **≈ 99,9 %**
@@ -279,7 +280,7 @@ Esto es la **paradoja del cribado**: al buscar algo raro en mucha gente sana, la
 {% hint style="success" %}
 **💡 Idea clave**
 
-Cuando alguien te enseñe el **VPP** de un modelo, la primera pregunta debe ser: *¿en qué población?* El VPP **no es una propiedad del modelo**, sino del modelo **más** la prevalencia de quien lo usa. Un modelo entrenado y validado en nuestra cohorte sintética (prevalencia ≈ 19 %) tendrá un VPP **mucho peor** si se despliega en atención primaria sobre población general, aunque su sensibilidad y especificidad se mantengan. Este es un fallo clásico y peligroso al llevar un modelo del "laboratorio" a la práctica.
+Cuando alguien te enseñe el **VPP** de un modelo, la primera pregunta debe ser: _¿en qué población?_ El VPP **no es una propiedad del modelo**, sino del modelo **más** la prevalencia de quien lo usa. Un modelo entrenado y validado en nuestra cohorte sintética (prevalencia ≈ 19 %) tendrá un VPP **mucho peor** si se despliega en atención primaria sobre población general, aunque su sensibilidad y especificidad se mantengan. Este es un fallo clásico y peligroso al llevar un modelo del "laboratorio" a la práctica.
 {% endhint %}
 
 {% hint style="info" %}
@@ -296,8 +297,8 @@ Somos nosotros quienes fijamos el **umbral** a partir del cual decimos "positivo
 
 Mover el umbral es un dial entre dos males:
 
-* **Umbral bajo** (p. ej. 0,15) → modo *cribado*: capturas casi a todos los pacientes que sí tendrán un evento (**sensibilidad alta**), pero marcas a muchos que no (**más falsos positivos**, especificidad y VPP más bajos).
-* **Umbral alto** (p. ej. 0,80) → modo *confirmación*: casi no das falsas alarmas (**especificidad y VPP altos**), pero se te escapan pacientes en riesgo (**más falsos negativos**).
+* **Umbral bajo** (p. ej. 0,15) → modo _cribado_: capturas casi a todos los pacientes que sí tendrán un evento (**sensibilidad alta**), pero marcas a muchos que no (**más falsos positivos**, especificidad y VPP más bajos).
+* **Umbral alto** (p. ej. 0,80) → modo _confirmación_: casi no das falsas alarmas (**especificidad y VPP altos**), pero se te escapan pacientes en riesgo (**más falsos negativos**).
 
 {% hint style="success" %}
 **💡 Idea clave**
@@ -329,11 +330,11 @@ Es una gran lección de "**empieza por lo simple**": el modelo más sencillo y m
 
 <summary>Intuición clínica de ROC y AUC (para tenerlo por dentro)</summary>
 
-**El modelo no dice "sí/no": da una nota de sospecha.** Por dentro no contesta "en riesgo" o "no en riesgo", sino una probabilidad de 0 a 1: *"a este paciente le veo un 0,72 de tener un evento"*. Cuanta más nota, más sospechoso.
+**El modelo no dice "sí/no": da una nota de sospecha.** Por dentro no contesta "en riesgo" o "no en riesgo", sino una probabilidad de 0 a 1: _"a este paciente le veo un 0,72 de tener un evento"_. Cuanta más nota, más sospechoso.
 
 **Para actuar, pones una raya: el umbral.** Eliges un corte —"todo lo que pase de 0,5 lo trato como positivo"— y esa raya la eliges tú. Cambiarla te obliga a **recalcular toda la matriz de confusión** y, con ella, sensibilidad, especificidad y valores predictivos.
 
-**La curva ROC es la foto de *todos* los umbrales.** En vez de discutir qué raya es la buena, las pruebas todas y dibujas el resultado: cada punto mide, para ese umbral, cuántos eventos reales cazas (arriba) y cuántos sanos marcas por error (a la derecha). Una curva pegada a la esquina superior izquierda es un buen modelo; la diagonal punteada es no distinguir nada.
+**La curva ROC es la foto de&#x20;**_**todos**_**&#x20;los umbrales.** En vez de discutir qué raya es la buena, las pruebas todas y dibujas el resultado: cada punto mide, para ese umbral, cuántos eventos reales cazas (arriba) y cuántos sanos marcas por error (a la derecha). Una curva pegada a la esquina superior izquierda es un buen modelo; la diagonal punteada es no distinguir nada.
 
 **El AUC es esa curva resumida en un número:** el área bajo ella. La frase que mejor lo aterriza: es la probabilidad de que, si coges al azar un paciente con evento y uno sin evento, el modelo le ponga más nota de sospecha al que sí lo tuvo. Mide si el modelo sabe **ordenar** —los de riesgo arriba, los demás abajo—, con independencia del umbral.
 
@@ -356,15 +357,15 @@ Traza el **VPP (precisión)** frente a la **sensibilidad (recall)** al mover el 
 * **ROC/AUC** → para **comparar modelos** de forma rápida y cuando las clases están razonablemente equilibradas.
 * **Precisión-recall** → cuando la clase que importa es **rara** (eventos, enfermedad poco frecuente, un cribado), porque se centra en si tus positivos son fiables y no se deja engañar por la abundancia de negativos. Con la prevalencia ≈ 19 % de `evento_cv` —y más aún en escenarios de cribado poblacional— la curva PR cuenta una historia más honesta sobre la clase minoritaria que la ROC.
 
-| Métrica / curva | Pregunta que responde | Cuándo es tu métrica |
-| --------------- | --------------------- | -------------------- |
-| Accuracy | ¿% de aciertos global? | Clases equilibradas y errores simétricos |
-| Sensibilidad (recall) | ¿A cuántos enfermos detecto? | El falso negativo es caro |
-| Especificidad | ¿A cuántos sanos descarto bien? | El falso positivo es caro |
-| VPP (precisión) | Cuando doy positivo, ¿acierto? | Quieres fiabilidad de la alarma; depende de la prevalencia |
-| F1 | ¿Equilibrio VPP/sensibilidad? | Clases desbalanceadas, buscas balance |
-| AUC-ROC | ¿Ordena bien a los pacientes? | Comparar modelos, independiente del umbral |
-| PR-AUC | ¿Son fiables mis positivos? | Clase positiva rara (cribado, eventos) |
+| Métrica / curva       | Pregunta que responde           | Cuándo es tu métrica                                       |
+| --------------------- | ------------------------------- | ---------------------------------------------------------- |
+| Accuracy              | ¿% de aciertos global?          | Clases equilibradas y errores simétricos                   |
+| Sensibilidad (recall) | ¿A cuántos enfermos detecto?    | El falso negativo es caro                                  |
+| Especificidad         | ¿A cuántos sanos descarto bien? | El falso positivo es caro                                  |
+| VPP (precisión)       | Cuando doy positivo, ¿acierto?  | Quieres fiabilidad de la alarma; depende de la prevalencia |
+| F1                    | ¿Equilibrio VPP/sensibilidad?   | Clases desbalanceadas, buscas balance                      |
+| AUC-ROC               | ¿Ordena bien a los pacientes?   | Comparar modelos, independiente del umbral                 |
+| PR-AUC                | ¿Son fiables mis positivos?     | Clase positiva rara (cribado, eventos)                     |
 
 ## 3.6 Coste asimétrico del error: no todos los fallos cuestan lo mismo
 
@@ -372,7 +373,7 @@ Aquí conectamos todo lo anterior con la realidad clínica. El ejemplo más clar
 
 **Esos dos errores no valen lo mismo**, y por tanto no deben pesar lo mismo al elegir la métrica ni el umbral.
 
-La idea que ordena esta unidad: **decide primero cuál de los dos errores duele más, y a partir de ahí elige la métrica que priorizas y dónde pones el umbral**. Esto es la semilla de la **utilidad clínica**: fijar el punto de corte no donde la *accuracy* es máxima, sino donde el **beneficio clínico esperado** lo es, teniendo en cuenta lo que cuesta cada tipo de error.
+La idea que ordena esta unidad: **decide primero cuál de los dos errores duele más, y a partir de ahí elige la métrica que priorizas y dónde pones el umbral**. Esto es la semilla de la **utilidad clínica**: fijar el punto de corte no donde la _accuracy_ es máxima, sino donde el **beneficio clínico esperado** lo es, teniendo en cuenta lo que cuesta cada tipo de error.
 
 Cuando un falso negativo es mucho más grave que un falso positivo, el umbral que maximiza la utilidad **baja** (aceptas más falsas alarmas con tal de no dejar escapar casos), y al revés.
 
@@ -401,7 +402,7 @@ Ordenar bien y estar bien calibrado son cosas **distintas**, y en clínica la se
 {% hint style="info" %}
 **Concepto · Calibración**
 
-Un modelo está **bien calibrado** cuando sus probabilidades coinciden con la realidad: de todos los pacientes a los que asigna "20 % de riesgo", aproximadamente el 20 % acaba teniendo el evento. La herramienta para verlo es la **curva de calibración** (o *reliability diagram*): en el eje horizontal, la probabilidad predicha; en el vertical, la frecuencia observada. El ideal es la **diagonal**. Si la curva va por debajo, el modelo **sobreestima** el riesgo; si va por encima, lo **infraestima**.
+Un modelo está **bien calibrado** cuando sus probabilidades coinciden con la realidad: de todos los pacientes a los que asigna "20 % de riesgo", aproximadamente el 20 % acaba teniendo el evento. La herramienta para verlo es la **curva de calibración** (o _reliability diagram_): en el eje horizontal, la probabilidad predicha; en el vertical, la frecuencia observada. El ideal es la **diagonal**. Si la curva va por debajo, el modelo **sobreestima** el riesgo; si va por encima, lo **infraestima**.
 {% endhint %}
 
 **Por qué importa más que el AUC en la práctica clínica:** las decisiones clínicas usan **la probabilidad en sí**, no solo el orden. Las guías fijan umbrales de riesgo (por ejemplo, "ofrecer estatinas si el riesgo a 10 años supera cierto %"), la decisión compartida con el paciente se basa en cifras concretas, y conceptos como el número necesario a tratar dependen de que la probabilidad sea creíble.
@@ -414,7 +415,7 @@ Un modelo con AUC excelente pero **mal calibrado** —que dice 20 % cuando es 40
 El **AUC mide si el modelo sabe ordenar**; la **calibración mide si sus números son de fiar**. Para decidir sobre **un paciente concreto** a partir de su probabilidad, la calibración es a menudo lo que de verdad importa. Reporta **siempre** la curva de calibración junto al AUC, no en lugar de él.
 {% endhint %}
 
-Algunos modelos (por ejemplo, ciertos *ensembles* de árboles) ordenan bien pero salen **mal calibrados** de fábrica; existen técnicas estándar para recalibrarlos (*Platt scaling*, regresión isotónica), que aplicaremos como un paso más del *pipeline* sin entrar en su matemática. Lo esencial ahora es **saber que hay que mirarlo**.
+Algunos modelos (por ejemplo, ciertos _ensembles_ de árboles) ordenan bien pero salen **mal calibrados** de fábrica; existen técnicas estándar para recalibrarlos (_Platt scaling_, regresión isotónica), que aplicaremos como un paso más del _pipeline_ sin entrar en su matemática. Lo esencial ahora es **saber que hay que mirarlo**.
 
 ## 3.8 Validación honesta: train/validación/test y la fuga de datos
 
@@ -423,33 +424,33 @@ Tener la métrica adecuada no sirve de nada si la medimos mal. El error medido s
 La estimación honesta se hace sobre datos **reservados**.
 
 {% hint style="info" %}
-**Concepto · Los tres conjuntos: *train* / validación / *test***
+**Concepto · Los tres conjuntos:&#x20;**_**train**_**&#x20;/ validación /&#x20;**_**test**_
 
-* **Entrenamiento (*train*):** el modelo **aprende** de aquí.
+* **Entrenamiento (**_**train**_**):** el modelo **aprende** de aquí.
 * **Validación:** aquí **ajustamos** decisiones —qué modelo, qué umbral, qué recalibración— sin tocar el test.
 * **Test:** se usa **una sola vez, al final**, para la estimación honesta del rendimiento. Si lo miras muchas veces y vas ajustando, deja de ser honesto (se "contamina").
 {% endhint %}
 
 {% hint style="danger" %}
-**⚠️ Aviso · La fuga de datos (*data leakage*) invalida cualquier métrica**
+**⚠️ Aviso · La fuga de datos (**_**data leakage**_**) invalida cualquier métrica**
 
 La **fuga de datos** ocurre cuando información que el modelo **no tendría en el momento real de decidir** —del futuro o de la propia respuesta— se cuela en el entrenamiento. El resultado es un AUC espectacular en el papel que **se evapora en la consulta**. En salud es especialmente peligroso y especialmente fácil de cometer:
 
 * Incluir una variable **medida después del evento** o **consecuencia del propio evento** (p. ej., un tratamiento que solo se administró porque el evento ocurrió).
-* **Normalizar o imputar con toda la tabla antes de separar** *train* y *test*: las estadísticas del test se filtran al entrenamiento.
-* El **mismo paciente en *train* y en *test*** (registros duplicados, varias visitas del mismo sujeto): el modelo "se lo sabe".
+* **Normalizar o imputar con toda la tabla antes de separar** _train_ y _test_: las estadísticas del test se filtran al entrenamiento.
+* El **mismo paciente en&#x20;**_**train**_**&#x20;y en&#x20;**_**test**_ (registros duplicados, varias visitas del mismo sujeto): el modelo "se lo sabe".
 * Un **identificador, centro o fecha** que codifica indirectamente el desenlace.
 
 Si tus métricas parecen demasiado buenas para ser verdad, sospecha de una fuga **antes** que de un modelo genial.
 {% endhint %}
 
-**Adelanto de la validación cruzada (se profundiza en la Unidad 5).** Una sola partición *train/test* da una estimación algo caprichosa (depende de qué pacientes tocaron en cada lado). La **validación cruzada** rota el bloque de validación varias veces y promedia, dando una estimación **más estable** y, además, una idea de su **variabilidad**.
+**Adelanto de la validación cruzada (se profundiza en la Unidad 5).** Una sola partición _train/test_ da una estimación algo caprichosa (depende de qué pacientes tocaron en cada lado). La **validación cruzada** rota el bloque de validación varias veces y promedia, dando una estimación **más estable** y, además, una idea de su **variabilidad**.
 
 En clínica, un matiz crucial: la partición debe ser **por paciente** (agrupada), para que **ningún paciente aparezca a la vez en entrenamiento y en test**.
 
-Y una disciplina que no debe faltar: **comparar siempre contra un *baseline***. Un **modelo trivial** de referencia —en clasificación, predecir siempre la clase mayoritaria ("ningún evento"); en regresión de `riesgo_cv_10a`, predecir a todos el riesgo medio— y, mejor aún, contra un **estándar clínico** ya establecido (una escala de riesgo validada).
+Y una disciplina que no debe faltar: **comparar siempre contra un&#x20;**_**baseline**_. Un **modelo trivial** de referencia —en clasificación, predecir siempre la clase mayoritaria ("ningún evento"); en regresión de `riesgo_cv_10a`, predecir a todos el riesgo medio— y, mejor aún, contra un **estándar clínico** ya establecido (una escala de riesgo validada).
 
-Un MAE de 4 puntos no es "bueno" ni "malo" en abstracto: si el *baseline* ingenuo tiene 4,2, tu modelo apenas aporta; si tiene 12, has logrado mucho. **Si el modelo no bate claramente al baseline, no justifica su uso.**
+Un MAE de 4 puntos no es "bueno" ni "malo" en abstracto: si el _baseline_ ingenuo tiene 4,2, tu modelo apenas aporta; si tiene 12, has logrado mucho. **Si el modelo no bate claramente al baseline, no justifica su uso.**
 
 {% hint style="warning" %}
 **⚠️ Aviso · Repaso de los errores de evaluación más caros**
@@ -514,10 +515,10 @@ Métricas clínicas, ROC/PR, calibración y coste del error, todo sobre la cohor
 ## Qué llevarte
 
 * **La métrica se elige al principio, no al final**, y es una decisión clínica: define qué significa "acertar" para este problema y esta población.
-* **Sensibilidad y especificidad describen la prueba; VPP y VPN describen la prueba en una población.** La **prevalencia** hunde o eleva el VPP sin tocar la prueba: pregunta siempre *"¿en qué población?"*.
+* **Sensibilidad y especificidad describen la prueba; VPP y VPN describen la prueba en una población.** La **prevalencia** hunde o eleva el VPP sin tocar la prueba: pregunta siempre _"¿en qué población?"_.
 * **No todos los errores cuestan lo mismo.** Decide qué duele más —el falso positivo o el falso negativo— y a partir de ahí elige métrica y **umbral**; el punto de corte es una decisión de utilidad clínica.
 * **Ordenar bien (AUC) no es estar bien calibrado.** Si vas a decidir con la probabilidad, mira la **curva de calibración**: que un 20 % signifique de verdad un 20 %.
-* **Sin validación honesta, ninguna métrica vale.** Datos no vistos, partición por paciente, comparación con un *baseline* y **cero fuga de datos**.
+* **Sin validación honesta, ninguna métrica vale.** Datos no vistos, partición por paciente, comparación con un _baseline_ y **cero fuga de datos**.
 
 {% hint style="info" %}
 **Concepto · Glosario rápido de la unidad**
@@ -529,4 +530,4 @@ Métricas clínicas, ROC/PR, calibración y coste del error, todo sobre la cohor
 
 Con el lenguaje para evaluar ya en la mano —y, sobre todo, con el criterio clínico para elegir la métrica adecuada—, estamos listos para entrenar modelos "de verdad".
 
-La **Unidad 4** abre las técnicas supervisadas con las tres primeras familias: **regresión lineal**, **regresión logística** (el modelo clínico por excelencia, cuyos coeficientes se leen como *odds ratio*) y **Naïve Bayes**. Cada modelo llegará con su intuición, sus fortalezas, sus límites... y siempre con su evaluación honesta usando lo aprendido aquí.
+La **Unidad 4** abre las técnicas supervisadas con las tres primeras familias: **regresión lineal**, **regresión logística** (el modelo clínico por excelencia, cuyos coeficientes se leen como _odds ratio_) y **Naïve Bayes**. Cada modelo llegará con su intuición, sus fortalezas, sus límites... y siempre con su evaluación honesta usando lo aprendido aquí.
