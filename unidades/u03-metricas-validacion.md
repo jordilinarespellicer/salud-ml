@@ -446,31 +446,45 @@ La lección: el mismo error "técnico" (FP o FN) vale cantidades muy distintas s
 La pregunta que ordena toda la clasificación clínica: **¿qué error me cuesta más caro, el falso positivo o el falso negativo?** La respuesta decide si priorizo sensibilidad, especificidad, VPP o un equilibrio. Ningún algoritmo puede tomar esta decisión por ti: depende del daño clínico. Cuando uses un asistente de IA para construir o afinar el modelo, **dale ese contexto**: explícale qué te duele más y te ayudará a elegir la métrica a optimizar y el umbral adecuado.
 {% endhint %}
 
-## 3.7 Calibración: que un 20 % signifique de verdad un 20 %
+## 3.7 Predicho frente a real: la calibración
 
-Un modelo puede **ordenar** muy bien a los pacientes (AUC alto) y, sin embargo, **mentir en los números**: decir "20 % de riesgo" cuando la frecuencia real de eventos en ese grupo es del 40 %.
+Antes de hablar de calibración, conviene ver la **idea general** de la que nace, porque es una de las comprobaciones más sencillas y universales del _machine learning_ —y probablemente ya la has visto dibujada alguna vez—.
 
-Ordenar bien y estar bien calibrado son cosas **distintas**, y en clínica la segunda suele importar más.
+La idea: para evaluar **cualquier** modelo, **enfrenta lo que predice con lo que de verdad ocurre** y mira si cae sobre la **diagonal**.
 
-Una analogía que lo aclara: un modelo bien calibrado es como un **buen hombre del tiempo**. Cuando dice _"70 % de probabilidad de lluvia"_, de verdad llueve en unos **7 de cada 10** días en los que lo anunció. No acierta cada día concreto, pero sus **porcentajes son de fiar**.
+En la práctica se hace así: coges el conjunto de **test**, pides al modelo su predicción para cada caso, y dibujas **un punto por caso** —en el eje horizontal, **lo predicho**; en el vertical, **lo real**—. Si el modelo acertara siempre, todos los puntos caerían exactamente sobre la línea diagonal (**predicho = real**). En la realidad se dispersan a su alrededor, y **la forma de esa nube lo dice todo**:
 
-Un modelo **mal calibrado** es el que dice _"70 %"_ y solo llueve 3 de cada 10 veces: aunque sepa ordenar los días de más a menos probable, sus **números engañan**. En medicina, decidimos con esos números, así que que sean creíbles es decisivo.
+- Puntos **sobre la diagonal** → la predicción coincide con la realidad.
+- Puntos sistemáticamente **por encima** (real > predicho) → el modelo **se queda corto** (infra-predice).
+- Puntos sistemáticamente **por debajo** (real < predicho) → el modelo **se pasa** (sobre-predice).
+
+<figure><img src="../.gitbook/assets/u03_predicho_vs_real.png" alt="Diagrama predicho frente a real: cada punto es un caso del test, con el valor predicho en el eje horizontal y el real en el vertical; los puntos sobre la diagonal indican predicción correcta, por encima infra-predicción y por debajo sobre-predicción."><figcaption><p><strong>Predicho frente a real.</strong> Cada punto es un caso del conjunto de test. Cuanto más cerca de la <strong>diagonal</strong>, mejor predice el modelo; una desviación sistemática hacia un lado revela que <strong>infra-predice o sobre-predice</strong>. Es una comprobación válida para cualquier modelo y cualquier predicción. (Ejemplo con datos sintéticos.)</p></figcaption></figure>
+
+{% hint style="success" %}
+**💡 Idea clave · La diagonal es la vara de medir**
+
+Enfrentar **predicho vs. real** y mirar la cercanía a la diagonal sirve para **cualquier** modelo: de un vistazo revela si acierta y, sobre todo, si se **desvía en algún sentido** (de más o de menos). Todo lo que viene a continuación es una variante de esta misma idea.
+{% endhint %}
+
+### Cuando lo que se predice es una probabilidad: la curva de calibración
+
+Ese gráfico funciona tal cual cuando el modelo predice **un número** (un valor continuo). Pero, ¿qué pasa cuando predice una **probabilidad** de un suceso de sí/no —que ocurra un evento, que una pieza salga defectuosa, que llueva—?
+
+Aparece un matiz: el valor **real** de cada caso individual no es una probabilidad, es solo **0 o 1** (ocurrió o no ocurrió). Enfrentar "predicho 0,2 vs. real 0/1" punto a punto no dice nada útil.
+
+La solución es la **misma idea, pero agrupando**: se juntan los casos con probabilidad predicha parecida (los del ~10 %, los del ~20 %…) y, en cada grupo, se compara la **probabilidad media predicha** con la **frecuencia real** con la que ocurrió el suceso. Ese gráfico —otra vez, predicho frente a real sobre la diagonal— es la **curva de calibración**.
+
+Una analogía para la probabilidad: un modelo bien calibrado es como un **buen hombre del tiempo**. Cuando dice _"70 % de probabilidad de lluvia"_, de verdad llueve en unos **7 de cada 10** días en que lo anunció. No acierta cada día, pero sus **porcentajes son de fiar**. Uno mal calibrado dice _"70 %"_ y solo llueve 3 de cada 10: aunque ordene bien los días, sus **números engañan**.
 
 {% hint style="info" %}
 **Concepto · Calibración**
 
-Un modelo está **bien calibrado** cuando sus probabilidades coinciden con la realidad: de todos los pacientes a los que asigna "20 % de riesgo", aproximadamente el 20 % acaba teniendo el evento. La herramienta para verlo es la **curva de calibración** (o _reliability diagram_): en el eje horizontal, la probabilidad predicha; en el vertical, la frecuencia observada. El ideal es la **diagonal**. Si la curva va por debajo, el modelo **sobreestima** el riesgo; si va por encima, lo **infraestima**.
+Un modelo está **bien calibrado** cuando sus probabilidades coinciden con la realidad: de todos los casos a los que asigna un **"20 %"**, aproximadamente el 20 % acaba ocurriendo. Se comprueba con la **curva de calibración** (o _reliability diagram_): probabilidad predicha en el eje horizontal, frecuencia real observada en el vertical. El ideal es la **diagonal**; si la curva va **por debajo**, el modelo **sobreestima**; si va **por encima**, **infraestima**.
 {% endhint %}
 
 <figure><img src="../.gitbook/assets/u03_calibracion.png" alt="Curva de calibración: un modelo bien calibrado sigue la diagonal (predicho = observado); uno mal calibrado que infraestima queda por encima de la diagonal, con un ejemplo en el que predice ~20% pero el evento ocurre en ~40%."><figcaption><p>Curva de calibración. Cada punto compara el <strong>riesgo predicho</strong> (eje horizontal) con la <strong>frecuencia real</strong> de eventos (eje vertical). El modelo <strong>bien calibrado</strong> (verde) sigue la diagonal; el <strong>mal calibrado</strong> (rojo) se aleja: aquí <em>infraestima</em>, asignando ~20 % a un grupo en el que el evento ocurre en ~40 %. Datos sintéticos.</p></figcaption></figure>
 
-**Cómo se lee este gráfico, paso a paso.** Se **agrupan** los pacientes según el riesgo que el modelo les asignó (los que rondan el 10 %, los del 20 %, los del 40 %…). En cada grupo se calcula qué **fracción tuvo de verdad el evento**, y se dibuja un punto: en horizontal, lo que el modelo **predijo**; en vertical, lo que **ocurrió**.
-
-- Si cada punto cae **sobre la diagonal**, predicho = observado: el modelo está **bien calibrado** (la curva verde).
-- Si la curva queda **por encima** de la diagonal, el modelo **infraestima** (predice menos riesgo del real) — es la curva roja del ejemplo.
-- Si quedara **por debajo**, **sobreestimaría** (predice más riesgo del real).
-
-La distancia de la curva a la diagonal es, de un vistazo, **cuánto miente el modelo en sus probabilidades**.
+En la figura, el modelo **bien calibrado** (verde) sigue la diagonal; el **mal calibrado** (rojo) se aleja: en el punto señalado asigna un ~20 % a un grupo en el que el suceso ocurre en ~40 % (**infraestima**). La **distancia a la diagonal** es, de un vistazo, cuánto se desvían sus probabilidades de la realidad.
 
 **Por qué importa más que el AUC en la práctica clínica:** las decisiones clínicas usan **la probabilidad en sí**, no solo el orden. Las guías fijan umbrales de riesgo (por ejemplo, "ofrecer estatinas si el riesgo a 10 años supera cierto %"), la decisión compartida con el paciente se basa en cifras concretas, y conceptos como el número necesario a tratar dependen de que la probabilidad sea creíble.
 
