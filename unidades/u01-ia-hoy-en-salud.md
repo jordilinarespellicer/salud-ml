@@ -53,7 +53,37 @@ Ese criterio es justo lo que un profesional sanitario puede —y debe— aportar
 Este curso existe para dártelo.
 {% endhint %}
 
-## 1.2 Panorama actual: qué funciona hoy, por tipo de dato
+## 1.2 Un antes y un después: la IA como músculo cognitivo
+
+Conviene detenerse un momento en **por qué** este cambio es tan profundo, porque no es una mejora más: es un **cambio de fase**.
+
+Durante años, el motor ha sido el **aprendizaje profundo** (_deep learning_): **redes neuronales** que, en lugar de seguir reglas escritas a mano, **aprenden por sí mismas** las representaciones útiles a partir de los datos.
+
+Sobre esa base llegaron **nuevas arquitecturas** —en especial los **_transformers_** y su mecanismo de "atención"— que escalan de forma extraordinaria: cuantos más datos y más cómputo, mejores resultados. De ahí nacen los **modelos fundacionales** que hoy usamos a diario.
+
+<figure><img src="../.gitbook/assets/ia-panorama-salud.png" alt="Infografía: la evolución de la IA (redes neuronales, transformers, modelos fundacionales), el hito de AlphaFold y los dominios de aplicación en salud."><figcaption><p>De las <strong>redes neuronales</strong> a los <strong>modelos fundacionales</strong>: la evolución que ha convertido a la IA en un <strong>músculo cognitivo</strong> imprescindible en salud y ciencias de la vida.</p></figcaption></figure>
+
+El resultado práctico es que la IA se ha convertido, como mínimo, en un **músculo cognitivo** difícil de ignorar: un **amplificador** de la capacidad de buscar, analizar, redactar, revisar y proponer, que ya resulta **valiosísimo en la investigación, la asistencia y la gestión** en salud y ciencias de la vida.
+
+**El ejemplo que mejor lo resume es AlphaFold.** Predecir la forma tridimensional de una proteína a partir de su secuencia de aminoácidos fue, durante **medio siglo**, uno de los grandes problemas abiertos de la biología.
+
+En 2020, **AlphaFold** (de DeepMind) lo resolvió con una precisión útil. Su base de datos pública ha predicho la estructura de **más de 200 millones de proteínas** —casi todas las conocidas— y la usan **más de dos millones de investigadores en 190 países**, acelerando desde el diseño de fármacos y enzimas hasta el estudio de enfermedades olvidadas.
+
+{% hint style="success" %}
+**💡 Idea clave · Cuando la IA abre puertas nuevas**
+
+El reconocimiento llegó en forma de **Premio Nobel de Química 2024**, concedido a **Demis Hassabis** y **John Jumper** por AlphaFold (junto a David Baker, por el diseño computacional de proteínas).
+
+Lo relevante no es el premio en sí, sino lo que señala: la IA ya no solo **automatiza** tareas, sino que **abre soluciones nuevas a problemas que llevaban décadas atascados**.
+{% endhint %}
+
+Y no es un caso aislado. En imagen, señal, texto, datos tabulares, descubrimiento de fármacos o genómica, la IA está actuando como **catalizador**: un **antes y un después**.
+
+En muchos entornos se ha convertido ya en un **compañero de trabajo imprescindible**, capaz de aportar **soluciones noveles** a problemas concretos —y todo apunta a que esta tendencia **irá a más**.
+
+Nada de esto significa que la IA sea infalible ni que "lo haga todo". Significa que el **punto de partida** ha cambiado. Por eso la pregunta útil ya no es _"¿podrá la IA…?"_, sino _"**¿para qué, con qué garantías y bajo qué supervisión** la incorporo a mi trabajo?"_. A responderla dedicamos el resto de la unidad.
+
+## 1.3 Panorama actual: qué funciona hoy, por tipo de dato
 
 Lo que sigue no es un catálogo de maravillas ni una lista de miedos. Es el patrón que aparece cuando se mira el campo con calma: la IA rinde en **tareas concretas y bien definidas**, con datos abundantes y una verdad de referencia razonablemente clara; y va ganando terreno cuando la tarea exige integrar contexto, valores del paciente y responsabilidad, **pero aquí es donde aún el profesional es más necesario**.
 
@@ -89,7 +119,7 @@ Aquí es donde más modelos se entrenan "en casa", con datos del propio sistema 
 
 Trabajaremos con datos **sintéticos** —generados con código, sin ningún paciente real detrás: una tabla de pacientes con factores de riesgo cardiovascular ([`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link)), una serie temporal de ingresos en urgencias ([`urgencias_diarias.csv`](https://drive.google.com/file/d/1EpQ9Lcb-f-iDqBOA3f3sT_pGLBp2G56u/view?usp=drive_link)), notas clínicas de texto ([`notas_clinicas.csv`](https://drive.google.com/file/d/1cWvZFsNd1d-Wd_B8G2eTLewqyjiydE0x/view?usp=drive_link)) y registros de un wearable ([`wearable.csv`](https://drive.google.com/file/d/1az7oq8Rzkts0u37ijWVaRTvUnmpbNU7o/view?usp=drive_link)).
 
-## 1.3 Tu papel: copiloto humano al mando
+## 1.4 Tu papel: copiloto humano al mando
 
 La palabra que mejor describe la relación sana con estos sistemas es **copiloto**: la IA amplifica tu capacidad —ve más volumen, no se cansa, redacta en segundos, no olvida un patrón— mientras **el criterio y la responsabilidad siguen siendo tuyos**.
 
@@ -104,7 +134,7 @@ Y el copiloto necesita del piloto exactamente las dos cosas que la IA no tiene:
 * **La pregunta correcta.** Qué problema de tu servicio merece resolverse, qué variables tienen sentido clínico, qué resultado sería sospechoso, qué error sería inaceptable, etc.
 * **La validación.** ¿Es cierto? ¿Es seguro? ¿Aplica a _este_ paciente, en _este_ centro? La salida de una IA se parece más a un resultado de laboratorio que a un veredicto: información valiosa que se **integra** en el juicio clínico.
 
-## 1.4 Límites reales y trampas frecuentes
+## 1.5 Límites reales y trampas frecuentes
 
 Cuatro trampas que conviene llevar puestas desde hoy. No para desconfiar de todo, sino para preguntar bien:
 
@@ -123,7 +153,7 @@ Todo lo que hagamos en este curso ocurre sobre datos sintéticos, precisamente p
 
 Nada de esto es un apéndice ético para el final: es ingeniería de la buena y práctica clínica de la buena. En la **U11** le dedicaremos una unidad entera —sesgo, validación, privacidad y explicabilidad— cuando ya tengáis los mecanismos para entenderla a fondo.
 
-## 1.5 La promesa del curso: mecanismos y criterio; el código lo escribe la IA
+## 1.6 La promesa del curso: mecanismos y criterio; el código lo escribe la IA
 
 Queda la pregunta que muchos os estaréis haciendo: _"todo esto está muy bien, pero yo no sé programar"_. Y aquí está la buena noticia que hace posible este curso: **ya no hace falta**.
 
@@ -142,7 +172,7 @@ Al terminar, deberías ser capaz de leer con otros ojos la próxima promesa come
 No vas a aprender a programar: vas a aprender a **pensar en Machine Learning**. La diferencia entre un usuario deslumbrado y un profesional con criterio no está en el código —ese, ahora, se pide, sino en entender qué hay debajo y qué preguntas hacer.
 {% endhint %}
 
-## 1.6 Dónde encaja esta parte en el programa
+## 1.7 Dónde encaja esta parte en el programa
 
 Este hilo de **Machine Learning** convive con otros módulos del curso que no vamos a duplicar: la **introducción general a la IA** (que ya encuadra definiciones y áreas), un módulo de **PLN y modelos de lenguaje**, otro de **radiómica e imagen avanzada**, y los **aspectos legales y éticos** tratados desde el derecho.
 
