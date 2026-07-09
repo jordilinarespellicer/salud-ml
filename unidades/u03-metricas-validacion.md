@@ -129,11 +129,11 @@ Es decir, en nuestro ejemplo, qué proporción de la variabilidad del riesgo ent
 {% hint style="info" %}
 **Concepto · R² (coeficiente de determinación)**
 
-Toma valores típicamente entre 0 y 1 (puede ser negativo si el modelo es peor que la media).&#x20;
+Toma valores típicamente entre 0 y 1 (puede ser negativo si el modelo es peor que la media).
 
-**R² = 1** sería un ajuste perfecto;&#x20;
+**R² = 1** sería un ajuste perfecto;
 
-**R² = 0** significa que el modelo no aporta nada sobre predecir siempre el riesgo medio;&#x20;
+**R² = 0** significa que el modelo no aporta nada sobre predecir siempre el riesgo medio;
 
 **R² negativo** indica que es _peor_ que esa media.
 
@@ -148,7 +148,7 @@ Es una medida de **calidad relativa**, no del error en puntos de riesgo.
 **⚠️ Debilidades / límites**
 
 * No está en unidades clínicas: un R² alto no te dice si el error es aceptable.
-* Un R² elevado puede venir acompañado de errores inaceptables, o ser fruto de **fuga de datos** (lo veremos).&#x20;
+* Un R² elevado puede venir acompañado de errores inaceptables, o ser fruto de **fuga de datos** (lo veremos).
 
 **Campo de aplicación clínica:** una foto rápida de la calidad relativa, **siempre acompañada** de MAE/RMSE y de un gráfico de predicho _vs._ real.
 
@@ -202,7 +202,7 @@ Tomando como "positivo" que el modelo prediga `evento_cv = 1` (el paciente sufri
 
 La clave es que **el coste de cada tipo de error depende de su naturaleza clínica**, no solo de su frecuencia.
 
-Un mismo modelo puede ser excelente o inaceptable según cuál de los dos errores cometa más, porque sus consecuencias pueden ser de órdenes de magnitud distintos.&#x20;
+Un mismo modelo puede ser excelente o inaceptable según cuál de los dos errores cometa más, porque sus consecuencias pueden ser de órdenes de magnitud distintos.
 
 ### Sensibilidad, especificidad y valores predictivos
 
@@ -268,7 +268,7 @@ F_1 = 2 \cdot \frac{\text{VPP} \cdot \text{Sensibilidad}}{\text{VPP} + \text{Sen
 $$
 
 {% hint style="info" %}
-**Concepto · Exactitud (_accuracy_)**
+**Concepto · Exactitud (**_**accuracy**_**)**
 
 De **todas las predicciones**, la proporción que el modelo acertó (sumando los aciertos en positivos y en negativos). Es la métrica más intuitiva —_de cada 100 casos, ¿en cuántos acierta?_— pero, como veremos justo debajo, **engaña cuando una clase es mucho más frecuente que la otra**.
 {% endhint %}
@@ -454,9 +454,9 @@ La idea: para evaluar **cualquier** modelo, **enfrenta lo que predice con lo que
 
 En la práctica se hace así: coges el conjunto de **test**, pides al modelo su predicción para cada caso, y dibujas **un punto por caso** —en el eje horizontal, **lo predicho**; en el vertical, **lo real**—. Si el modelo acertara siempre, todos los puntos caerían exactamente sobre la línea diagonal (**predicho = real**). En la realidad se dispersan a su alrededor, y **la forma de esa nube lo dice todo**:
 
-- Puntos **sobre la diagonal** → la predicción coincide con la realidad.
-- Puntos sistemáticamente **por encima** (real > predicho) → el modelo **se queda corto** (infra-predice).
-- Puntos sistemáticamente **por debajo** (real < predicho) → el modelo **se pasa** (sobre-predice).
+* Puntos **sobre la diagonal** → la predicción coincide con la realidad.
+* Puntos sistemáticamente **por encima** (real > predicho) → el modelo **se queda corto** (infra-predice).
+* Puntos sistemáticamente **por debajo** (real < predicho) → el modelo **se pasa** (sobre-predice).
 
 <figure><img src="../.gitbook/assets/u03_predicho_vs_real.png" alt="Diagrama predicho frente a real: cada punto es un caso del test, con el valor predicho en el eje horizontal y el real en el vertical; los puntos sobre la diagonal indican predicción correcta, por encima infra-predicción y por debajo sobre-predicción."><figcaption><p><strong>Predicho frente a real.</strong> Cada punto es un caso del conjunto de test. Cuanto más cerca de la <strong>diagonal</strong>, mejor predice el modelo; una desviación sistemática hacia un lado revela que <strong>infra-predice o sobre-predice</strong>. Es una comprobación válida para cualquier modelo y cualquier predicción. (Ejemplo con datos sintéticos.)</p></figcaption></figure>
 
@@ -472,7 +472,7 @@ Ese gráfico funciona tal cual cuando el modelo predice **un número** (un valor
 
 Aparece un matiz: el valor **real** de cada caso individual no es una probabilidad, es solo **0 o 1** (ocurrió o no ocurrió). Enfrentar "predicho 0,2 vs. real 0/1" punto a punto no dice nada útil.
 
-La solución es la **misma idea, pero agrupando**: se juntan los casos con probabilidad predicha parecida (los del ~10 %, los del ~20 %…) y, en cada grupo, se compara la **probabilidad media predicha** con la **frecuencia real** con la que ocurrió el suceso. Ese gráfico —otra vez, predicho frente a real sobre la diagonal— es la **curva de calibración**.
+La solución es la **misma idea, pero agrupando**: se juntan los casos con probabilidad predicha parecida (los del \~10 %, los del \~20 %…) y, en cada grupo, se compara la **probabilidad media predicha** con la **frecuencia real** con la que ocurrió el suceso. Ese gráfico —otra vez, predicho frente a real sobre la diagonal— es la **curva de calibración**.
 
 Una analogía para la probabilidad: un modelo bien calibrado es como un **buen hombre del tiempo**. Cuando dice _"70 % de probabilidad de lluvia"_, de verdad llueve en unos **7 de cada 10** días en que lo anunció. No acierta cada día, pero sus **porcentajes son de fiar**. Uno mal calibrado dice _"70 %"_ y solo llueve 3 de cada 10: aunque ordene bien los días, sus **números engañan**.
 
@@ -484,7 +484,7 @@ Un modelo está **bien calibrado** cuando sus probabilidades coinciden con la re
 
 <figure><img src="../.gitbook/assets/u03_calibracion.png" alt="Curva de calibración: un modelo bien calibrado sigue la diagonal (predicho = observado); uno mal calibrado que infraestima queda por encima de la diagonal, con un ejemplo en el que predice ~20% pero el evento ocurre en ~40%."><figcaption><p>Curva de calibración. Cada punto compara el <strong>riesgo predicho</strong> (eje horizontal) con la <strong>frecuencia real</strong> de eventos (eje vertical). El modelo <strong>bien calibrado</strong> (verde) sigue la diagonal; el <strong>mal calibrado</strong> (rojo) se aleja: aquí <em>infraestima</em>, asignando ~20 % a un grupo en el que el evento ocurre en ~40 %. Datos sintéticos.</p></figcaption></figure>
 
-En la figura, el modelo **bien calibrado** (verde) sigue la diagonal; el **mal calibrado** (rojo) se aleja: en el punto señalado asigna un ~20 % a un grupo en el que el suceso ocurre en ~40 % (**infraestima**). La **distancia a la diagonal** es, de un vistazo, cuánto se desvían sus probabilidades de la realidad.
+En la figura, el modelo **bien calibrado** (verde) sigue la diagonal; el **mal calibrado** (rojo) se aleja: en el punto señalado asigna un \~20 % a un grupo en el que el suceso ocurre en \~40 % (**infraestima**). La **distancia a la diagonal** es, de un vistazo, cuánto se desvían sus probabilidades de la realidad.
 
 **Por qué importa más que el AUC en la práctica clínica:** las decisiones clínicas usan **la probabilidad en sí**, no solo el orden. Las guías fijan umbrales de riesgo (por ejemplo, "ofrecer estatinas si el riesgo a 10 años supera cierto %"), la decisión compartida con el paciente se basa en cifras concretas, y conceptos como el número necesario a tratar dependen de que la probabilidad sea creíble.
 
@@ -548,7 +548,7 @@ Como en todo el curso, el código lo genera el asistente y nosotros lo revisamos
 **🤖 Prompt para el asistente · Evaluación de regresión del riesgo**
 
 ```
-Con 'pacientes.csv' (target de regresión: riesgo_cv_10a, en %), en español y por celdas:
+Con 'pacientes.csv' (target de regresión: riesgo_cv_10a, en %):
 1. Separa train/test de forma honesta, por paciente y SIN fuga
    (imputa y escala solo con el train).
 2. Entrena un BASELINE (predecir el riesgo medio) y un modelo sencillo.
@@ -562,8 +562,7 @@ Con 'pacientes.csv' (target de regresión: riesgo_cv_10a, en %), en español y p
 **🤖 Prompt para el asistente · Evaluación de clasificación con coste y calibración**
 
 ```
-Con 'pacientes.csv' (target de clasificación: evento_cv, prevalencia ≈19%),
-en español y por celdas:
+Con 'pacientes.csv' (target de clasificación: evento_cv, prevalencia ≈19%):
 1. Separa train/test ESTRATIFICADO y por paciente (sin fuga).
 2. Entrena un baseline (clase mayoritaria) y un clasificador sencillo que dé
    PROBABILIDADES.
