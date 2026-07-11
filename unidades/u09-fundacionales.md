@@ -315,7 +315,44 @@ Reuniéndolo todo, la decisión se vuelve sencilla si te haces las preguntas en 
 
 La última fila es la moraleja de la unidad: entrenar un fundacional desde cero no está en tu horizonte, y no pasa nada. Tu trabajo es **elegir bien** entre lo que ya existe.
 
-## 9.9 Práctica en Colab
+## 9.9 Modelos fundacionales para **tablas**: TabFM
+
+Hemos visto modelos fundacionales para **imagen** y para **texto**. Faltaba el tipo de dato **más común en salud**: las **tablas** —historias clínicas, analíticas, registros de urgencias, hojas de cálculo—.
+
+Durante años ahí no había "fundacionales" que valieran: reinaban los **árboles con boosting** (XGBoost, LightGBM…), que rinden de maravilla… **a cambio de mucho trabajo**: preparar variables, escalar y, sobre todo, **buscar hiperparámetros** durante horas.
+
+En 2026 eso cambió. **Google Research** presentó **TabFM** (_Tabular Foundation Model_): un modelo fundacional que predice sobre tablas **sin entrenar y sin ajustar nada**.
+
+{% hint style="info" %}
+**Concepto · Modelo fundacional tabular (TabFM)**
+
+Un modelo preentrenado que hace **clasificación y regresión sobre tablas en _zero-shot_**: le das tus datos y predice **sin entrenamiento específico, sin búsqueda de hiperparámetros y sin _feature engineering_ manual**. Es compatible con scikit-learn (`fit` / `predict`), pero su `fit` **no entrena pesos**: solo prepara los datos.
+{% endhint %}
+
+**Cómo lo hace (la intuición).** Es la misma idea que hace mágicos a los LLM: el **aprendizaje en contexto** (_in-context learning_). En vez de ajustar parámetros a tus datos, TabFM **lee tus filas de entrenamiento como "contexto"** —igual que un chatbot lee tu prompt— junto con las filas que quieres predecir, y devuelve la respuesta en **una sola pasada**. Por dentro combina una atención que recorre **filas y columnas** (para captar las interacciones entre variables, ese trabajo que antes hacíamos a mano) con un transformer eficiente sobre las filas ya resumidas.
+
+{% hint style="success" %}
+**💡 Idea clave · Entrenado con datos sintéticos (como este curso)**
+
+TabFM no aprendió de tablas reales (escasas y sensibles): se entrenó con **cientos de millones de tablas sintéticas** generadas con modelos causales. Es justo la filosofía de este curso —aprender sobre datos inventados de forma controlada— llevada a una escala colosal. Y funciona: en el _benchmark_ público **TabArena** (decenas de conjuntos, de 700 a 150 000 filas), **iguala o supera a un XGBoost muy afinado**… sin que nadie afine nada.
+{% endhint %}
+
+**Qué significa en la práctica.** Que el flujo tedioso que da de comer a media profesión —probar modelos, cruzar validaciones, rejillas de hiperparámetros— se **comprime a tres líneas y unos segundos**. En el notebook de esta sección lo comprobamos sobre nuestros datos: partimos de `pacientes_sucio.csv`, lo **limpiamos** y ponemos cara a cara un **XGBoost bien afinado** contra **TabFM en zero-shot**, midiendo con el AUC de la U3.
+
+{% hint style="warning" %}
+**⚠️ Aviso · Lo que TabFM NO hace (y otros límites)**
+
+- **No limpia los datos.** Sigue haciendo falta el **EDA y la limpieza** de la U2: si le das una glucemia en texto o una edad de 250, predice mal. Te ahorra el **modelado**, no la **calidad del dato**.
+- **Pesos con licencia no comercial** (el código es Apache-2.0): ideal para docencia e investigación; ojo si es para un producto.
+- Necesita **GPU**, y su memoria **crece con el nº de filas** de contexto (en Colab gratis se **submuestrea** a unos miles).
+- Límites de fábrica: hasta **10 clases** y ~**500 variables**.
+- Es una **caja negra**: menos interpretable que la logística de la U4, y en clínica esa transparencia importa.
+- Y la regla de siempre: **validarlo** en tu población antes de usarlo con pacientes.
+{% endhint %}
+
+**Hacia dónde va.** Google está integrando TabFM en **BigQuery**: pronto se pedirá una predicción sobre una tabla con un simple `AI.PREDICT` en SQL. La dirección es clara —predecir será tan fácil como escribir una consulta— y el valor, otra vez, estará en el **criterio** para plantear la pregunta y **evaluar** la respuesta.
+
+## 9.10 Práctica en Colab
 
 {% hint style="success" %}
 **🔬 Práctica en Colab** — [`U09a_Fundacionales_HF.ipynb`](https://colab.research.google.com/drive/1MgvsLL_6QYwjP1fPM7JWGEJKpfJWBCY8) · [Abrir en Colab](https://colab.research.google.com/drive/1MgvsLL_6QYwjP1fPM7JWGEJKpfJWBCY8)
@@ -327,6 +364,12 @@ La última fila es la moraleja de la unidad: entrenar un fundacional desde cero 
 **🔬 Práctica en Colab** — [`U09b_APIs_OpenRouter.ipynb`](https://colab.research.google.com/drive/1MU72hahjS96Nf1I3RfXOsqJkHrSJq_OI) · [Abrir en Colab](https://colab.research.google.com/drive/1MU72hahjS96Nf1I3RfXOsqJkHrSJq_OI)
 
 **Llamar a los grandes modelos por API con una sola clave.** El notebook conecta con **OpenRouter** (cambiando solo la `base_url` del SDK de OpenAI) y usa un modelo —por ejemplo una variante **gratuita** de **Qwen**— para **analizar un dataset sintético**: le pasamos el resumen estadístico de [`pacientes.csv`](https://drive.google.com/file/d/1Ku0j-sAf8Cr3FPT-DGm8v5p4h_2BmV5U/view?usp=drive_link) (**sintético**; se genera en la primera celda) y le pedimos que **redacte los factores de riesgo en lenguaje natural** y proponga hipótesis. La clave se guarda como **secreto** de Colab, no en el código. Regla de oro recordada en el propio notebook: **por la API, solo datos sintéticos**.
+{% endhint %}
+
+{% hint style="success" %}
+**🔬 Práctica en Colab** — `U09c_TabFM_vs_XGBoost.ipynb` · [Abrir en Colab](https://colab.research.google.com/drive/1_z5-OFwwgyrtAamOIj2_fUwmTVPK3Izn)
+
+**TabFM (zero-shot) contra un XGBoost afinado, sobre nuestros pacientes.** El notebook parte de [`pacientes_sucio.csv`](https://drive.google.com/file/d/1geOuVmKqhBvBf52NyVFBvpxw7Ypbucp2/view?usp=drive_link) (**sintético**; se genera en la primera celda), lo **limpia** como en la U2 —para dejar claro que eso hay que hacerlo igual—, **afina un XGBoost** y luego lanza **TabFM en zero-shot** en tres líneas, comparando el **AUC** de ambos. **Requiere GPU** (_Entorno de ejecución → GPU_); las celdas de TabFM se saltan solas si no la hay. Verás en vivo cuánto trabajo ahorra el modelo fundacional… y qué límites tiene.
 {% endhint %}
 
 **🤖 Prompt para el asistente · Usar un modelo del Hub en tres líneas**
@@ -346,10 +389,11 @@ En español y por celdas, con la librería transformers de Hugging Face:
 
 *Fíjate en el punto 4: no le pides solo que ejecute, le pides el **cuestionario clínico**. Ese es el criterio que distingue a un profesional de un usuario ingenuo de la IA.*
 
-## 9.10 Qué llevarte
+## 9.11 Qué llevarte
 
 * **Somos usuarios, no fabricantes.** En 2026 ya casi nadie entrena modelos desde cero: los **descargamos** (Hugging Face) o los **llamamos por API** (OpenRouter). El trabajo es **elegir, integrar, evaluar y orquestar** —y eso es criterio, no programación—.
 * **Modelo fundacional** = red preentrenada a gran escala, **adaptable** a muchas tareas. **Usar** uno es trivial; **entrenar** uno fundacional está fuera del alcance de cualquier hospital.
+* **Ya los hay también para _tablas_.** **TabFM** predice en _zero-shot_ (sin entrenar ni ajustar hiperparámetros) y compite con un **XGBoost afinado** —pero no te ahorra la **limpieza** de los datos, ni la **validación** clínica, ni deja de ser una **caja negra**—.
 * **Hugging Face** es "el GitHub de los modelos": el **Hub** más la función **`pipeline()`** ponen un modelo a trabajar en **tres líneas**. Lo probamos con un **ViT** de neumonía, un **NER** biomédico en inglés y un **RoBERTa** biomédico-clínico en **español**.
 * **OpenRouter** da acceso a **400+ modelos** (Claude, GPT, Gemini, **Qwen**) con **una clave**, siendo compatible con la API de OpenAI: **solo cambias la `base_url`**. Tiene opción **gratuita** y una de pago con un pequeño recargo (~5,5%).
 * **Qwen** demuestra que hay **potencia de primer nivel con pesos abiertos** (Apache 2.0, de <1B a modelos grandes) a coste casi nulo: el acceso ya no es cuestión de presupuesto.

@@ -413,6 +413,10 @@ Recorrido completo del corazón de la unidad sobre la cohorte **sintética** `pa
 * **El mejor modelo se mide, no se adivina.** Compáralos con la **métrica clínica adecuada** (AUC/PR/calibración, no *accuracy*) y contra un baseline. La moraleja de oro: en estos datos la **logística iguala o gana** a Random Forest en `evento_cv`, pero el Random Forest **gana** en la regresión de `riesgo_cv_10a`. **No hay modelo universalmente mejor.**
 * **SHAP recupera la confianza.** Explica la predicción de **un paciente concreto** —qué le sube y qué le baja el riesgo—, lo que hace auditable, defendible y "vendible" incluso a un modelo potente pero opaco.
 
+{% hint style="info" %}
+**🔭 Un adelanto de 2026.** Todo este esfuerzo de **afinar** y **elegir** modelos… ¿y si una parte se pudiera saltar? En la **U9** conocerás **TabFM**, un modelo fundacional para **tablas** que compite con un XGBoost afinado **sin ajustar un solo hiperparámetro** (_zero-shot_). No lo sustituye todo —la **limpieza** y la **validación** siguen siendo tuyas—, pero cambia el punto de partida.
+{% endhint %}
+
 ***
 
 Con esto cerramos el aprendizaje **supervisado**: en toda esta parte teníamos la respuesta correcta en la cohorte (el evento, el riesgo) y aprendíamos a predecirla —y, sobre todo, a **elegir y evaluar** con honestidad—. Pero muchísimo valor clínico se esconde en datos **sin etiquetar**: agrupar pacientes en **fenotipos** que nadie había definido de antemano, o detectar **anomalías** que se salen de todo patrón. Ese es el territorio del **aprendizaje no supervisado**, la **Unidad 6**.

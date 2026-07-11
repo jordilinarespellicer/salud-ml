@@ -25,6 +25,7 @@ Cada enlace **abre el notebook directamente en Google Colab**. Al abrirlo, haz *
 | [`U08_Redes_Imagen`](https://colab.research.google.com/drive/1NGzKU1gh2CaN5Cd9sddN7mWqmpang_A_) | U8 | MLP tabular → **CNN con MedMNIST** → **ViT / transfer learning** |
 | [`U09a_Fundacionales_HF`](https://colab.research.google.com/drive/1MgvsLL_6QYwjP1fPM7JWGEJKpfJWBCY8) | U9 | `pipeline()` de imagen biomédica + NER clínico (ES/EN) con Hugging Face |
 | [`U09b_APIs_OpenRouter`](https://colab.research.google.com/drive/1MU72hahjS96Nf1I3RfXOsqJkHrSJq_OI) | U9 | Llamar a OpenAI/Claude/Qwen vía OpenRouter para analizar un dataset |
+| [`U09c_TabFM_vs_XGBoost`](https://colab.research.google.com/drive/1_z5-OFwwgyrtAamOIj2_fUwmTVPK3Izn) | U9 | **TabFM** (modelo fundacional tabular, *zero-shot*) contra un **XGBoost** afinado, sobre `pacientes_sucio.csv` limpiado — **requiere GPU** |
 | [`U10_Copiloto_DataScience`](https://colab.research.google.com/drive/1Nz_xdzwz0SX_fOEbzSl0jbVLVHtUnu5H) | U10 | Recorrido **end-to-end** guiado por prompting/loops |
 
 > Los notebooks de **U8** se benefician de **GPU** (gratuita en Colab: *Entorno de ejecución → Cambiar tipo de entorno → GPU*).
