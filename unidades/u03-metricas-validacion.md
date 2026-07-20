@@ -534,13 +534,13 @@ Si tus métricas parecen demasiado buenas para ser verdad, sospecha de una fuga 
 **Adelanto de la validación cruzada (se profundiza en la Unidad 5).** Una sola partición _train/test_ da una estimación algo caprichosa (depende de qué pacientes tocaron en cada lado). La **validación cruzada** rota el bloque de validación varias veces y promedia, dando una estimación **más estable** y, además, una idea de su **variabilidad**.
 
 {% hint style="info" %}
-**Concepto · Partición _estratificada_ (y en qué se diferencia de la validación cruzada)**
+**Concepto · Partición&#x20;**_**estratificada**_**&#x20;(y en qué se diferencia de la validación cruzada)**
 
-**Estratificar** el reparto significa mantener en cada parte (_train_ y _test_) **la misma proporción de clases** que en el total. Como `evento_cv` tiene una prevalencia del ~19 %, una partición **estratificada** deja **~19 % de eventos en el _train_ y ~19 % en el _test_**.
+**Estratificar** el reparto significa mantener en cada parte (_train_ y _test_) **la misma proporción de clases** que en el total. Como `evento_cv` tiene una prevalencia del \~19 %, una partición **estratificada** deja **\~19 % de eventos en el&#x20;**_**train**_**&#x20;y \~19 % en el&#x20;**_**test**_.
 
 Sin estratificar, el azar podría dejar el test con, por ejemplo, un 12 % o un 27 % de eventos —o, en un conjunto pequeño, **casi ninguno**—, y entonces la métrica saldría distorsionada por el reparto, no por el modelo.
 
-Y ojo, porque es tu duda exacta: **no es lo mismo que la validación cruzada**. Estratificar es una **propiedad de _cómo_ repartes** (conservar el equilibrio de clases); la validación cruzada es una **estrategia de repartir _varias veces_** y promediar. Se pueden **combinar**: la _validación cruzada estratificada_ (en scikit-learn, `StratifiedKFold`) hace las dos cosas a la vez, y es lo recomendable con clases desbalanceadas como la nuestra.
+Y ojo, porque es tu duda exacta: **no es lo mismo que la validación cruzada**. Estratificar es una **propiedad de&#x20;**_**cómo**_**&#x20;repartes** (conservar el equilibrio de clases); la validación cruzada es una **estrategia de repartir&#x20;**_**varias veces**_ y promediar. Se pueden **combinar**: la _validación cruzada estratificada_ (en scikit-learn, `StratifiedKFold`) hace las dos cosas a la vez, y es lo recomendable con clases desbalanceadas como la nuestra.
 {% endhint %}
 
 En clínica, un matiz crucial: la partición debe ser **por paciente** (agrupada), para que **ningún paciente aparezca a la vez en entrenamiento y en test**.
@@ -624,7 +624,7 @@ Métricas clínicas, ROC/PR, calibración y coste del error, todo sobre la cohor
 
 ## 🎬 Vídeo · La teoría, en una mirada
 
-Antes de verlo todo en acción, este vídeo ofrece una **visión de la parte teórica** de la unidad: repasa, de forma más conceptual, las ideas que hemos ido construyendo sobre **cómo se evalúa un modelo** —qué mide cada métrica, por qué unas engañan y otras no—. Es el complemento perfecto para **asentar los fundamentos**.
+Antes de verlo todo en acción, este vídeo ofrece una **visión de la parte teórica** de la unidad: repasa, de forma más conceptual, las ideas que hemos ido construyendo sobre **cómo se evalúa un modelo** —qué mide cada métrica, por qué unas engañan y otras no. Es el complemento perfecto para **asentar los fundamentos**.
 
 Míralo primero para fijar la teoría y, justo después, pasa al recorrido **práctico** del siguiente vídeo, donde esas mismas ideas se aplican a un caso.
 
