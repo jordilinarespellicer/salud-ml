@@ -331,6 +331,8 @@ Un modelo preentrenado que hace **clasificación y regresión sobre tablas en _z
 
 **Cómo lo hace (la intuición).** Es la misma idea que hace mágicos a los LLM: el **aprendizaje en contexto** (_in-context learning_). En vez de ajustar parámetros a tus datos, TabFM **lee tus filas de entrenamiento como "contexto"** —igual que un chatbot lee tu prompt— junto con las filas que quieres predecir, y devuelve la respuesta en **una sola pasada**. Por dentro combina una atención que recorre **filas y columnas** (para captar las interacciones entre variables, ese trabajo que antes hacíamos a mano) con un transformer eficiente sobre las filas ya resumidas.
 
+La idea, por cierto, **no es de Google**: la abrió y popularizó **TabPFN** (de _Prior Labs_ / Frank Hutter) **desde 2022** —su versión de 2025 se publicó en _Nature_—. TabFM (junio de 2026) la recoge, la combina con otras técnicas y la entrena a mayor escala. Es un campo **muy nuevo y muy activo**, con varias familias compitiendo a la vez.
+
 {% hint style="success" %}
 **💡 Idea clave · Entrenado con datos sintéticos (como este curso)**
 
@@ -338,6 +340,23 @@ TabFM no aprendió de tablas reales (escasas y sensibles): se entrenó con **cie
 {% endhint %}
 
 **Qué significa en la práctica.** Que el flujo tedioso que da de comer a media profesión —probar modelos, cruzar validaciones, rejillas de hiperparámetros— se **comprime a tres líneas y unos segundos**. En el notebook de esta sección lo comprobamos sobre nuestros datos: partimos de `pacientes_sucio.csv`, lo **limpiamos** y ponemos cara a cara un **XGBoost bien afinado** contra **TabFM en zero-shot**, midiendo con el AUC de la U3.
+
+{% hint style="info" %}
+**🕐 ¿Cuántas filas de contexto? Una guía práctica (tiempo ↔ métrica)**
+
+Al usar TabFM notarás algo clave: **el tiempo de predicción depende muchísimo del número de filas que le pasas como contexto**. No es un capricho. Un modelo _in-context_ **atiende a todas las filas de entrenamiento a la vez** para predecir, y ese coste crece de forma **aproximadamente cuadrática** con el número de filas: **duplicar el contexto ≈ cuadruplicar el tiempo** (pasar de 1 000 a 5 000 filas —cinco veces más contexto— puede multiplicar la espera por **más de 20**).
+
+Y la buena noticia: **más filas no significa mejor métrica**. A partir de unos **cientos o pocos miles** de filas _representativas_, el modelo ya captura casi toda la señal; añadir más apenas mejora el resultado y **dispara el tiempo** (rendimientos decrecientes).
+
+Una heurística sencilla:
+
+- **Empieza pequeño y estratificado:** unos **500–2 000** pacientes (manteniendo la **prevalencia**, como en la U3) suelen bastar en tablas "normales".
+- **Sube solo si compensa:** prueba 500 → 1 000 → 2 000 y **detente cuando la métrica de validación deje de subir** de forma apreciable. Es un compromiso **tiempo ↔ ganancia**.
+- **Datos muy grandes → submuestrea** (es lo habitual por encima de decenas de miles de filas). **Datos muy pequeños (< ~1 000) → úsalos todos.**
+- Recuerda que **predecir muchas filas de test también cuesta**: cada fila a predecir se compara con todo el contexto.
+
+Es justo lo que observarás en el notebook: con **5 000** filas va lento; con **1 000** vuela y la métrica ya es muy buena. El ecosistema evoluciona deprisa —la familia **TabPFN** (de Prior Labs), **pionera** de estos modelos desde 2022, y sus versiones recientes trabajan precisamente en **escalar a muchas más filas**—, pero la intuición se mantiene: **elige el contexto más pequeño que te dé una métrica estable.**
+{% endhint %}
 
 {% hint style="warning" %}
 **⚠️ Aviso · Lo que TabFM NO hace (y otros límites)**

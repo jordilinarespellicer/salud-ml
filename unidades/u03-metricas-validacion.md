@@ -622,6 +622,14 @@ Métricas clínicas, ROC/PR, calibración y coste del error, todo sobre la cohor
 **MAE/RMSE/R²**: métricas de regresión (desvío medio absoluto / que penaliza los errores grandes / variabilidad explicada), leídas en **puntos de riesgo**. **Matriz de confusión**: TP, TN, FP, FN. **Sensibilidad (=recall)**: a cuántos enfermos detecto. **Especificidad**: a cuántos sanos descarto bien. **VPP (=precisión)** / **VPN**: fiabilidad del positivo / del negativo, **dependen de la prevalencia**. **Umbral**: el corte de probabilidad que fijamos; moverlo cambia todo. **AUC-ROC**: capacidad de ordenar a cualquier umbral. **PR-AUC**: fiabilidad de la clase positiva cuando es rara. **Calibración**: que las probabilidades coincidan con la realidad. **Fuga de datos**: información imposible en el momento real que infla las métricas. **Baseline**: modelo trivial de referencia.
 {% endhint %}
 
+## 🎬 Vídeo · La teoría, en una mirada
+
+Antes de verlo todo en acción, este vídeo ofrece una **visión de la parte teórica** de la unidad: repasa, de forma más conceptual, las ideas que hemos ido construyendo sobre **cómo se evalúa un modelo** —qué mide cada métrica, por qué unas engañan y otras no—. Es el complemento perfecto para **asentar los fundamentos**.
+
+Míralo primero para fijar la teoría y, justo después, pasa al recorrido **práctico** del siguiente vídeo, donde esas mismas ideas se aplican a un caso.
+
+{% embed url="https://youtu.be/VP3-WXEmTrg" %}
+
 ## 🎬 Vídeo · La evaluación de modelos, en práctica
 
 Para cerrar la unidad, nada mejor que ver estas ideas **en acción**. Este vídeo es un **ejemplo final** pensado para **afianzar** lo aprendido: recorre, de forma aplicada, cómo se leen de verdad una **matriz de confusión** y las métricas que nacen de ella (**sensibilidad, especificidad, precisión/VPP…**), y cómo el **umbral de decisión** cambia el equilibrio entre unos errores y otros.
