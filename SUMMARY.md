@@ -11,7 +11,7 @@
 * [U3 · Evaluar bien — métricas y validación en clínica](unidades/u03-metricas-validacion.md)
 * [U4 · Modelos supervisados I — lineal, logística, Naïve Bayes](unidades/u04-supervisados-i.md)
 * [U5 · Modelos supervisados II — SVM, árboles, ensembles + cómo elegir](unidades/u05-supervisados-ii.md)
-* [U6 · Aprendizaje no supervisado — fenotipado y anomalías · 🔒 Próximamente](unidades/u06-no-supervisado.md)
+* [U6 · Aprendizaje no supervisado — fenotipado y anomalías](unidades/u06-no-supervisado.md)
 * [U7 · Series temporales en salud · 🔒 Próximamente](unidades/u07-series-temporales.md)
 * [U8 · Redes neuronales, imagen y señal — CNN y ViT · 🔒 Próximamente](unidades/u08-redes-imagen-senal.md)
 * [U9 · Modelos fundacionales — Hugging Face y APIs (OpenRouter) · 🔒 Próximamente](unidades/u09-fundacionales.md)
